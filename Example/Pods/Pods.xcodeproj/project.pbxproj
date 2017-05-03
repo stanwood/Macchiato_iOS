@@ -43,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		039074D88155BCD9519CF1EA39E2C156 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EEB2F00F05A586580EBA32E244A2FBD /* STWUITestingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = STWUITestingKit.modulemap; sourceTree = "<group>"; };
+		0EEB2F00F05A586580EBA32E244A2FBD /* STWUITestingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STWUITestingKit.modulemap; sourceTree = "<group>"; };
 		180E057C3C30A5E58C22B080654EE69E /* STWUITestingKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-prefix.pch"; sourceTree = "<group>"; };
 		1950856588A3A3B01EF61B6A56DF81EC /* STWUITestingKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STWUITestingKit-dummy.m"; sourceTree = "<group>"; };
 		19CD3CFC93EB74652840B307AF1EB34A /* Pods-STWUITestingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -56,21 +56,22 @@
 		42256CF2DD7BFCE0853D18B785E5A111 /* TestTool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestTool.swift; sourceTree = "<group>"; };
 		504AAB5E9DD95F5F860303AC9F54C3A0 /* Pods-STWUITestingKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		64202F927C0A8392388DF691E6C0BF21 /* Pods-STWUITestingKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		6C7543BD1EBA18840039EEE2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6DCDEDB8F0033BA7DDE8650CB80195BA /* Pods-STWUITestingKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		713C640DC1FD6F176EF2AC4E9581E587 /* Navigator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		726BF26882EE977189BA71253EA15F8F /* Pods-STWUITestingKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		735A682825E7E989FEACD715C781684D /* Pods-STWUITestingKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		8B216E0A05C6C45397D7DEBD7489FEE0 /* Pods-STWUITestingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		8D7D10B0C6698BD8C180B3FB356EB3ED /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_STWUITestingKit_Example.framework; path = "Pods-STWUITestingKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8D7D10B0C6698BD8C180B3FB356EB3ED /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95387EA59C0D34D36CD3B2EFC19A2B4D /* XCTHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XCTHelper.swift; sourceTree = "<group>"; };
 		9C6AEF6343AFADF11CB7E54EDEF65D96 /* Pods-STWUITestingKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		A03337F37293C5AF6B84F9B4E1DD8215 /* STWUITestingKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STWUITestingKit.xcconfig; sourceTree = "<group>"; };
-		A11447229A87DF609ADD2B71E6E69AC7 /* Pods-STWUITestingKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-STWUITestingKit_Tests.modulemap"; sourceTree = "<group>"; };
+		A11447229A87DF609ADD2B71E6E69AC7 /* Pods-STWUITestingKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_Tests.modulemap"; sourceTree = "<group>"; };
 		AD7012D595A278F7A046902B5D5F4E4B /* Pods-STWUITestingKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AE0654BB63AA20A93388B0A3100C1CF4 /* STWUITestingKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-umbrella.h"; sourceTree = "<group>"; };
 		B35250886854513AF7F18C35A2204FB5 /* Pods-STWUITestingKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B5E9A3582366DF4C1A3256BBB403B060 /* Pods-STWUITestingKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-STWUITestingKit_Example.modulemap"; sourceTree = "<group>"; };
+		B5E9A3582366DF4C1A3256BBB403B060 /* Pods-STWUITestingKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_Example.modulemap"; sourceTree = "<group>"; };
 		B9F4F1A546CC274989CD5F80437DCB0D /* Pods-STWUITestingKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		BAA94C99871BE9B13DC7B0E39A04119C /* FetchRequestController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FetchRequestController.swift; sourceTree = "<group>"; };
 		C32A03BF85B976EB393D488B2F8AE4AA /* NavigationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationType.swift; sourceTree = "<group>"; };
@@ -80,8 +81,8 @@
 		E13B05AEAB86361C05A63E1A2ED4FB30 /* Pods-STWUITestingKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Example-dummy.m"; sourceTree = "<group>"; };
 		E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E6379DDDA4F8B9D9D4E7A72FB789F8FB /* NavigationAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationAction.swift; sourceTree = "<group>"; };
-		E6908A280C5F2E78DC64EB30CB0F92EF /* STWUITestingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = STWUITestingKit.framework; path = STWUITestingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EECA0AAED7A4897DD44793C535740C06 /* Pods_STWUITestingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_STWUITestingKit_Tests.framework; path = "Pods-STWUITestingKit_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6908A280C5F2E78DC64EB30CB0F92EF /* STWUITestingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STWUITestingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECA0AAED7A4897DD44793C535740C06 /* Pods_STWUITestingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0939C59213AC7EE9EA6FB82A8C1B0F1 /* NavigationItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		F5C81C904C070C8F0A1D997D5CF0297A /* Pods-STWUITestingKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Tests-resources.sh"; sourceTree = "<group>"; };
 		FCBA27DE610E27A6F9270D056BE421DB /* XCUIApplication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XCUIApplication.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C7543BD1EBA18840039EEE2 /* XCTest.framework */,
 				7BE34EE7067F7CC8A54539A282682749 /* iOS */,
 			);
 			name = Frameworks;
@@ -183,7 +185,6 @@
 				95387EA59C0D34D36CD3B2EFC19A2B4D /* XCTHelper.swift */,
 				FCBA27DE610E27A6F9270D056BE421DB /* XCUIApplication.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -249,7 +250,6 @@
 			children = (
 				463AA87F45B779459A8B1EA1402C53FB /* Classes */,
 			);
-			name = STWUITestingKit;
 			path = STWUITestingKit;
 			sourceTree = "<group>";
 		};
