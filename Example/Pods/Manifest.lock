@@ -1,0 +1,16 @@
+PODS:
+  - STWUITestingKit (0.1.0)
+
+DEPENDENCIES:
+  - STWUITestingKit (from `../`)
+
+EXTERNAL SOURCES:
+  STWUITestingKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  STWUITestingKit: e6d8b3aca4853e6d176501c186e7be017bf3b17f
+
+PODFILE CHECKSUM: a45ab38785503a5366e0bd96589cda8ab5f69d99
+
+COCOAPODS: 1.2.0

@@ -1,0 +1,6 @@
+framework module Pods_STWUITestingKit_Example {
+  umbrella header "Pods-STWUITestingKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
