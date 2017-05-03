@@ -11,6 +11,8 @@
  let Passed = (true, "")
  var Failed = (false, "")
  
+ typealias Complition = (_ schemaCases:[Schema]) -> Void
+ 
  class XCTHelper {
     
     // MARK: Fetcher - Networking
