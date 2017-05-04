@@ -17,6 +17,7 @@
 		6C41F73F1EBB20DC00790A6C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F73C1EBB20DC00790A6C /* TableViewController.swift */; };
 		6C41F7401EBB20DC00790A6C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F73D1EBB20DC00790A6C /* TabViewController.swift */; };
 		6C41F7481EBB213300790A6C /* STWUITestingKit_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F7471EBB213300790A6C /* STWUITestingKit_UITests.swift */; };
+		6C41F7501EBB234F00790A6C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C41F74F1EBB234F00790A6C /* XCTest.framework */; };
 		7ECD6BC756C17C541E9349D9 /* Pods_STWUITestingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537A1FCD181C90A3C417109C /* Pods_STWUITestingKit_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +60,9 @@
 		6C41F7451EBB213300790A6C /* STWUITestingKit_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STWUITestingKit_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C41F7471EBB213300790A6C /* STWUITestingKit_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STWUITestingKit_UITests.swift; sourceTree = "<group>"; };
 		6C41F7491EBB213300790A6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C41F74F1EBB234F00790A6C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6D7FE4A77FA8172DF7A0822 /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0A8F49324696E4FF5B70ECD /* STWUITestingKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = STWUITestingKit.podspec; path = ../STWUITestingKit.podspec; sourceTree = "<group>"; };
+		E0A8F49324696E4FF5B70ECD /* STWUITestingKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = STWUITestingKit.podspec; path = ../STWUITestingKit.podspec; sourceTree = "<group>"; };
 		E920936E2D8C3519BFA0444C /* Pods-STWUITestingKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STWUITestingKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STWUITestingKit_Example/Pods-STWUITestingKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C41F7501EBB234F00790A6C /* XCTest.framework in Frameworks */,
 				04EDCB1CCC826DA261E75238 /* Pods_STWUITestingKit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +182,7 @@
 		656CE3FD76743335A8E7F18E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C41F74F1EBB234F00790A6C /* XCTest.framework */,
 				A6D7FE4A77FA8172DF7A0822 /* Pods_STWUITestingKit_Example.framework */,
 				537A1FCD181C90A3C417109C /* Pods_STWUITestingKit_Tests.framework */,
 			);
@@ -710,6 +714,7 @@
 				6C41F74E1EBB213300790A6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

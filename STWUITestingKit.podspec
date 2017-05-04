@@ -36,6 +36,6 @@ Stanwood iOS UITesting tool
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'XCTest'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

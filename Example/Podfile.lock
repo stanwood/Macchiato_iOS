@@ -1,5 +1,5 @@
 PODS:
-  - STWUITestingKit (0.1.0)
+  - STWUITestingKit (0.0.1)
 
 DEPENDENCIES:
   - STWUITestingKit (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  STWUITestingKit: e6d8b3aca4853e6d176501c186e7be017bf3b17f
+  STWUITestingKit: 185ef20f3f8140a55d078f92e8935b5aedd485cf
 
 PODFILE CHECKSUM: a45ab38785503a5366e0bd96589cda8ab5f69d99
 

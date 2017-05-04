@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D7F96A88998F26A1B240AAC1A264F21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
 		4316EDC2C620B4F1336E728588FBA8D3 /* Pods-STWUITestingKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF26882EE977189BA71253EA15F8F /* Pods-STWUITestingKit_Tests-dummy.m */; };
+		48E9964B12772B6AC902BD4CB2276BC1 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B82077C7BD53EDE6A3899E0F9234F89 /* Navigation.swift */; };
 		540C3E180B5BB70C659B172D60CE7CD6 /* STWUITestingKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE0654BB63AA20A93388B0A3100C1CF4 /* STWUITestingKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C7543951EB9EAEB0039EEE2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7543931EB9EACD0039EEE2 /* Navigation.swift */; };
-		858A28F3C12A66583721A098FA9AF57B /* STWUITestingKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1950856588A3A3B01EF61B6A56DF81EC /* STWUITestingKit-dummy.m */; };
-		9DFFB11BED56C088BFE1A36B7C3367D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		5B4F114054B119CE392BF41C87D68679 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBDD60AB5EC0183A198A13D9A5D7BCE /* XCTest.framework */; };
+		9DFFB11BED56C088BFE1A36B7C3367D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
 		A83C7D17BE00CEEC424139D2661AC054 /* Pods-STWUITestingKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FFF9FC39F2659B2A84C1E4221DF9C1B7 /* Pods-STWUITestingKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BAAE4BC849B1A296BBEB0346AD5D1C1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		BAAE4BC849B1A296BBEB0346AD5D1C1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
 		C3DBEEC4A3555DE770BDF9A9E1FC153C /* Pods-STWUITestingKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 504AAB5E9DD95F5F860303AC9F54C3A0 /* Pods-STWUITestingKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F054B59B60D34CFF30B31F3B181DB197 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		F6E27B6D1303735AC8F23B4F2F2ECB04 /* Pods-STWUITestingKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E13B05AEAB86361C05A63E1A2ED4FB30 /* Pods-STWUITestingKit_Example-dummy.m */; };
+		FCDF99E4E65A1D0D98F99A005C60DFE1 /* STWUITestingKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1950856588A3A3B01EF61B6A56DF81EC /* STWUITestingKit-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,35 +32,36 @@
 
 /* Begin PBXFileReference section */
 		039074D88155BCD9519CF1EA39E2C156 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EEB2F00F05A586580EBA32E244A2FBD /* STWUITestingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STWUITestingKit.modulemap; sourceTree = "<group>"; };
+		0EEB2F00F05A586580EBA32E244A2FBD /* STWUITestingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = STWUITestingKit.modulemap; sourceTree = "<group>"; };
 		180E057C3C30A5E58C22B080654EE69E /* STWUITestingKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-prefix.pch"; sourceTree = "<group>"; };
 		1950856588A3A3B01EF61B6A56DF81EC /* STWUITestingKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STWUITestingKit-dummy.m"; sourceTree = "<group>"; };
 		19CD3CFC93EB74652840B307AF1EB34A /* Pods-STWUITestingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1A8240A757EB791CF5CA9F5ACAB314B0 /* Pods-STWUITestingKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Example-resources.sh"; sourceTree = "<group>"; };
+		1B82077C7BD53EDE6A3899E0F9234F89 /* Navigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		1CA0B315E3E5D1655612AEE6E139D923 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EE00AFD2290802B6429E30EF15B669C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FBDD60AB5EC0183A198A13D9A5D7BCE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		504AAB5E9DD95F5F860303AC9F54C3A0 /* Pods-STWUITestingKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		64202F927C0A8392388DF691E6C0BF21 /* Pods-STWUITestingKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6C7543931EB9EACD0039EEE2 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		6DCDEDB8F0033BA7DDE8650CB80195BA /* Pods-STWUITestingKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		726BF26882EE977189BA71253EA15F8F /* Pods-STWUITestingKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		735A682825E7E989FEACD715C781684D /* Pods-STWUITestingKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		8B216E0A05C6C45397D7DEBD7489FEE0 /* Pods-STWUITestingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		8D7D10B0C6698BD8C180B3FB356EB3ED /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8D7D10B0C6698BD8C180B3FB356EB3ED /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_STWUITestingKit_Example.framework; path = "Pods-STWUITestingKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C6AEF6343AFADF11CB7E54EDEF65D96 /* Pods-STWUITestingKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		A03337F37293C5AF6B84F9B4E1DD8215 /* STWUITestingKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STWUITestingKit.xcconfig; sourceTree = "<group>"; };
-		A11447229A87DF609ADD2B71E6E69AC7 /* Pods-STWUITestingKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_Tests.modulemap"; sourceTree = "<group>"; };
+		A11447229A87DF609ADD2B71E6E69AC7 /* Pods-STWUITestingKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-STWUITestingKit_Tests.modulemap"; sourceTree = "<group>"; };
 		AD7012D595A278F7A046902B5D5F4E4B /* Pods-STWUITestingKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AE0654BB63AA20A93388B0A3100C1CF4 /* STWUITestingKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-umbrella.h"; sourceTree = "<group>"; };
 		B35250886854513AF7F18C35A2204FB5 /* Pods-STWUITestingKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B5E9A3582366DF4C1A3256BBB403B060 /* Pods-STWUITestingKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_Example.modulemap"; sourceTree = "<group>"; };
+		B5E9A3582366DF4C1A3256BBB403B060 /* Pods-STWUITestingKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-STWUITestingKit_Example.modulemap"; sourceTree = "<group>"; };
 		B9F4F1A546CC274989CD5F80437DCB0D /* Pods-STWUITestingKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		C96DB2A745B98530CB5D9B2CA7A52ECA /* Pods-STWUITestingKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		E13B05AEAB86361C05A63E1A2ED4FB30 /* Pods-STWUITestingKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Example-dummy.m"; sourceTree = "<group>"; };
-		E6908A280C5F2E78DC64EB30CB0F92EF /* STWUITestingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STWUITestingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EECA0AAED7A4897DD44793C535740C06 /* Pods_STWUITestingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E6908A280C5F2E78DC64EB30CB0F92EF /* STWUITestingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = STWUITestingKit.framework; path = STWUITestingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECA0AAED7A4897DD44793C535740C06 /* Pods_STWUITestingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_STWUITestingKit_Tests.framework; path = "Pods-STWUITestingKit_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C81C904C070C8F0A1D997D5CF0297A /* Pods-STWUITestingKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Tests-resources.sh"; sourceTree = "<group>"; };
 		FFF9FC39F2659B2A84C1E4221DF9C1B7 /* Pods-STWUITestingKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_Example-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,19 +75,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8685E991173FF72B17F695E3F05A58B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D7F96A88998F26A1B240AAC1A264F21 /* Foundation.framework in Frameworks */,
+				5B4F114054B119CE392BF41C87D68679 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2D44FC8D00F2D2FBC74CB308EDC0657 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9DFFB11BED56C088BFE1A36B7C3367D4 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC796B2BAF24B18964A5583F672AAC63 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F054B59B60D34CFF30B31F3B181DB197 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,12 +137,38 @@
 			path = ../..;
 			sourceTree = "<group>";
 		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7BE34EE7067F7CC8A54539A282682749 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		705D96305F8822FDB8751C0ED48CF54F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B82077C7BD53EDE6A3899E0F9234F89 /* Navigation.swift */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		7BE34EE7067F7CC8A54539A282682749 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */,
+				3FBDD60AB5EC0183A198A13D9A5D7BCE /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				CED3C09B45A57DC7911B62643834BCE8 /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
 				C218273CA5B57F3968F50CBD4C62C47E /* Products */,
 				7F4D530CBF98E1D7EFC318286A401680 /* Targets Support Files */,
 			);
@@ -172,14 +201,6 @@
 			path = "Target Support Files/Pods-STWUITestingKit_Tests";
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C218273CA5B57F3968F50CBD4C62C47E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,25 +222,10 @@
 		D0A32FC156E9DB94D4AF2FF2AB377C80 /* STWUITestingKit */ = {
 			isa = PBXGroup;
 			children = (
-				EFB2048B409F08639102BA7D2734D751 /* Classes */,
+				705D96305F8822FDB8751C0ED48CF54F /* Classes */,
 			);
+			name = STWUITestingKit;
 			path = STWUITestingKit;
-			sourceTree = "<group>";
-		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		EFB2048B409F08639102BA7D2734D751 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				6C7543931EB9EACD0039EEE2 /* Navigation.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,8 +280,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A91071442A9E13B23B0EC430D5FEEA0E /* Build configuration list for PBXNativeTarget "STWUITestingKit" */;
 			buildPhases = (
-				6D26D752E2D415A24AE068303D923B14 /* Sources */,
-				FC796B2BAF24B18964A5583F672AAC63 /* Frameworks */,
+				73084709353A32A3B0AD30D77D8E3713 /* Sources */,
+				8685E991173FF72B17F695E3F05A58B9 /* Frameworks */,
 				276A79684816B574463935F2712BE7B9 /* Headers */,
 			);
 			buildRules = (
@@ -312,11 +318,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
-				TargetAttributes = {
-					27C2CB7AC6EBC201AFDCF464B9174E5A = {
-						LastSwiftMigration = 0830;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -346,12 +347,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D26D752E2D415A24AE068303D923B14 /* Sources */ = {
+		73084709353A32A3B0AD30D77D8E3713 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				858A28F3C12A66583721A098FA9AF57B /* STWUITestingKit-dummy.m in Sources */,
-				6C7543951EB9EAEB0039EEE2 /* Navigation.swift in Sources */,
+				48E9964B12772B6AC902BD4CB2276BC1 /* Navigation.swift in Sources */,
+				FCDF99E4E65A1D0D98F99A005C60DFE1 /* STWUITestingKit-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +577,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 64202F927C0A8392388DF691E6C0BF21 /* Pods-STWUITestingKit_Example.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -615,7 +615,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD7012D595A278F7A046902B5D5F4E4B /* Pods-STWUITestingKit_Example.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
