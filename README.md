@@ -13,17 +13,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-STWUITestingKit is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
 ```ruby
-pod "STWUITestingKit"
+source 'https://github.com/stanwood/Cocoa_Pods_Specs.git'
+
+pod 'STWUITestingKit'
 ```
-
-## Author
-
-talezion, talezion@gmail.com
 
 ## License
 
-STWUITestingKit is available under the MIT license. See the LICENSE file for more info.
+STWUITestingKit is a priavte library. See the LICENSE file for more info.
