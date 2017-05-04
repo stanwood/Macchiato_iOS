@@ -19,10 +19,10 @@ class Report {
     var print:String? {
         get {
             guard failures.count > 0 else { return nil }
-            var print = "Failed Test Cases Report\n\nNumber of failed tests: \(failures.count)\n\n"
+            var print = "\nFailed Test Cases Report\n\nNumber of failed tests: \(failures.count)\n\n"
             
             for item in failures.enumerated() {
-                print += "Report \(item.offset + 1).\nSchema ID: \(item.element.testID == "0" ? "nil" : item.element.testID), \nNavigation ID: \(item.element.navigationID == 0 ? "nil" : "\(item.element.navigationID)"),\nFailure Message: \(item.element.errorMessage).\n\n"
+                print += "\nSchema ID: \(item.element.testID == "0" ? "nil" : item.element.testID), \nNavigation ID: \(item.element.navigationID == 0 ? "nil" : "\(item.element.navigationID)"),\nFailure Message: \(item.element.errorMessage).\n\n"
             }
             return print
         }

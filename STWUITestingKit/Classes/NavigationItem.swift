@@ -22,9 +22,6 @@ extension String {
     func validate() throws {
         let split = self.components(separatedBy: ".")
         
-        /// Checking if sequence type exists
-        guard let first = split.first, let _ = Int(first) else { throw NavigationError.format("Schema does not include a sequence index") }
-        
         /// Checcking Schema for action
         guard split.contains("action") else { throw NavigationError.format("Schema does not contain an action") }
     }
@@ -61,8 +58,8 @@ public class NavigationItem {
             /// Validating Schema
             try format.validate()
             
-            let split = format.components(separatedBy: ".")
-            try convert(format: split)
+            let components = format.components(separatedBy: ".")
+            try convert(format: components)
             
         } catch  {
             throw error
@@ -78,8 +75,8 @@ public class NavigationItem {
         }
     }
     
-    private init(splits:[String]) {
-        transform(split: splits)
+    private init(components:[String]) {
+        transform(components: components)
     }
     
     /// MARK: - Private Helpers
@@ -124,11 +121,11 @@ public class NavigationItem {
         
         /// Transformaing format to a Schema
         
-        transform(split: format)
+        transform(components: format)
     }
     
-    fileprivate func transform(split: [String]) {
-        var split = split
+    fileprivate func transform(components: [String]) {
+        var components = components
         
         var elementType:NavigationType?
         var elementIndex:Int?
@@ -136,7 +133,7 @@ public class NavigationItem {
         
         var transforedIndex = 0
         
-        for (index, format) in split.enumerated() {
+        for (index, format) in components.enumerated() {
             if let type = NavigationType(rawValue: format) {
                 if let _ = elementType {
                     transforedIndex = index - 1
@@ -168,12 +165,12 @@ public class NavigationItem {
         
         /// Removing added successors
         for _ in 0...transforedIndex {
-            split.removeFirst()
+            components.removeFirst()
         }
         
         /// Setting next successor inline
-        if !split.isEmpty {
-            self.successor = NavigationItem(splits: split)
+        if !components.isEmpty {
+            self.successor = NavigationItem(components: components)
         }
     }
     

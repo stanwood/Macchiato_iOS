@@ -46,16 +46,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "STWUITestingKit_Tests.xctest"
-               BlueprintName = "STWUITestingKit_Tests"
-               ReferencedContainer = "container:STWUITestingKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6C41F7441EBB213300790A6C"
                BuildableName = "STWUITestingKit_UITests.xctest"
                BlueprintName = "STWUITestingKit_UITests"

@@ -95,6 +95,7 @@ open class ToolManager {
         
         /// Checking if tests passed
         if let report = Report.shared.print {
+            print(report)
             XCTFail(report)
         }
     }

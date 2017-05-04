@@ -34,9 +34,12 @@ public struct Schema {
         title = schema["title"] as? String
         description = schema["description"] as? String
         
+        self.schema = schema
+        
         if let navigationArray = schema["navigation"] as? [Any] {
-            for item in navigationArray {
-                guard let itemFormat = item as? String else { continue }
+            for (index, item) in navigationArray.enumerated() {
+                guard var itemFormat = item as? String else { continue }
+                itemFormat = re(format: itemFormat, with: index)
                 do {
                     let navigationItem = try NavigationItem(format: itemFormat)
                     self.navigationItems.append(navigationItem)
@@ -49,7 +52,9 @@ public struct Schema {
                 return itemOne.sequence < itemTwo.sequence
             })
         }
-        
-        self.schema = schema
+    }
+    
+    private func re(format: String, with index: Int) -> String {
+        return "\(index + 1).\(format)".replacingOccurrences(of: "['", with: ".").replacingOccurrences(of: "[", with: ".").replacingOccurrences(of: "']", with: "").replacingOccurrences(of: "]", with: "")
     }
 }
