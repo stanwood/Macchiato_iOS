@@ -14,9 +14,9 @@ public enum LaunchHandlers {
     case notification, review
 }
 
-public struct TestTool {
+public struct STWTestConfigurations {
     
-    /// JSON Schema URL
+    /// JSON STWSchema URL
     let url:URL
     
     /// Launch handling dismiss default pop ups when launching the app

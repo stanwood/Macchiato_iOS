@@ -1,5 +1,5 @@
 //
-//  FetchRequestController.swift
+//  STWFetcher.swift
 //  Glamour
 //
 //  Created by Tal Zion on 21/03/2017.
@@ -22,7 +22,7 @@ public struct Header {
     let forHTTPHeaderField:String
 }
 
-open class FetchRequestController {
+open class STWFetcher {
     
     /**
      onComplition DictionaryRESTResponse = (dataDictionary: [String:AnyObject]?, response: NSHTTPURLResponse?, error: NSError?) -> Void

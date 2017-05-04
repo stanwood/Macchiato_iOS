@@ -13,22 +13,22 @@ public enum ToolError: Error {
     case error(String)
 }
 
-open class ToolManager {
+open class UITestingManager {
     
-    open static var shared: ToolManager = ToolManager()
+    open static var shared: UITestingManager = UITestingManager()
     
     /*
      :executeTests: Bool // Default value is true
      */
     fileprivate var shouldExecutreTest:Bool = true
     
-    fileprivate var testCases:[Schema] = []
-    fileprivate var tool:TestTool?
+    fileprivate var testCases:[STWSchema] = []
+    fileprivate var tool:STWTestConfigurations?
     
     private init(){
     }
     
-    open func setup(tool: TestTool) {
+    open func setup(tool: STWTestConfigurations) {
         self.tool = tool
         self.tool?.app.setupAndLaunch()
     }
@@ -37,7 +37,7 @@ open class ToolManager {
         guard let tool = tool else {
             
             // Throwing config error
-            Report.shared.test(failed: FailureItem(message: "Did not setup a testing tool item: Check - ToolItem"))
+            STWReport.shared.test(failed: STWFailure(message: "Did not setup a testing tool item: Check - ToolItem"))
             return
         }
         
@@ -45,11 +45,11 @@ open class ToolManager {
         
         shouldExecutreTest = false
         
-        XCTHelper.fetchSchema(withUrl: tool.url, complition: {
+        XCTHelper.fetchSTWSchema(withUrl: tool.url, complition: {
             [weak self] testCases in
             guard let `self` = self else { return }
             
-            // Setting up JSON Schema
+            // Setting up JSON STWSchema
             self.testCases.removeAll()
             self.testCases.append(contentsOf: testCases)
             
@@ -68,21 +68,21 @@ open class ToolManager {
         guard let tool = tool else {
             
             // Throwing config error
-            Report.shared.test(failed: FailureItem(message: "Did not setup a testing tool item: Check - ToolItem"))
+            STWReport.shared.test(failed: STWFailure(message: "Did not setup a testing tool item: Check - ToolItem"))
             return
         }
         
-        for schema in testCases {
+        for STWSchema in testCases {
             
             /// Navigation Items
-            for navigation in schema.navigationItems {
+            for navigation in STWSchema.STWNavigationItems {
                 
                 /// Navigate to...
-                let passed = Navigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
+                let passed = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
                 
                 /// Cechk if test passed
                 if !passed.pass {
-                    Report.shared.test(failed: FailureItem(testID: schema.id ?? "", navigationID: navigation.sequence, message: passed.failiurMessage))
+                    STWReport.shared.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: passed.failiurMessage))
                 }
                 
                 sleep(2)
@@ -94,9 +94,9 @@ open class ToolManager {
         }
         
         /// Checking if tests passed
-        if let report = Report.shared.print {
-            print(report)
-            XCTFail(report)
+        if let STWReport = STWReport.shared.print {
+            print(STWReport)
+            XCTFail(STWReport)
         }
     }
     
@@ -105,7 +105,7 @@ open class ToolManager {
         guard let tool = tool else {
             
             // Throwing config error
-            Report.shared.test(failed: FailureItem(message: "Did not setup a testing tool item: Check - ToolItem"))
+            STWReport.shared.test(failed: STWFailure(message: "Did not setup a testing tool item: Check - ToolItem"))
             return
         }
         

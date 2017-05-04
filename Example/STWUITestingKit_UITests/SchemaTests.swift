@@ -1,5 +1,5 @@
 //
-//  SchemaTests.swift
+//  STWSchemaTests.swift
 //  STWUITestingKit
 //
 //  Created by Tal Zion on 04/05/2017.
@@ -9,11 +9,11 @@
 import XCTest
 import STWUITestingKit
 
-class SchemaTests: XCTestCase {
+class STWSchemaTests: XCTestCase {
     
     let app = XCUIApplication()
     
-    /// Based on JSONSchema draft4 tempalte
+    /// Based on JSONSTWSchema draft4 tempalte
     let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
     
     override func setUp() {
@@ -24,11 +24,11 @@ class SchemaTests: XCTestCase {
         guard let url = URL(string: url) else { return }
         let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
         
-        let tool = TestTool(url: url, launchHandlers: launchHandlers, app: app)
+        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
         
-        ToolManager.shared.setup(tool: tool)
+        UITestingManager.shared.setup(tool: tool)
         
-        ToolManager.shared.launch()
+        UITestingManager.shared.launch()
     }
     
     override func tearDown() {
@@ -36,8 +36,8 @@ class SchemaTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSchema(){
-        ToolManager.shared.runTests()
+    func testSTWSchema(){
+        UITestingManager.shared.runTests()
     }
     
 }

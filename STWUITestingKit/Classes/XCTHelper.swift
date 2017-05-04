@@ -11,34 +11,35 @@
  let Passed = (true, "")
  var Failed = (false, "")
  
- typealias Complition = (_ schemaCases:[Schema]) -> Void
+ typealias Complition = (_ STWSchemaCases:[STWSchema]) -> Void
  
  class XCTHelper {
     
     // MARK: Fetcher - Networking
     
-    class open func fetchSchema(withUrl url:URL, complition:@escaping Complition) {
+    class open func fetchSTWSchema(withUrl url:URL, complition:@escaping Complition) {
         
-        FetchRequestController.getRequest(URL: url, URLParams: nil, HTTPMethod: .GET, headers: nil, onComplition: {
+        STWFetcher.getRequest(URL: url, URLParams: nil, HTTPMethod: .GET, headers: nil, onComplition: {
             dictionary, repsosne, error in
             
-            var testCases:[Schema] = []
+            var testCases:[STWSchema] = []
             
             if var dic = dictionary as? [String : Any], let schemas = dic["test_cases"] as? NSArray {
                 for schema in schemas {
                     guard let schemaDictionary = schema as? [String:Any] else { continue }
                     do {
-                        let testCase = try Schema(schemaDictionary)
+                        let testCase = try STWSchema(schemaDictionary)
+                        
                         testCases.append(testCase)
                     } catch NavigationError.error(let m) {
-                        Report.shared.test(failed: FailureItem(message: m))
+                        STWReport.shared.test(failed: STWFailure(message: m))
                     } catch NavigationError.format(let m) {
-                        Report.shared.test(failed: FailureItem(message: m))
+                        STWReport.shared.test(failed: STWFailure(message: m))
                     }
                 }
                 complition(testCases)
             } else {
-                Report.shared.test(failed: FailureItem(message: "Failed to download JSONSchema from: \(url)"))
+                STWReport.shared.test(failed: STWFailure(message: "Failed to download JSONSTWSchema from: \(url)"))
             }
         })
     }

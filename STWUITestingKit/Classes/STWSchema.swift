@@ -19,36 +19,36 @@ extension String {
     }
 }
 
-public struct Schema {
+public struct STWSchema {
     public let title:String?
     public let description:String?
     public let id:String?
     
-    public var navigationItems:[NavigationItem] = []
+    public var STWNavigationItems:[STWNavigationItem] = []
     
-    let schema:[String:Any]
+    let STWSchema:[String:Any]
     
-    public init(_ schema:[String:Any]) throws {
+    public init(_ STWSchema:[String:Any]) throws {
         
-        id = schema["id"] as? String
-        title = schema["title"] as? String
-        description = schema["description"] as? String
+        id = STWSchema["id"] as? String
+        title = STWSchema["title"] as? String
+        description = STWSchema["description"] as? String
         
-        self.schema = schema
+        self.STWSchema = STWSchema
         
-        if let navigationArray = schema["navigation"] as? [Any] {
+        if let navigationArray = STWSchema["navigation"] as? [Any] {
             for (index, item) in navigationArray.enumerated() {
                 guard var itemFormat = item as? String else { continue }
                 itemFormat = re(format: itemFormat, with: index)
                 do {
-                    let navigationItem = try NavigationItem(format: itemFormat)
-                    self.navigationItems.append(navigationItem)
+                    let navigationItem = try STWNavigationItem(format: itemFormat)
+                    self.STWNavigationItems.append(navigationItem)
                 } catch NavigationError.error(let m) {
                     throw NavigationError.error(m)
                 }
             }
             
-            self.navigationItems.sort(by: { (itemOne, itemTwo) -> Bool in
+            self.STWNavigationItems.sort(by: { (itemOne, itemTwo) -> Bool in
                 return itemOne.sequence < itemTwo.sequence
             })
         }

@@ -1,5 +1,5 @@
 //
-//  FailureItem.swift
+//  STWFailure.swift
 //  Glamour
 //
 //  Created by Tal Zion on 01/05/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FailureItem {
+struct STWFailure {
     let testID: String
     let navigationID:Int
     let errorMessage:String

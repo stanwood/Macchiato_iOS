@@ -1,6 +1,6 @@
 //
 //  Navigation.swift
-//  JSONSchema
+//  JSONSTWSchema
 //
 //  Created by Tal Zion on 22/03/2017.
 //  Copyright © 2017 Stanwood GmbH. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias JSONSchema = [AnyHashable:Any]
+typealias JSONSTWSchema = [AnyHashable:Any]
 
 public enum NavigationError: Error {
     case error(String)
@@ -22,8 +22,8 @@ extension String {
     func validate() throws {
         let split = self.components(separatedBy: ".")
         
-        /// Checcking Schema for action
-        guard split.contains("action") else { throw NavigationError.format("Schema does not contain an action") }
+        /// Checcking STWSchema for action
+        guard split.contains("action") else { throw NavigationError.format("STWSchema does not contain an action") }
     }
     
     func toInt() -> Int? {
@@ -31,7 +31,7 @@ extension String {
     }
 }
 
-struct SchemaKey {
+struct STWSchemaKey {
     static let action = "action"
     static let type = "type"
     static let index = "index"
@@ -43,19 +43,19 @@ struct SchemaKey {
 /*
  NavigationIten represents a navigation junction within a stack
  */
-public class NavigationItem {
+public class STWNavigationItem {
     
-    public var type:NavigationType!
+    public var type:STWNavigationType!
     public var index:Int?
     public var key:String!
-    public var successor:NavigationItem?
-    public var action:NavigationAction?
+    public var successor:STWNavigationItem?
+    public var action:STWNavigationAction?
     public var sequence:Int!
     
     public init(format: String) throws {
         do {
             
-            /// Validating Schema
+            /// Validating STWSchema
             try format.validate()
             
             let components = format.components(separatedBy: ".")
@@ -68,7 +68,7 @@ public class NavigationItem {
     
     private init(dictionary: [AnyHashable:Any]) throws {
         do {
-            try setup(schema: dictionary)
+            try setup(STWSchema: dictionary)
             
         } catch  {
             throw error
@@ -81,26 +81,26 @@ public class NavigationItem {
     
     /// MARK: - Private Helpers
     
-    fileprivate func setup(schema: JSONSchema) throws {
-        if let stringAction = schema[SchemaKey.action] as? String,
-            let action = NavigationAction(rawValue: stringAction) {
+    fileprivate func setup(STWSchema: JSONSTWSchema) throws {
+        if let stringAction = STWSchema[STWSchemaKey.action] as? String,
+            let action = STWNavigationAction(rawValue: stringAction) {
             self.action = action
         }
         
-        if let stringType = schema[SchemaKey.type] as? String,
-            let type = NavigationType(rawValue: stringType) {
+        if let stringType = STWSchema[STWSchemaKey.type] as? String,
+            let type = STWNavigationType(rawValue: stringType) {
             self.type = type
         } else {
             throw NavigationError.error("Navigation Type does not exists")
         }
         
-        self.index = schema[SchemaKey.index] as? Int
-        self.key = schema[SchemaKey.key] as? String ?? ""
-        self.sequence = schema[SchemaKey.order] as? Int ?? 0
+        self.index = STWSchema[STWSchemaKey.index] as? Int
+        self.key = STWSchema[STWSchemaKey.key] as? String ?? ""
+        self.sequence = STWSchema[STWSchemaKey.order] as? Int ?? 0
         
-        if let successorDictionary = schema[SchemaKey.successor] as? [AnyHashable:Any] {
+        if let successorDictionary = STWSchema[STWSchemaKey.successor] as? [AnyHashable:Any] {
             do {
-                self.successor = try NavigationItem(dictionary: successorDictionary)
+                self.successor = try STWNavigationItem(dictionary: successorDictionary)
             } catch NavigationError.error(let m) {
                 throw NavigationError.error(m)
             }
@@ -113,13 +113,13 @@ public class NavigationItem {
         var format = format
         
         /// Assigning index
-        guard let sequence = format.first?.toInt() else { throw NavigationError.format("Schema does not include a sequence index") }
+        guard let sequence = format.first?.toInt() else { throw NavigationError.format("STWSchema does not include a sequence index") }
         self.sequence = sequence
         
         /// Removing index
         format.removeFirst()
         
-        /// Transformaing format to a Schema
+        /// Transformaing format to a STWSchema
         
         transform(components: format)
     }
@@ -127,14 +127,14 @@ public class NavigationItem {
     fileprivate func transform(components: [String]) {
         var components = components
         
-        var elementType:NavigationType?
+        var elementType:STWNavigationType?
         var elementIndex:Int?
         var elementKey:String?
         
         var transforedIndex = 0
         
         for (index, format) in components.enumerated() {
-            if let type = NavigationType(rawValue: format) {
+            if let type = STWNavigationType(rawValue: format) {
                 if let _ = elementType {
                     transforedIndex = index - 1
                     break
@@ -148,7 +148,7 @@ public class NavigationItem {
                 } else {
                     elementIndex = _index
                 }
-            } else if let action = NavigationAction(rawValue: format) {
+            } else if let action = STWNavigationAction(rawValue: format) {
                 self.action = action
                 transforedIndex = index
                 break
@@ -170,11 +170,11 @@ public class NavigationItem {
         
         /// Setting next successor inline
         if !components.isEmpty {
-            self.successor = NavigationItem(components: components)
+            self.successor = STWNavigationItem(components: components)
         }
     }
     
-    fileprivate func set(type: NavigationType?, index: Int?, key: String?) {
+    fileprivate func set(type: STWNavigationType?, index: Int?, key: String?) {
         if let type = type {
             self.type = type
         }

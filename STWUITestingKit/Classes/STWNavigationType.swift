@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum NavigationType:String {
+public enum STWNavigationType:String {
   case action
   
   case any
