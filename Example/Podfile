@@ -1,4 +1,4 @@
-:bacuse_frameworks!
+use_frameworks!
 
 target 'STWUITestingKit_Example' do
   pod 'STWUITestingKit', :path => '../'
