@@ -2,7 +2,7 @@
 use_frameworks!
 
 target 'STWUITestingKit_Example' do
-    pod 'STWUITestingKit', :path => '../'
+  pod 'STWUITestingKit', :path => '../'
 
   target 'STWUITestingKit_Tests' do
     inherit! :search_paths

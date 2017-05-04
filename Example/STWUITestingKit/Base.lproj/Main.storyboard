@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab View Controller-->
+        <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="TabViewController" customModule="STWUITestingKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="STWUITestingKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -19,24 +19,7 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofz-ZA-agW">
-                                <rect key="frame" x="114" y="283.5" width="147" height="100"/>
-                                <accessibility key="accessibilityConfiguration" identifier="testCollectionViewIdentifier"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="K5L-R3-wkA"/>
-                                </constraints>
-                                <state key="normal" title="Test Collection Views"/>
-                                <connections>
-                                    <segue destination="Yrs-J9-6eE" kind="show" id="tVz-m3-QL5"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ofz-ZA-agW" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="dEM-r4-HXV"/>
-                            <constraint firstItem="ofz-ZA-agW" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="jPI-51-nUo"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qED-jL-YMb"/>
                 </viewController>
@@ -44,72 +27,10 @@
             </objects>
             <point key="canvasLocation" x="1783.2" y="600.44977511244383"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="m0f-sj-2Ft">
-            <objects>
-                <tableViewController id="AtK-FP-GHe" customClass="TableViewController" customModule="STWUITestingKit_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rPr-bA-16r">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2Is-fj-xdC">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Is-fj-xdC" id="4qI-bX-yWP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="AtK-FP-GHe" id="5SS-2D-Phx"/>
-                            <outlet property="delegate" destination="AtK-FP-GHe" id="Pj7-Hi-d6k"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PiU-Se-Smp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2798" y="-70"/>
-        </scene>
-        <!--Collection View Controller-->
-        <scene sceneID="sQa-QP-lPw">
-            <objects>
-                <collectionViewController id="Yrs-J9-6eE" customClass="CollectionViewController" customModule="STWUITestingKit_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Csq-2D-IvK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tw2-dq-c7K">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2HI-fj-HGI">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="Yrs-J9-6eE" id="ggl-ml-Ztu"/>
-                            <outlet property="delegate" destination="Yrs-J9-6eE" id="TTt-Gs-4AX"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="06M-Pu-aXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2798" y="600"/>
-        </scene>
-        <!--Tab View Controller-->
+        <!--View Controller-->
         <scene sceneID="fk8-y7-e68">
             <objects>
-                <viewController id="ajE-Ug-8Pz" customClass="TabViewController" customModule="STWUITestingKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ajE-Ug-8Pz" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8dh-ak-fJJ"/>
                         <viewControllerLayoutGuide type="bottom" id="zaO-k3-47f"/>
@@ -119,15 +40,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qK-Hs-4ga">
-                                <rect key="frame" x="129.5" y="283" width="115" height="100"/>
-                                <accessibility key="accessibilityConfiguration" identifier="testTableViewsIdentifier"/>
+                                <rect key="frame" x="137" y="283" width="100" height="100"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0zw-Bf-g1x"/>
                                     <constraint firstAttribute="height" constant="100" id="u0l-CK-YRF"/>
                                 </constraints>
                                 <state key="normal" title="Test Table Views"/>
-                                <connections>
-                                    <segue destination="AtK-FP-GHe" kind="show" id="z6G-X3-Kae"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,7 +76,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0H-ut-PMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-97" y="260"/>
+            <point key="canvasLocation" x="32.799999999999997" y="36.431784107946029"/>
         </scene>
         <!--Tab 2-->
         <scene sceneID="oXK-MR-Dea">

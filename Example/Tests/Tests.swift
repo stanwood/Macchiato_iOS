@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-//import STWUITestingKit
+import STWUITestingKit
 
 class Tests: XCTestCase {
     
