@@ -17,7 +17,6 @@
 		6C41F73F1EBB20DC00790A6C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F73C1EBB20DC00790A6C /* TableViewController.swift */; };
 		6C41F7401EBB20DC00790A6C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F73D1EBB20DC00790A6C /* TabViewController.swift */; };
 		6C41F7481EBB213300790A6C /* STWUITestingKit_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F7471EBB213300790A6C /* STWUITestingKit_UITests.swift */; };
-		6C41F7501EBB234F00790A6C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C41F74F1EBB234F00790A6C /* XCTest.framework */; };
 		7ECD6BC756C17C541E9349D9 /* Pods_STWUITestingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537A1FCD181C90A3C417109C /* Pods_STWUITestingKit_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C41F7501EBB234F00790A6C /* XCTest.framework in Frameworks */,
 				04EDCB1CCC826DA261E75238 /* Pods_STWUITestingKit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
