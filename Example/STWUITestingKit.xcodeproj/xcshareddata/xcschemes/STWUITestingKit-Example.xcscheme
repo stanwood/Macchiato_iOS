@@ -52,6 +52,16 @@
                ReferencedContainer = "container:STWUITestingKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C41F7441EBB213300790A6C"
+               BuildableName = "STWUITestingKit_UITests.xctest"
+               BlueprintName = "STWUITestingKit_UITests"
+               ReferencedContainer = "container:STWUITestingKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
