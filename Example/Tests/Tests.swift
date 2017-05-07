@@ -87,6 +87,9 @@ class Tests: XCTestCase {
         }
     }
     
+    /// Testing navigation throws an error with type is incorrect
+    ///     - file: navigation_format_wrong_type.json
+    
     func testWrongTypeNavigationITem(){
         guard let schemaJSON = test(schemaFor: "navigation_format_wrong_type") else { XCTFail("Failed to load schema from file"); return }
         
@@ -104,6 +107,9 @@ class Tests: XCTestCase {
             }
         }
     }
+    
+    /// Testing navigation throwing an error is index is missing from an item
+    ///     - file: navigation_format_missing_index.json
     
     func testWrongIndexNavigationITem(){
         guard let schemaJSON = test(schemaFor: "navigation_format_missing_index") else { XCTFail("Failed to load schema from file"); return }
@@ -123,6 +129,9 @@ class Tests: XCTestCase {
         }
     }
     
+    /// Testing navigation throwing an error is missing an action
+    ///     - file: navigation_format_no_actions_error.json
+    
     func testNoActionsInNavigationITem(){
         guard let schemaJSON = test(schemaFor: "navigation_format_no_actions_error") else { XCTFail("Failed to load schema from file"); return }
         
@@ -141,6 +150,9 @@ class Tests: XCTestCase {
         }
     }
     
+    /// Testing navigation throwing an error is missing a type key
+    ///     - file: navigation_format_missing_key.json
+    
     func testMissingKeyInNavigationITem(){
         guard let schemaJSON = test(schemaFor: "navigation_format_missing_key") else { XCTFail("Failed to load schema from file"); return }
         
@@ -158,6 +170,9 @@ class Tests: XCTestCase {
             }
         }
     }
+    
+    /// Testing navigation thwoing an error is format is incorrect
+    ///     - file: navigation_format_incorrect_format.json
     
     func testIncorrectNavigationItemForamt(){
         guard let schemaJSON = test(schemaFor: "navigation_format_incorrect_format") else { XCTFail("Failed to load schema from file"); return }
