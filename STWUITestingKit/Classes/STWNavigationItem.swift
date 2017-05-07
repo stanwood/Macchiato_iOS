@@ -69,8 +69,15 @@ public class STWNavigationItem {
         }
     }
     
-    private init(components:[String]) {
-        transform(components: components)
+    private init(components:[String]) throws {
+        /// Transformaing format to a STWSchema
+        do {
+            try transform(components: components)
+        } catch let error as SchemaError {
+            throw error
+        } catch {
+            throw error
+        }
     }
     
     /// MARK: - Private Helpers
@@ -114,11 +121,16 @@ public class STWNavigationItem {
         format.removeFirst()
         
         /// Transformaing format to a STWSchema
-        
-        transform(components: format)
+        do {
+            try transform(components: format)
+        } catch let error as SchemaError {
+            throw error
+        } catch {
+            throw error
+        }
     }
     
-    fileprivate func transform(components: [String]) {
+    fileprivate func transform(components: [String]) throws {
         var components = components
         
         var elementType:STWNavigationType?
@@ -151,11 +163,16 @@ public class STWNavigationItem {
                 transforedIndex = index
                 break
             }
+            
         }
         
         
         /// Setting up successors
         set(type: elementType, index: elementIndex, key: elementKey)
+        
+        if self.type == nil {
+            throw SchemaError.error("Incorrect type: \(elementKey ?? "")")
+        }
         
         /// Removing added successors
         for _ in 0...transforedIndex {
@@ -164,7 +181,14 @@ public class STWNavigationItem {
         
         /// Setting next successor inline
         if !components.isEmpty {
-            self.successor = STWNavigationItem(components: components)
+            /// Transformaing format to a STWSchema
+            do {
+                self.successor = try STWNavigationItem(components: components)
+            } catch let error as SchemaError {
+                throw error
+            } catch {
+                throw error
+            }
         }
     }
     

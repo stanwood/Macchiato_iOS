@@ -53,6 +53,10 @@ open class UITestingManager {
             self.testCases.removeAll()
             self.testCases.append(contentsOf: testCases)
             
+            if self.testCases.count == 0 {
+                STWReport.shared.test(failed: STWFailure(message: "No test cases"))
+            }
+            
             DispatchQueue.main.async(execute: {
                 self.dismissinLaunch(with: tool.launchHandlers)
                 self.shouldExecutreTest = true

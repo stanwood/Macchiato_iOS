@@ -60,6 +60,9 @@
             self.STWNavigationItems.sort(by: { (itemOne, itemTwo) -> Bool in
                 return itemOne.sequence < itemTwo.sequence
             })
+        } else {
+            /// Throwing an error in case test has no navigation items
+            throw SchemaError.error("Failed to set Schema test - No Navigation Items!")
         }
     }
     
