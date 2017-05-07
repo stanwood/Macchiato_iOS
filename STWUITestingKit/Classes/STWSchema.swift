@@ -49,6 +49,12 @@
             for (index, item) in navigationArray.enumerated() {
                 guard var itemFormat = item as? String else { continue }
                 itemFormat = re(format: itemFormat, with: index)
+                
+                /// Checking for incorrect item foramt key and index
+                if itemFormat.contains("..") {
+                    throw SchemaError.error("Navigation item format error, missing key or index")
+                }
+                
                 do {
                     let navigationItem = try STWNavigationItem(format: itemFormat)
                     self.STWNavigationItems.append(navigationItem)

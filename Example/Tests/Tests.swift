@@ -105,13 +105,77 @@ class Tests: XCTestCase {
         }
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
+    func testWrongIndexNavigationITem(){
+        guard let schemaJSON = test(schemaFor: "navigation_format_missing_index") else { XCTFail("Failed to load schema from file"); return }
+        
+        if let schemas = schemaJSON["test_cases"] as? NSArray {
+            for schema in schemas {
+                guard let schemaDictionary = schema as? JSONDictionary else { continue }
+                do {
+                    let _ = try STWSchema(schemaDictionary)
+                    XCTFail("Did not fail when navigation foramt is missing a type")
+                } catch SchemaError.error( let m ) {
+                    print("Test passed: \(m)")
+                } catch {
+                    XCTFail(error.localizedDescription)
+                }
+            }
         }
     }
     
+    func testNoActionsInNavigationITem(){
+        guard let schemaJSON = test(schemaFor: "navigation_format_no_actions_error") else { XCTFail("Failed to load schema from file"); return }
+        
+        if let schemas = schemaJSON["test_cases"] as? NSArray {
+            for schema in schemas {
+                guard let schemaDictionary = schema as? JSONDictionary else { continue }
+                do {
+                    let _ = try STWSchema(schemaDictionary)
+                    XCTFail("Did not fail when navigation foramt is missing a type")
+                } catch SchemaError.error( let m ) {
+                    print("Test passed: \(m)")
+                } catch {
+                    XCTFail(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func testMissingKeyInNavigationITem(){
+        guard let schemaJSON = test(schemaFor: "navigation_format_missing_key") else { XCTFail("Failed to load schema from file"); return }
+        
+        if let schemas = schemaJSON["test_cases"] as? NSArray {
+            for schema in schemas {
+                guard let schemaDictionary = schema as? JSONDictionary else { continue }
+                do {
+                    let _ = try STWSchema(schemaDictionary)
+                    XCTFail("Did not fail when navigation foramt is missing a type")
+                } catch SchemaError.error( let m ) {
+                    print("Test passed: \(m)")
+                } catch {
+                    XCTFail(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func testIncorrectNavigationItemForamt(){
+        guard let schemaJSON = test(schemaFor: "navigation_format_incorrect_format") else { XCTFail("Failed to load schema from file"); return }
+        
+        if let schemas = schemaJSON["test_cases"] as? NSArray {
+            for schema in schemas {
+                guard let schemaDictionary = schema as? JSONDictionary else { continue }
+                do {
+                    let _ = try STWSchema(schemaDictionary)
+                    XCTFail("Did not fail when navigation foramt is missing a type")
+                } catch SchemaError.error( let m ) {
+                    print("Test passed: \(m)")
+                } catch {
+                    XCTFail(error.localizedDescription)
+                }
+            }
+        }
+    }
     
     private func test(schemaFor file: String) -> JSONDictionary? {
         let bundle = Bundle(for: type(of: self))
