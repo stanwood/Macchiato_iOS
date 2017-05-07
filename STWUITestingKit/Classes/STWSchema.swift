@@ -6,9 +6,14 @@
  //  Copyright © 2017 Stanwood GmbH. All rights reserved.
  //
  
-import Foundation
-
-extension String {
+ import Foundation
+ 
+ public enum SchemaError: Error {
+    case error(String)
+ }
+ 
+ 
+ extension String {
     func stringByRemovingPrefix(_ prefix:String) -> String? {
         if hasPrefix(prefix) {
             let index = characters.index(startIndex, offsetBy: prefix.characters.count)
@@ -17,22 +22,26 @@ extension String {
         
         return nil
     }
-}
-
-public struct STWSchema {
+ }
+ 
+ public struct STWSchema {
     public let title:String?
     public let description:String?
     public let id:String?
     
     public var STWNavigationItems:[STWNavigationItem] = []
     
-    let STWSchema:[String:Any]
+    let STWSchema:[AnyHashable:Any]
     
-    public init(_ STWSchema:[String:Any]) throws {
+    public init(_ STWSchema:[AnyHashable:Any]) throws {
         
         id = STWSchema["id"] as? String
         title = STWSchema["title"] as? String
         description = STWSchema["description"] as? String
+        
+        guard let _ = id, let _ = title, let _ = description else {
+            throw SchemaError.error("Incorrect Schema Foramt - Please check id, title, and description\n ID: \(id ?? "nil"), Title: \(title ?? "nil"), Description: \(description ?? "nil")")
+        }
         
         self.STWSchema = STWSchema
         
@@ -43,8 +52,8 @@ public struct STWSchema {
                 do {
                     let navigationItem = try STWNavigationItem(format: itemFormat)
                     self.STWNavigationItems.append(navigationItem)
-                } catch NavigationError.error(let m) {
-                    throw NavigationError.error(m)
+                } catch SchemaError.error(let m) {
+                    throw SchemaError.error(m)
                 }
             }
             
@@ -57,4 +66,4 @@ public struct STWSchema {
     private func re(format: String, with index: Int) -> String {
         return "\(index + 1).\(format)".replacingOccurrences(of: "['", with: ".").replacingOccurrences(of: "[", with: ".").replacingOccurrences(of: "']", with: "").replacingOccurrences(of: "]", with: "")
     }
-}
+ }

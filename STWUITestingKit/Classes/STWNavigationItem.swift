@@ -10,12 +10,6 @@ import Foundation
 
 typealias JSONSTWSchema = [AnyHashable:Any]
 
-public enum NavigationError: Error {
-    case error(String)
-    case format(String)
-}
-
-
 
 extension String {
     
@@ -23,7 +17,7 @@ extension String {
         let split = self.components(separatedBy: ".")
         
         /// Checcking STWSchema for action
-        guard split.contains("action") else { throw NavigationError.format("STWSchema does not contain an action") }
+        guard split.contains("action") else { throw SchemaError.error("STWSchema does not contain an action") }
     }
     
     func toInt() -> Int? {
@@ -91,7 +85,7 @@ public class STWNavigationItem {
             let type = STWNavigationType(rawValue: stringType) {
             self.type = type
         } else {
-            throw NavigationError.error("Navigation Type does not exists")
+            throw SchemaError.error("Navigation Type does not exists")
         }
         
         self.index = STWSchema[STWSchemaKey.index] as? Int
@@ -101,8 +95,8 @@ public class STWNavigationItem {
         if let successorDictionary = STWSchema[STWSchemaKey.successor] as? [AnyHashable:Any] {
             do {
                 self.successor = try STWNavigationItem(dictionary: successorDictionary)
-            } catch NavigationError.error(let m) {
-                throw NavigationError.error(m)
+            } catch SchemaError.error(let m) {
+                throw SchemaError.error(m)
             }
         }
     }
@@ -113,7 +107,7 @@ public class STWNavigationItem {
         var format = format
         
         /// Assigning index
-        guard let sequence = format.first?.toInt() else { throw NavigationError.format("STWSchema does not include a sequence index") }
+        guard let sequence = format.first?.toInt() else { throw SchemaError.error("STWSchema does not include a sequence index") }
         self.sequence = sequence
         
         /// Removing index

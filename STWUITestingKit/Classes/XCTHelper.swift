@@ -31,9 +31,7 @@
                         let testCase = try STWSchema(schemaDictionary)
                         
                         testCases.append(testCase)
-                    } catch NavigationError.error(let m) {
-                        STWReport.shared.test(failed: STWFailure(message: m))
-                    } catch NavigationError.format(let m) {
+                    } catch SchemaError.error(let m) {
                         STWReport.shared.test(failed: STWFailure(message: m))
                     }
                 }

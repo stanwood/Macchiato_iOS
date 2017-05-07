@@ -17,6 +17,9 @@
 		6C41F73F1EBB20DC00790A6C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F73C1EBB20DC00790A6C /* TableViewController.swift */; };
 		6C41F7401EBB20DC00790A6C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F73D1EBB20DC00790A6C /* TabViewController.swift */; };
 		6C41F77E1EBB47CB00790A6C /* SchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41F77D1EBB47CB00790A6C /* SchemaTests.swift */; };
+		6C7B262F1EBF15DC00067E1C /* test_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B262D1EBF15B300067E1C /* test_schema.json */; };
+		6C7B26341EBF192600067E1C /* test_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B262D1EBF15B300067E1C /* test_schema.json */; };
+		6C7B26351EBF192700067E1C /* test_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B262D1EBF15B300067E1C /* test_schema.json */; };
 		B2F4A33D5CA14E1C4EF5A5E9 /* Pods_STWUITestingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537A1FCD181C90A3C417109C /* Pods_STWUITestingKit_Tests.framework */; };
 		C17738D92E6C88C19C5A176E /* Pods_STWUITestingKit_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34905986E0EB8DCE76D2644 /* Pods_STWUITestingKit_UITests.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,7 @@
 		6C41F7491EBB213300790A6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C41F74F1EBB234F00790A6C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6C41F77D1EBB47CB00790A6C /* SchemaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaTests.swift; sourceTree = "<group>"; };
+		6C7B262D1EBF15B300067E1C /* test_schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_schema.json; path = ../STWUITestingKit_UITests/test_schema.json; sourceTree = "<group>"; };
 		A1872C4105A1BF71ABD31D68 /* Pods-STWUITestingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STWUITestingKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-STWUITestingKit_Tests/Pods-STWUITestingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A34905986E0EB8DCE76D2644 /* Pods_STWUITestingKit_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D7FE4A77FA8172DF7A0822 /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
+				6C7B262D1EBF15B300067E1C /* test_schema.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C7B26341EBF192600067E1C /* test_schema.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -331,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C7B262F1EBF15DC00067E1C /* test_schema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C7B26351EBF192700067E1C /* test_schema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
