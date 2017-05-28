@@ -9,6 +9,9 @@
 import Foundation
 import XCTest
 
+var deviceLanguage = "en-GB"
+var locale = ""
+
 public enum ToolError: Error {
     case error(String)
 }
@@ -63,6 +66,10 @@ open class UITestingManager {
             })
         })
         
+        // Setting device local
+        setLanguage(tool.app)
+        setLocale(tool.app)
+        
         while !shouldExecutreTest {
             RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
         }
@@ -104,6 +111,8 @@ open class UITestingManager {
         }
     }
     
+    // MARK: - Dismiss system alerts
+    
     fileprivate func dismissinLaunch(with handlers: [LaunchHandlers]) {
         
         guard let tool = tool else {
@@ -130,4 +139,18 @@ open class UITestingManager {
             }
         }
     }
+    
+    // MARK: - Setting device local and language
+    
+    private func setLanguage(_ app: XCUIApplication) {
+        app.launchArguments += ["-AppleLanguages", "(\(deviceLanguage))"]
+    }
+    
+    private func setLocale(_ app: XCUIApplication) {
+        if locale.isEmpty {
+            locale = Locale(identifier: deviceLanguage).identifier
+        }
+        app.launchArguments += ["-AppleLocale", "\"\(locale)\""]
+    }
+
 }
