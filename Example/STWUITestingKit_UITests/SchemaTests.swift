@@ -19,6 +19,18 @@ class STWSchemaTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+            if $0.buttons["Allow"].exists {
+                $0.buttons["Allow"].tap()
+            }
+            
+            if $0.buttons["OK"].exists {
+                $0.buttons["OK"].tap()
+            }
+            
+            return true
+        }
+        
         continueAfterFailure = false
         
         guard let url = URL(string: url) else { return }

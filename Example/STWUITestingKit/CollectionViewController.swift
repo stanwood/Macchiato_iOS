@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import CoreLocation
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController, CLLocationManagerDelegate {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // Asking the user for a location request
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
