@@ -12,6 +12,9 @@ import XCTest
 var deviceLanguage = "en-GB"
 var locale = ""
 
+// Monitor Block
+public typealias MonitorBlock = ()-> Void
+
 public enum ToolError: Error {
     case error(String)
 }
@@ -75,7 +78,7 @@ open class UITestingManager {
         }
     }
     
-    open func runTests() {
+    open func runTests(monitor: MonitorBlock) {
         guard let tool = tool else {
             
             // Throwing config error
@@ -87,6 +90,13 @@ open class UITestingManager {
             
             /// Navigation Items
             for navigation in STWSchema.STWNavigationItems {
+                
+                /// Adding navigation monitor
+                if navigation.shouldMonitor {
+                    
+                    /// Monitoring for system alerts
+                    monitor()
+                }
                 
                 /// Navigate to...
                 let test = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)

@@ -45,6 +45,7 @@ public class STWNavigationItem {
     public var successor:STWNavigationItem?
     public var action:STWNavigationAction?
     public var sequence:Int!
+    public var shouldMonitor: Bool = false
     
     public init(format: String) throws {
         do {

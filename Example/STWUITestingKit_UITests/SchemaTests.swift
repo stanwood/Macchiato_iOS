@@ -30,6 +30,21 @@ class STWSchemaTests: XCTestCase {
         
         UITestingManager.shared.launch()
         
+        monitor()
+    }
+    
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+    
+    func testSTWSchema(){
+        UITestingManager.shared.runTests { [unowned self] in
+            self.monitor()
+        }
+    }
+    
+    func monitor(){
         addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
             if $0.buttons["Allow"].exists {
                 $0.buttons["Allow"].tap()
@@ -42,14 +57,4 @@ class STWSchemaTests: XCTestCase {
             return true
         }
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testSTWSchema(){
-        UITestingManager.shared.runTests()
-    }
-    
 }
