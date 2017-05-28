@@ -35,5 +35,31 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>NSAppleMusicUsageDescription</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>NSBluetoothPeripheralUsageDescription</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>NSCalendarsUsageDescription</string>
+    <key>NSCameraUsageDescription</key>
+    <string>NSCameraUsageDescription</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>NSHealthShareUsageDescription</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>NSHealthUpdateUsageDescription</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>NSLocationAlwaysUsageDescription</string>
+    <key>NSLocationUsageDescription</key>
+    <string>NSLocationUsageDescription</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>NSLocationWhenInUseUsageDescription</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>NSMicrophoneUsageDescription</string>
+    <key>NSMotionUsageDescription</key>
+    <string>NSMotionUsageDescription</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>NSPhotoLibraryUsageDescription</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>NSRemindersUsageDescription</string>
 </dict>
 </plist>

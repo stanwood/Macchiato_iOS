@@ -19,6 +19,17 @@ class STWSchemaTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        continueAfterFailure = false
+        
+        guard let url = URL(string: url) else { return }
+        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
+        
+        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
+        
+        UITestingManager.shared.setup(tool: tool)
+        
+        UITestingManager.shared.launch()
+        
         addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
             if $0.buttons["Allow"].exists {
                 $0.buttons["Allow"].tap()
@@ -30,17 +41,6 @@ class STWSchemaTests: XCTestCase {
             
             return true
         }
-        
-        continueAfterFailure = false
-        
-        guard let url = URL(string: url) else { return }
-        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
-        
-        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
-        
-        UITestingManager.shared.setup(tool: tool)
-        
-        UITestingManager.shared.launch()
     }
     
     override func tearDown() {
