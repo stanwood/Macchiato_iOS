@@ -10,10 +10,12 @@ import UIKit
 import Foundation
 import CoreLocation
 import UserNotifications
+import Contacts
 
 class UserAuthorization {
     
-    static func requestionLocation(from manager: CLLocationManager){
+    static func requestionLocation(){
+        let manager: CLLocationManager = CLLocationManager()
         manager.requestAlwaysAuthorization()
     }
     
@@ -23,5 +25,12 @@ class UserAuthorization {
             // Enable or disable features based on authorization.
         }
         UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    static func requestContactsAccess(){
+        let addressBook = CNContactStore()
+        addressBook.requestAccess(for: .contacts) { (granted, error) in
+            
+        }
     }
 }

@@ -82,11 +82,11 @@ open class UITestingManager {
             for navigation in STWSchema.STWNavigationItems {
                 
                 /// Navigate to...
-                let passed = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
+                let test = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
                 
                 /// Cechk if test passed
-                if !passed.pass {
-                    STWReport.shared.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: passed.failiurMessage))
+                if !test.pass {
+                    STWReport.shared.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
                 }
                 
                 sleep(2)

@@ -13,14 +13,16 @@ typealias JSONDictionary = [AnyHashable:Any]
 
 
 class TabViewController: UIViewController {
-
-    lazy var locationManager: CLLocationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         // Asking the user for a location request
-        UserAuthorization.requestionLocation(from: locationManager)
+        UserAuthorization.requestionLocation()
+        
+        UserAuthorization.requestRemoteNotification()
+        
+        UserAuthorization.requestContactsAccess()
     }
 }

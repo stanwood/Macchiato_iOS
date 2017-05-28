@@ -14,8 +14,6 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        UserAuthorization.requestRemoteNotification()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
     }

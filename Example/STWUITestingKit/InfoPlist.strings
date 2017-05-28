@@ -19,3 +19,4 @@
 "NSMotionUsageDescription" = "to track your movements.";
 "NSPhotoLibraryUsageDescription" = "to share photos with others. Don’t worry though, we always ask you first.";
 "NSRemindersUsageDescription" = "to export tasks to your reminders. Don’t worry though, we always ask you first.";
+"NSContactsUsageDescription" = "to share with your friends";

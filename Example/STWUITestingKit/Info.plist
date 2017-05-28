@@ -61,5 +61,7 @@
     <string>NSPhotoLibraryUsageDescription</string>
     <key>NSRemindersUsageDescription</key>
     <string>NSRemindersUsageDescription</string>
+    <key>NSContactsUsageDescription</key>
+    <string>NSContactsUsageDescription</string>
 </dict>
 </plist>
