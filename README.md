@@ -1,3 +1,9 @@
+
+<p align="center">
+    <img src="Assets/Icon.png?raw=false" alt="STWUITestingKit"/>
+</p>
+
+
 # STWUITestingKit
 
 [![CI Status](http://img.shields.io/travis/talezion/STWUITestingKit.svg?style=flat)](https://travis-ci.org/talezion/STWUITestingKit)
