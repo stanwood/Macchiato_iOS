@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'STWUITestingKit_Example' do
   
-  pod 'Reveal-SDK', :configurations => ['Debug']
+  pod 'Reveal-iOS-SDK', '~> 1.6', :configurations => ['Debug']
   
   target 'STWUITestingKit_Tests' do
       inherit! :search_paths

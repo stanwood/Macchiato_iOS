@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "\(BackgroundCelll.self)"
 
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -34,12 +34,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! BackgroundCelll
+        cell.configure(indexPath: indexPath)
         return cell
     }
     
     
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-     }
+        return CGSize(width: collectionView.frame.width - 20, height: 100)
+    }
 }

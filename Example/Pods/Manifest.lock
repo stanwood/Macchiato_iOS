@@ -1,9 +1,9 @@
 PODS:
-  - Reveal-SDK (8)
+  - Reveal-iOS-SDK (1.6.2)
   - STWUITestingKit (0.0.2)
 
 DEPENDENCIES:
-  - Reveal-SDK
+  - Reveal-iOS-SDK (~> 1.6)
   - STWUITestingKit (from `../`)
 
 EXTERNAL SOURCES:
@@ -11,9 +11,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   STWUITestingKit: 05fc8de0ea69edb30f848cbff120bef3309c1d22
 
-PODFILE CHECKSUM: 0ae9543adbf9a40689de80d740d250c5eff9f274
+PODFILE CHECKSUM: 8f3af98356614b6d4262031bf5ea1fe7aca27dbd
 
 COCOAPODS: 1.2.1

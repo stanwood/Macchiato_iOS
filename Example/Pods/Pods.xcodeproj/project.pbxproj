@@ -58,6 +58,7 @@
 		06DB28CF169B88788CC3CDDB5E526FF8 /* Pods-STWUITestingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		07FDC57CEF925FDEF958966E9C462731 /* STWUITestingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = STWUITestingKit.framework; path = STWUITestingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEB2F00F05A586580EBA32E244A2FBD /* STWUITestingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = STWUITestingKit.modulemap; sourceTree = "<group>"; };
+		12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "Reveal-Framework-iOS-1.6.2/Reveal.framework"; sourceTree = "<group>"; };
 		12F7977843CC0A46BDAC427C4F42A954 /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_STWUITestingKit_Example.framework; path = "Pods-STWUITestingKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		180E057C3C30A5E58C22B080654EE69E /* STWUITestingKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-prefix.pch"; sourceTree = "<group>"; };
 		1950856588A3A3B01EF61B6A56DF81EC /* STWUITestingKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STWUITestingKit-dummy.m"; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		DADF17B3A3675CED8E2374BCF954AFFC /* Pods-STWUITestingKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DB849922851AE1037BD7A9187CAF80F3 /* XCTHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XCTHelper.swift; sourceTree = "<group>"; };
 		E5384B3928C5400CEE044948F8E86B4A /* Pods-STWUITestingKit_UITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_UITests-dummy.m"; sourceTree = "<group>"; };
-		E5719D46B9ADE629791BAEAFC4209B27 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-8/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E7AB6F5B18FBDDCAE2143C6A8E8641F1 /* Pods-STWUITestingKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Example-dummy.m"; sourceTree = "<group>"; };
 		E960123A47DEF9F8C85B74F04B6B6087 /* Pods-STWUITestingKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -269,10 +269,18 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				CED3C09B45A57DC7911B62643834BCE8 /* Development Pods */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				9B6766349D399265AA26ED6C7E8D5333 /* Pods */,
+				C6FF86527080A6ABFC16B69A3DC0DFFB /* Pods */,
 				2D99F508A510CFF09C06CA8711A126DC /* Products */,
 				740E257C3967C29F190C4A4832FA03AD /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		81C689C3AFC1C7FF242CFAB8DDD09E4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8963FDBE2601A60660F0339293C6B56C /* Classes */ = {
@@ -295,20 +303,12 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		9B6766349D399265AA26ED6C7E8D5333 /* Pods */ = {
+		C6FF86527080A6ABFC16B69A3DC0DFFB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E853FEE7349B6E1788A524CC074AEEB0 /* Reveal-SDK */,
+				D70BEE20B57C04A4512260E625802768 /* Reveal-iOS-SDK */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		BB8E1C51642BC19AA6DAE03C3C6FD6B8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E5719D46B9ADE629791BAEAFC4209B27 /* RevealServer.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CB36115134CB6714C2F8516DACB03090 /* STWUITestingKit */ = {
@@ -328,13 +328,13 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		E853FEE7349B6E1788A524CC074AEEB0 /* Reveal-SDK */ = {
+		D70BEE20B57C04A4512260E625802768 /* Reveal-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				BB8E1C51642BC19AA6DAE03C3C6FD6B8 /* Frameworks */,
+				81C689C3AFC1C7FF242CFAB8DDD09E4A /* Frameworks */,
 			);
-			name = "Reveal-SDK";
-			path = "Reveal-SDK";
+			name = "Reveal-iOS-SDK";
+			path = "Reveal-iOS-SDK";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
