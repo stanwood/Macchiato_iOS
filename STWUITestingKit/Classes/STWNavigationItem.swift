@@ -17,7 +17,7 @@ extension String {
         let split = self.components(separatedBy: ".")
         
         /// Checcking STWSchema for action
-        guard split.contains("action") else { throw SchemaError.error("STWSchema does not contain an action") }
+        guard split.contains(STWSchemaKey.action) else { throw SchemaError.error("STWSchema navigation does not contain an action") }
     }
     
     func toInt() -> Int? {
@@ -32,12 +32,17 @@ struct STWSchemaKey {
     static let key = "key"
     static let order = "order"
     static let successor = "successor"
+    static let monitor = "monitor"
 }
 
 /*
  NavigationIten represents a navigation junction within a stack
  */
 public class STWNavigationItem {
+    
+    struct Constants {
+        static let monitorIndex = 3
+    }
     
     public var type:STWNavigationType!
     public var index:Int?
@@ -49,11 +54,16 @@ public class STWNavigationItem {
     
     public init(format: String) throws {
         do {
-            
             /// Validating STWSchema
             try format.validate()
             
-            let components = format.components(separatedBy: ".")
+            // Getting navigation components
+            var components = format.components(separatedBy: ".")
+            
+            // Checking if the navigation should be monitored for system alerts
+            try shouldMonitor(&components)
+            
+            // Converting components to item format
             try convert(format: components)
             
         } catch  {
@@ -82,6 +92,22 @@ public class STWNavigationItem {
     }
     
     /// MARK: - Private Helpers
+    
+    fileprivate func shouldMonitor(_ components: inout [String]) throws {
+        
+        // Checking if this navigation should be monitored
+        guard let index = components.index(of: STWSchemaKey.action),
+            (components.count - index) == Constants.monitorIndex,
+            let last = components.last else { return }
+        
+        // Checking if the monitor tyoe is correct
+        if last == STWSchemaKey.monitor {
+            shouldMonitor = true
+            components.removeLast()
+        } else {
+            throw SchemaError.error("Incorrect type: \(last)")
+        }
+    }
     
     fileprivate func setup(STWSchema: JSONSTWSchema) throws {
         if let stringAction = STWSchema[STWSchemaKey.action] as? String,
@@ -197,7 +223,7 @@ public class STWNavigationItem {
         if let type = type {
             self.type = type
         }
-
+        
         self.index = index
         self.key = key
     }

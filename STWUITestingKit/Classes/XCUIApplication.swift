@@ -10,7 +10,7 @@ import XCTest
 
 extension XCUIApplication {
     func setupAndLaunch() {
-        launchEnvironment = ["DISABLE_ANIMATION":"1"]
+        launchEnvironment["DISABLE_ANIMATION"] = "1"
         launch()
     }
     

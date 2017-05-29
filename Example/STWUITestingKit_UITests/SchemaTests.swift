@@ -44,8 +44,9 @@ class STWSchemaTests: XCTestCase {
         }
     }
     
+    // Monitoring for system alerts
     func monitor(){
-        addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+        addUIInterruptionMonitor(withDescription: "System Alerts") {
             if $0.buttons["Allow"].exists {
                 $0.buttons["Allow"].tap()
             }
