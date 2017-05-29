@@ -14,8 +14,7 @@ import Contacts
 
 class UserAuthorization {
     
-    static func requestionLocation(){
-        let manager: CLLocationManager = CLLocationManager()
+    static func requestionLocation(manager: CLLocationManager){
         manager.requestAlwaysAuthorization()
     }
     

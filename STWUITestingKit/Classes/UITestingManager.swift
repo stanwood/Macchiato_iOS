@@ -95,6 +95,7 @@ open class UITestingManager {
                 if navigation.shouldMonitor {
                     
                     /// Monitoring for system alerts
+                  
                     monitor()
                 }
                 

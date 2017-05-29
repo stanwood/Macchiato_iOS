@@ -16,8 +16,12 @@ class STWSchemaTests: XCTestCase {
     /// Based on JSONSTWSchema draft4 tempalte
     let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
     
+    var currentToken: NSObjectProtocol?
+    
     override func setUp() {
         super.setUp()
+        
+        
         
         continueAfterFailure = false
         
@@ -40,13 +44,18 @@ class STWSchemaTests: XCTestCase {
     
     func testSTWSchema(){
         UITestingManager.shared.runTests { [unowned self] in
+            if let token = self.currentToken {
+                self.removeUIInterruptionMonitor(token)
+            }
+            
             self.monitor()
         }
     }
     
     // Monitoring for system alerts
     func monitor(){
-        addUIInterruptionMonitor(withDescription: "System Alerts") {
+        self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+            
             if $0.buttons["Allow"].exists {
                 $0.buttons["Allow"].tap()
             }
