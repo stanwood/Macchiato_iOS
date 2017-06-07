@@ -21,8 +21,6 @@ class STWSchemaTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        
-        
         continueAfterFailure = false
         
         guard let url = URL(string: url) else { return }
