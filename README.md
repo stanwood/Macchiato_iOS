@@ -57,11 +57,11 @@ pod 'STWUITestingKit'
 	
 	```swift
 	
-		// Based on JSONSTWSchema draft4 tempalte - Will be removed
+		// Based on JSONSTWSchema draft4 template - Will be removed
 		// >Note: For testing only
     	let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
 		
-		// curent token for monitoring UI interruption alerts
+		// current token for monitoring UI interruption alerts
 		var currentToken: NSObjectProtocol?
 		
 		override func setUp() {
@@ -127,7 +127,7 @@ pod 'STWUITestingKit'
 
 ##### Overview
 
-The test navigation works by quering `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key, for example:
+The test navigation works by querying `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key, for example:
 
 ```swift
 // Index
@@ -139,7 +139,7 @@ buttons[key]
 
 ##### What we need to do?
 
-1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities pannel under the identitiy inspector.
+1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector.
 2. Or we can set this by code `button.accessibilityIdentifier = key`
 3. We need to make it clear to the PM where we used the identifiers, so they can set the test case with the proper keys.
 
@@ -149,7 +149,7 @@ buttons[key]
 
 ##### Overview
 
-The UI Testing tool works by quering element types from the views hierchy and they can be accessed by caling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are layed out. 
+The UI Testing tool works by querying  element types from the views hierarchy and they can be accessed by calling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are laid out. 
 
 <p align="center">
     <img src="Assets/views hierchy.png?raw=false" alt="STWUITestingKit"/>
@@ -183,7 +183,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 	
 3. Setting `navigation` action to support the test case
 
-	The navigation is a collection of navigation actions. We need to set navigation items to navigation to what we want to test. For example, let's set navigation items accoring to the example above. 
+	The navigation is a collection of navigation actions. We need to set navigation items to navigation to what we want to test. For example, let's set navigation items according to the example above. 
 	
 	Let's assume this view is on:
 	
@@ -206,7 +206,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 		}
 		```
 	
-4. Now, let's say we want to test the image at position 11, which cannot be accessed in the view, we can set different actions, like `swipeUp, swipeDown`. For examplel:
+4. Now, let's say we want to test the image at position 11, which cannot be accessed in the view, we can set different actions, like `swipeUp, swipeDown`. For example:
 
 
 	```json
@@ -229,9 +229,9 @@ For the full action list, please check [here](https://github.com/stanwood/STWUIT
 
 For the full navigation types, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key.
 
->Note: Element identifiers will be listed in each project documentaion under **UI Testing Identifiers**
+>Note: Element identifiers will be listed in each project documentation  under **UI Testing Identifiers**
 
 
 ## License
 
-STWUITestingKit is a priavte library. See the LICENSE file for more info.
+STWUITestingKit is a private library. See the LICENSE file for more info.
