@@ -127,7 +127,7 @@ pod 'STWUITestingKit'
 
 ##### Overview
 
-The test navigation works by quering `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](). The UI Testing tool identifies each element by either an index, or a key, for example:
+The test navigation works by quering `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key, for example:
 
 ```swift
 // Index
@@ -147,7 +147,90 @@ buttons[key]
 
 ### PM Usage
 
-//TODO
+##### Overview
+
+The UI Testing tool works by quering element types from the views hierchy and they can be accessed by caling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are layed out. 
+
+<p align="center">
+    <img src="Assets/views hierchy.png?raw=false" alt="STWUITestingKit"/>
+</p>
+
+This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, which cells can be identified with an index. 
+
+##### Let's create our first test case
+
+1. First, we want to set the schema JSON format
+
+	```json
+	{
+		"test_cases" : [
+			
+		]
+	}
+	```
+
+2. Creating a test case
+
+	```json
+	{
+		"test_cases": [
+			"id" : "1",
+			"title": "Images Test",
+			"description": "Testing if the fifth image is tappable"
+		]
+	}
+	```
+	
+3. Setting `navigation` action to support the test case
+
+	The navigation is a collection of navigation actions. We need to set navigation items to navigation to what we want to test. For example, let's set navigation items accoring to the example above. 
+	
+	Let's assume this view is on:
+	
+	- The second tab can be access with `tabs` as index 1
+	- And the images view is accessed by tapping a button in the tab's `rootView` with an identifier of `pierIdentifier`
+	- The fifth image can be access with `cells` at index 4
+	
+		```json
+		{
+			"test_cases": [
+				"id" : "1",
+				"title": "Images Test",
+				"description": "Testing if the fifth image is tappable",
+				"navigation" : [
+					"tabs[1].action.tap",
+					"buttons['pierIdentifier'].action.tap",
+					"cells[4].action.tap"
+				]
+			]
+		}
+		```
+	
+4. Now, let's say we want to test the image at position 11, which cannot be accessed in the view, we can set different actions, like `swipeUp, swipeDown`. For examplel:
+
+
+	```json
+	{
+		"test_cases": [
+			"id" : "1",
+			"title": "Images Test",
+			"description": "Testing if the fifth image is tappable",
+			"navigation" : [
+				"tabs[1].action.tap",
+				"buttons['pierIdentifier'].action.tap",
+				"cells[4].action.swipeUp",
+				"cells[10].action.tap"
+			]
+		]
+	}
+	```
+
+For the full action list, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationAction.swift)
+
+For the full navigation types, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key.
+
+>Note: Element identifiers will be listed in each project documentaion under **UI Testing Identifiers**
+
 
 ## License
 
