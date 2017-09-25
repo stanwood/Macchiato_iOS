@@ -20,7 +20,10 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ```ruby
 source 'https://github.com/stanwood/Cocoa_Pods_Specs.git'
 
-pod 'STWUITestingKit'
+target 'Project_Tests' do
+      inherit! :search_paths
+      pod 'STWUITestingKit'
+end
 ```
 
 ## Usage
