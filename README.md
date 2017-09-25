@@ -212,10 +212,10 @@ This is a great example where we have a top `UIView`, which can be identified wi
 	```json
 	{
 		"test_cases": [
-			"id" : "1",
+			"id": "1",
 			"title": "Images Test",
 			"description": "Testing if the fifth image is tappable",
-			"navigation" : [
+			"navigation": [
 				"tabs[1].action.tap",
 				"buttons['pierIdentifier'].action.tap",
 				"cells[4].action.swipeUp",
