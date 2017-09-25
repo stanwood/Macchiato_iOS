@@ -9,6 +9,12 @@
 import Foundation
 import XCTest
 
+var deviceLanguage = "en-GB"
+var locale = ""
+
+// Monitor Block
+public typealias MonitorBlock = ()-> Void
+
 public enum ToolError: Error {
     case error(String)
 }
@@ -53,18 +59,26 @@ open class UITestingManager {
             self.testCases.removeAll()
             self.testCases.append(contentsOf: testCases)
             
+            if self.testCases.count == 0 {
+                STWReport.shared.test(failed: STWFailure(message: "No test cases"))
+            }
+            
             DispatchQueue.main.async(execute: {
                 self.dismissinLaunch(with: tool.launchHandlers)
                 self.shouldExecutreTest = true
             })
         })
         
+        // Setting device local
+        setLanguage(tool.app)
+        setLocale(tool.app)
+        
         while !shouldExecutreTest {
             RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
         }
     }
     
-    open func runTests() {
+    open func runTests(monitor: MonitorBlock) {
         guard let tool = tool else {
             
             // Throwing config error
@@ -77,12 +91,20 @@ open class UITestingManager {
             /// Navigation Items
             for navigation in STWSchema.STWNavigationItems {
                 
+                /// Adding navigation monitor
+                if navigation.shouldMonitor {
+                    
+                    /// Monitoring for system alerts
+                  
+                    monitor()
+                }
+                
                 /// Navigate to...
-                let passed = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
+                let test = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
                 
                 /// Cechk if test passed
-                if !passed.pass {
-                    STWReport.shared.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: passed.failiurMessage))
+                if !test.pass {
+                    STWReport.shared.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
                 }
                 
                 sleep(2)
@@ -99,6 +121,8 @@ open class UITestingManager {
             XCTFail(STWReport)
         }
     }
+    
+    // MARK: - Dismiss system alerts
     
     fileprivate func dismissinLaunch(with handlers: [LaunchHandlers]) {
         
@@ -126,4 +150,18 @@ open class UITestingManager {
             }
         }
     }
+    
+    // MARK: - Setting device local and language
+    
+    private func setLanguage(_ app: XCUIApplication) {
+        app.launchArguments += ["-AppleLanguages", "(\(deviceLanguage))"]
+    }
+    
+    private func setLocale(_ app: XCUIApplication) {
+        if locale.isEmpty {
+            locale = Locale(identifier: deviceLanguage).identifier
+        }
+        app.launchArguments += ["-AppleLocale", "\"\(locale)\""]
+    }
+
 }

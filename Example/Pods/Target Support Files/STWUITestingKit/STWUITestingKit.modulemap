@@ -1,6 +1,0 @@
-framework module STWUITestingKit {
-  umbrella header "STWUITestingKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

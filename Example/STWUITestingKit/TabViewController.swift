@@ -7,23 +7,22 @@
 //
 
 import UIKit
+import CoreLocation
+
 typealias JSONDictionary = [AnyHashable:Any]
 
 
 class TabViewController: UIViewController {
-
+    
+    lazy var manager: CLLocationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let dic = test(schemaFor: "test_schema")
-        print(dic ?? [:])
-    }
-    
-    
-    private func test(schemaFor file: String) -> JSONDictionary? {
-        let path = Bundle.main.url(forResource: file, withExtension: "json") //else { return nil }
-        let dictionary = NSDictionary(contentsOf: path!)
-        //let dictionaryy = NSDictionary(contentsOfFile: path)
-        return dictionary as? JSONDictionary
+        
+        
+        UserAuthorization.requestContactsAccess()
+        
+        // Asking the user for a location request
+        //UserAuthorization.requestionLocation(manager: manager)
     }
 }

@@ -1,0 +1,22 @@
+/* 
+  InfoPlist.strings
+  Mach_Dich_Krass
+
+  Created by Tal Zion on 17/11/2016.
+  Copyright © 2016 Stanwood GmbH. All rights reserved.
+*/
+
+"NSAppleMusicUsageDescription" = "to play your media.";
+"NSBluetoothPeripheralUsageDescription" = "to connect the app.";
+"NSCalendarsUsageDescription" = "to export events to your calendar. Don’t worry though, we always ask you first.";
+"NSCameraUsageDescription" = "to take pictures of your progress. Don’t worry though, we always ask you first.";
+"NSHealthShareUsageDescription" = "to share your health information with others.";
+"NSHealthUpdateUsageDescription" = "to update your health information.";
+"NSLocationAlwaysUsageDescription" = "to provide better experience when using the app in the background. Don’t worry though, we always ask you first.";
+"NSLocationUsageDescription" = "to provide better experience when using the app. Don’t worry though, we always ask you first.";
+"NSLocationWhenInUseUsageDescription" = "to provide better experience when using the app. Don’t worry though, we always ask you first.";
+"NSMicrophoneUsageDescription" = "to record your messages. Don’t worry though, we always ask you first.";
+"NSMotionUsageDescription" = "to track your movements.";
+"NSPhotoLibraryUsageDescription" = "to share photos with others. Don’t worry though, we always ask you first.";
+"NSRemindersUsageDescription" = "to export tasks to your reminders. Don’t worry though, we always ask you first.";
+"NSContactsUsageDescription" = "to share with your friends";

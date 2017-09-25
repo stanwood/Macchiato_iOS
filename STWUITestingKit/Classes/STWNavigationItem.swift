@@ -17,7 +17,7 @@ extension String {
         let split = self.components(separatedBy: ".")
         
         /// Checcking STWSchema for action
-        guard split.contains("action") else { throw SchemaError.error("STWSchema does not contain an action") }
+        guard split.contains(STWSchemaKey.action) else { throw SchemaError.error("STWSchema navigation does not contain an action") }
     }
     
     func toInt() -> Int? {
@@ -32,6 +32,7 @@ struct STWSchemaKey {
     static let key = "key"
     static let order = "order"
     static let successor = "successor"
+    static let monitor = "monitor"
 }
 
 /*
@@ -39,20 +40,30 @@ struct STWSchemaKey {
  */
 public class STWNavigationItem {
     
+    struct Constants {
+        static let monitorIndex = 3
+    }
+    
     public var type:STWNavigationType!
     public var index:Int?
     public var key:String!
     public var successor:STWNavigationItem?
     public var action:STWNavigationAction?
     public var sequence:Int!
+    public var shouldMonitor: Bool = false
     
     public init(format: String) throws {
         do {
-            
             /// Validating STWSchema
             try format.validate()
             
-            let components = format.components(separatedBy: ".")
+            // Getting navigation components
+            var components = format.components(separatedBy: ".")
+            
+            // Checking if the navigation should be monitored for system alerts
+            try shouldMonitor(&components)
+            
+            // Converting components to item format
             try convert(format: components)
             
         } catch  {
@@ -69,11 +80,34 @@ public class STWNavigationItem {
         }
     }
     
-    private init(components:[String]) {
-        transform(components: components)
+    private init(components:[String]) throws {
+        /// Transformaing format to a STWSchema
+        do {
+            try transform(components: components)
+        } catch let error as SchemaError {
+            throw error
+        } catch {
+            throw error
+        }
     }
     
     /// MARK: - Private Helpers
+    
+    fileprivate func shouldMonitor(_ components: inout [String]) throws {
+        
+        // Checking if this navigation should be monitored
+        guard let index = components.index(of: STWSchemaKey.action),
+            (components.count - index) == Constants.monitorIndex,
+            let last = components.last else { return }
+        
+        // Checking if the monitor tyoe is correct
+        if last == STWSchemaKey.monitor {
+            shouldMonitor = true
+            components.removeLast()
+        } else {
+            throw SchemaError.error("Incorrect type: \(last)")
+        }
+    }
     
     fileprivate func setup(STWSchema: JSONSTWSchema) throws {
         if let stringAction = STWSchema[STWSchemaKey.action] as? String,
@@ -114,11 +148,16 @@ public class STWNavigationItem {
         format.removeFirst()
         
         /// Transformaing format to a STWSchema
-        
-        transform(components: format)
+        do {
+            try transform(components: format)
+        } catch let error as SchemaError {
+            throw error
+        } catch {
+            throw error
+        }
     }
     
-    fileprivate func transform(components: [String]) {
+    fileprivate func transform(components: [String]) throws {
         var components = components
         
         var elementType:STWNavigationType?
@@ -151,11 +190,16 @@ public class STWNavigationItem {
                 transforedIndex = index
                 break
             }
+            
         }
         
         
         /// Setting up successors
         set(type: elementType, index: elementIndex, key: elementKey)
+        
+        if self.type == nil {
+            throw SchemaError.error("Incorrect type: \(elementKey ?? "")")
+        }
         
         /// Removing added successors
         for _ in 0...transforedIndex {
@@ -164,7 +208,14 @@ public class STWNavigationItem {
         
         /// Setting next successor inline
         if !components.isEmpty {
-            self.successor = STWNavigationItem(components: components)
+            /// Transformaing format to a STWSchema
+            do {
+                self.successor = try STWNavigationItem(components: components)
+            } catch let error as SchemaError {
+                throw error
+            } catch {
+                throw error
+            }
         }
     }
     
@@ -172,7 +223,7 @@ public class STWNavigationItem {
         if let type = type {
             self.type = type
         }
-
+        
         self.index = index
         self.key = key
     }

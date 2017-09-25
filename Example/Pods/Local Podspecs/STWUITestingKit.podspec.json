@@ -1,11 +1,11 @@
 {
   "name": "STWUITestingKit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "Stanwood iOS UITesting Tool",
   "description": "Stanwood iOS UITesting tool",
   "homepage": "https://github.com/stanwood/STWUITestingKit",
   "license": {
-    "type": "MIT",
+    "type": "Private",
     "file": "LICENSE"
   },
   "authors": {
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/stanwood/STWUITestingKit.git",
-    "tag": "0.0.1"
+    "tag": "0.0.2"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "STWUITestingKit/Classes/**/*",
   "frameworks": "XCTest"
