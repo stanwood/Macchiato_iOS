@@ -142,7 +142,31 @@ buttons[key]
 
 ##### What we need to do?
 
-1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector.
+1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector. Setting the ket to `localisedText`
+
+**Setting identifiers using `extensions` for `[UIButton, UIAlertAction, UILabel, UIBarButtonItem, UITextField]` **
+
+```swift
+extension UILabel {
+    
+    open var localisedText: String? {
+        get {
+            return text
+        }
+        set {
+            accessibilityIdentifier = newValue
+            text = newValue?.localized()
+        }
+    }
+    
+    // When working with xib elements, set the localised key in IB
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        localisedText = text
+    }
+}
+```
+
 2. Or we can set this by code `button.accessibilityIdentifier = key`
 3. We need to make it clear to the PM where we used the identifiers, so they can set the test case with the proper keys.
 4. List all identifiers and indexes in the project documentation
