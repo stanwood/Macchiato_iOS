@@ -144,7 +144,7 @@ buttons[key]
 
 1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector. Setting the ket to `localisedText`
 
-**Setting identifiers using `extensions` for `[UIButton, UIAlertAction, UILabel, UIBarButtonItem, UITextField]` **
+###### Setting identifiers using `extensions` for `[UIButton, UIAlertAction, UILabel, UIBarButtonItem, UITextField]`
 
 ```swift
 extension UILabel {
