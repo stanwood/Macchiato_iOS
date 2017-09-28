@@ -145,8 +145,24 @@ buttons[key]
 1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector.
 2. Or we can set this by code `button.accessibilityIdentifier = key`
 3. We need to make it clear to the PM where we used the identifiers, so they can set the test case with the proper keys.
+4. List all identifiers and indexes in the project documentation
 
->Note: 3 still in WIP how we track all identifiers
+**Example**
+
+##### View One
+
+###### View Overview
+| UITabBarIndex| isRootView  |
+|---|---|
+|  0-3 - nil | YES  |
+
+###### Test Case Information
+| Description| Type  | Identifier | Index  |
+|---|---|---|---|
+|  Histogram View | UIView  | `histogramAccesibiltyIdenfier`  |  - |
+|  Image Cell | UICollectionViewCell  | -  | 1-11  |
+| Back Button  | UIBarButtonItem  | `backButtonAccessibilityIdentifer`  | -  |
+
 
 ### PM Usage
 
