@@ -167,6 +167,8 @@ extension UILabel {
 }
 ```
 
+>Note: Only set the localised key as the `localisedText` i.e' `MY_KEY_TITLE`, **NOT** the localised text i.e' `My Key`
+
 2. Or we can set this by code `button.accessibilityIdentifier = key`
 3. We need to make it clear to the PM where we used the identifiers, so they can set the test case with the proper keys.
 4. List all identifiers and indexes in the project documentation
