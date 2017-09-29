@@ -183,12 +183,15 @@ extension UILabel {
 |  0-3 - nil | YES  |
 
 ###### Test Case Information
-| Description| Type  | Identifier | Index  |
-|---|---|---|---|
-|  Histogram View | UIView  | `histogramAccesibiltyIdenfier`  |  - |
-|  Image Cell | UICollectionViewCell  | -  | 1-11  |
-| Back Button  | UIBarButtonItem  | `backButtonAccessibilityIdentifer`  | -  |
+| Description| Type  | Navigation Type | Navigation Action | Identifier | Index  |
+|---|---|---|---|---|---|
+|  Histogram View | UIView  | view  | swipeLeft  | `histogramAccesibiltyIdenfier`  |  - |
+|  Image Cell | UICollectionViewCell  | collectionView  | tap  | -  | 1-11  |
+| Back Button  | UIBarButtonItem  | button  | tap  | `backButtonAccessibilityIdentifer`  | -  |
 
+For the full action list, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationAction.swift)
+
+For the full navigation types, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key.
 
 ### PM Usage
 
