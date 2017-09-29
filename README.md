@@ -110,7 +110,7 @@ end
 3. Now we are ready to set up the test case
 
 	```swift
-		func testSTWSchema(){
+	func testSTWSchema(){
 	        UITestingManager.shared.runTests { [unowned self] in
 	            if let token = self.currentToken {
 	                self.removeUIInterruptionMonitor(token)
