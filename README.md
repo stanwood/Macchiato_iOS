@@ -35,23 +35,23 @@ end
 1. Add a new `XCTestCase` to the UI Test target and import `STWUITestingKit`
 
 	```swift
-		import XCTest
-		import STWUITestingKit
-		
-		class STWSchemaTests: XCTestCase {
-		    
-		    let app = XCUIApplication()
-		    
-		    override func setUp() {
-		        super.setUp()
-		        
-		    }
-		    
-		    override func tearDown() {
-		        // Put teardown code here. This method is called after the invocation of each test method in the class.
-		        super.tearDown()
-		    }
-		}
+	import XCTest
+	import STWUITestingKit
+	
+	class STWSchemaTests: XCTestCase {
+	    
+	    let app = XCUIApplication()
+	    
+	    override func setUp() {
+	        super.setUp()
+	        
+	    }
+	    
+	    override func tearDown() {
+	        // Put teardown code here. This method is called after the invocation of each test method in the class.
+	        super.tearDown()
+	    }
+	}
 	```
 
 2. Let's configure and launch the sdk
@@ -60,64 +60,64 @@ end
 	
 	```swift
 	
-		// Based on JSONSTWSchema draft4 template - Will be removed
-		// >Note: For testing only
+	// Based on JSONSTWSchema draft4 template - Will be removed
+	// >Note: For testing only
     	let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
-		
-		// current token for monitoring UI interruption alerts
-		var currentToken: NSObjectProtocol?
-		
-		override func setUp() {
-	        super.setUp()
+	
+	// current token for monitoring UI interruption alerts
+	var currentToken: NSObjectProtocol?
+	
+	override func setUp() {
+	    super.setUp()
 	        
-	        continueAfterFailure = false
+	    continueAfterFailure = false
 	        
 	        
-	        guard let url = URL(string: url) else { return } // >Note: Still WIP - Thi will be removed
-	        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
+	     guard let url = URL(string: url) else { return } // >Note: Still WIP - Thi will be removed
+             let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
 	        
-	        // Launch configurations
-	        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
+	      // Launch configurations
+	      let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
 	        
-	        // Setting up the testing tool
-	        UITestingManager.shared.setup(tool: tool)
+	      // Setting up the testing tool
+	      UITestingManager.shared.setup(tool: tool)
 	        
-	        // This will fetch the test cases from the API
-	        UITestingManager.shared.launch()
-	        
-	        // Monitoring
-	        monitor()
+	      // This will fetch the test cases from the API
+              UITestingManager.shared.launch()
+	       
+	      // Monitoring
+	      monitor()
 	    }
 	    
 	    // Monitoring for system alerts
 	    // >Note: Still WIP
-	    func monitor(){
-	        self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+	func monitor(){
+	  self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
 	            
-	            if $0.buttons["Allow"].exists {
-	                $0.buttons["Allow"].tap()
-	            }
+	    if $0.buttons["Allow"].exists {
+	        $0.buttons["Allow"].tap()
+	     }
 	            
-	            if $0.buttons["OK"].exists {
-	                $0.buttons["OK"].tap()
-	            }
+	     if $0.buttons["OK"].exists {
+	          $0.buttons["OK"].tap()
+	     }
 	            
-	            return true
-	        }
-	    }
+             return true
+	   }
+	}
 	```
 
 3. Now we are ready to set up the test case
 
 	```swift
 	func testSTWSchema(){
-	        UITestingManager.shared.runTests { [unowned self] in
-	            if let token = self.currentToken {
-	                self.removeUIInterruptionMonitor(token)
-	            }
-	            
-	            self.monitor()
+	    UITestingManager.shared.runTests { [unowned self] in
+	       if let token = self.currentToken {
+	           self.removeUIInterruptionMonitor(token)
 	        }
+	            
+	        self.monitor()
+	    }
     	}
 	```
 	
