@@ -118,7 +118,7 @@ end
 	            
 	        self.monitor()
 	    }
-    	}
+	}
 	```
 	
 	`UITestingManager.shared.runTests` will run the tests and report if there are any failures. The callback is triggered if a test case should be 	monitored for system alerts.
