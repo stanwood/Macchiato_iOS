@@ -20,7 +20,10 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ```ruby
 source 'https://github.com/stanwood/Cocoa_Pods_Specs.git'
 
-pod 'STWUITestingKit'
+target 'Project_Tests' do
+      inherit! :search_paths
+      pod 'STWUITestingKit'
+end
 ```
 
 ## Usage
@@ -32,23 +35,23 @@ pod 'STWUITestingKit'
 1. Add a new `XCTestCase` to the UI Test target and import `STWUITestingKit`
 
 	```swift
-		import XCTest
-		import STWUITestingKit
-		
-		class STWSchemaTests: XCTestCase {
-		    
-		    let app = XCUIApplication()
-		    
-		    override func setUp() {
-		        super.setUp()
-		        
-		    }
-		    
-		    override func tearDown() {
-		        // Put teardown code here. This method is called after the invocation of each test method in the class.
-		        super.tearDown()
-		    }
-		}
+	import XCTest
+	import STWUITestingKit
+	
+	class STWSchemaTests: XCTestCase {
+	    
+	    let app = XCUIApplication()
+	    
+	    override func setUp() {
+	        super.setUp()
+	        
+	    }
+	    
+	    override func tearDown() {
+	        // Put teardown code here. This method is called after the invocation of each test method in the class.
+	        super.tearDown()
+	    }
+	}
 	```
 
 2. Let's configure and launch the sdk
@@ -57,65 +60,65 @@ pod 'STWUITestingKit'
 	
 	```swift
 	
-		// Based on JSONSTWSchema draft4 template - Will be removed
-		// >Note: For testing only
+	// Based on JSONSTWSchema draft4 template - Will be removed
+	// >Note: For testing only
     	let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
-		
-		// current token for monitoring UI interruption alerts
-		var currentToken: NSObjectProtocol?
-		
-		override func setUp() {
-	        super.setUp()
+	
+	// current token for monitoring UI interruption alerts
+	var currentToken: NSObjectProtocol?
+	
+	override func setUp() {
+	    super.setUp()
 	        
-	        continueAfterFailure = false
+	    continueAfterFailure = false
 	        
 	        
-	        guard let url = URL(string: url) else { return } // >Note: Still WIP - Thi will be removed
-	        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
+	     guard let url = URL(string: url) else { return } // >Note: Still WIP - Thi will be removed
+             let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
 	        
-	        // Launch configurations
-	        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
+	      // Launch configurations
+	      let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
 	        
-	        // Setting up the testing tool
-	        UITestingManager.shared.setup(tool: tool)
+	      // Setting up the testing tool
+	      UITestingManager.shared.setup(tool: tool)
 	        
-	        // This will fetch the test cases from the API
-	        UITestingManager.shared.launch()
-	        
-	        // Monitoring
-	        monitor()
+	      // This will fetch the test cases from the API
+              UITestingManager.shared.launch()
+	       
+	      // Monitoring
+	      monitor()
 	    }
 	    
 	    // Monitoring for system alerts
 	    // >Note: Still WIP
-	    func monitor(){
-	        self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+	func monitor(){
+	  self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
 	            
-	            if $0.buttons["Allow"].exists {
-	                $0.buttons["Allow"].tap()
-	            }
+	    if $0.buttons["Allow"].exists {
+	        $0.buttons["Allow"].tap()
+	     }
 	            
-	            if $0.buttons["OK"].exists {
-	                $0.buttons["OK"].tap()
-	            }
+	     if $0.buttons["OK"].exists {
+	          $0.buttons["OK"].tap()
+	     }
 	            
-	            return true
-	        }
-	    }
+             return true
+	   }
+	}
 	```
 
 3. Now we are ready to set up the test case
 
 	```swift
-		func testSTWSchema(){
-	        UITestingManager.shared.runTests { [unowned self] in
-	            if let token = self.currentToken {
-	                self.removeUIInterruptionMonitor(token)
-	            }
-	            
-	            self.monitor()
+	func testSTWSchema(){
+	    UITestingManager.shared.runTests { [unowned self] in
+	       if let token = self.currentToken {
+	           self.removeUIInterruptionMonitor(token)
 	        }
-    	}
+	            
+	        self.monitor()
+	    }
+	}
 	```
 	
 	`UITestingManager.shared.runTests` will run the tests and report if there are any failures. The callback is triggered if a test case should be 	monitored for system alerts.
@@ -139,11 +142,56 @@ buttons[key]
 
 ##### What we need to do?
 
-1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector.
+1. We need to set an `accessibilityIdentifier` for each element. This can be done in Xcode, in the utilities panel  under the identity inspector. Setting the ket to `localisedText`
+
+###### Setting identifiers using `extensions` for `[UIButton, UIAlertAction, UILabel, UIBarButtonItem, UITextField]`
+
+```swift
+extension UILabel {
+    
+    open var localisedText: String? {
+        get {
+            return text
+        }
+        set {
+            accessibilityIdentifier = newValue
+            text = newValue?.localized()
+        }
+    }
+    
+    // When working with xib elements, set the localised key in IB
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        localisedText = text
+    }
+}
+```
+
+>Note: Only set the localised key as the `localisedText` i.e' `MY_KEY_TITLE`, **NOT** the localised text i.e' `My Key`
+
 2. Or we can set this by code `button.accessibilityIdentifier = key`
 3. We need to make it clear to the PM where we used the identifiers, so they can set the test case with the proper keys.
+4. List all identifiers and indexes in the project documentation
 
->Note: 3 still in WIP how we track all identifiers
+**Example**
+
+##### View One
+
+###### View Overview
+| UITabBarIndex| isRootView  |
+|---|---|
+|  0-3 - nil | YES  |
+
+###### Test Case Information
+| Description| Type  | Navigation Type | Navigation Action | Identifier | Index  |
+|---|---|---|---|---|---|
+|  Histogram View | UIView  | view  | swipeLeft  | `histogramAccesibiltyIdenfier`  |  - |
+|  Image Cell | UICollectionViewCell  | collectionView  | tap  | -  | 1-11  |
+| Back Button  | UIBarButtonItem  | button  | tap  | `backButtonAccessibilityIdentifer`  | -  |
+
+For the full action list, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationAction.swift)
+
+For the full navigation types, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key.
 
 ### PM Usage
 
@@ -212,10 +260,10 @@ This is a great example where we have a top `UIView`, which can be identified wi
 	```json
 	{
 		"test_cases": [
-			"id" : "1",
+			"id": "1",
 			"title": "Images Test",
 			"description": "Testing if the fifth image is tappable",
-			"navigation" : [
+			"navigation": [
 				"tabs[1].action.tap",
 				"buttons['pierIdentifier'].action.tap",
 				"cells[4].action.swipeUp",
