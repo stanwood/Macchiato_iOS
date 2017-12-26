@@ -11,7 +11,7 @@
  let Passed = (true, "")
  var Failed = (false, "")
  
- typealias Complition = (_ STWSchemaCases:[STWSchema]) -> Void
+ typealias Complition = (_ STWSchemaCases:[TestCase]) -> Void
  
  class XCTHelper {
     
@@ -22,20 +22,20 @@
         STWFetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onComplition: {
             dictionary, repsosne, error in
             
-            var testCases:[STWSchema] = []
+            var tests:[TestCase] = []
             
-            if var dic = dictionary as? [String : Any], let schemas = dic["test_cases"] as? NSArray {
-                for schema in schemas {
-                    guard let schemaDictionary = schema as? [String:Any] else { continue }
+            if var dic = dictionary as? [String : Any], let testCases = dic["test_cases"] as? NSArray {
+                for testCase in testCases {
+                    guard let testCaseDictionary = testCase as? [String:Any] else { continue }
                     do {
-                        let testCase = try STWSchema(schemaDictionary)
+                        let test = try TestCase(testCase: testCaseDictionary)
                         
-                        testCases.append(testCase)
+                        tests.append(test)
                     } catch SchemaError.error(let m) {
                         report.test(failed: STWFailure(message: m))
                     }
                 }
-                complition(testCases)
+                complition(tests)
             } else {
                 report.test(failed: STWFailure(message: "Failed to download JSONSTWSchema from: \(url)"))
             }

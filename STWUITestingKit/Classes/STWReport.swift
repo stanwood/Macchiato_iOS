@@ -21,10 +21,10 @@ open class STWReport {
     var print: String {
         get {
             guard !didPass else { return "Test passed!" }
-            var print = "\nFailed Test Cases STWReport\n\nNumber of failed tests: \(failures.count)\n\n"
+            var print = "\nFailed Test Cases report\n\nNumber of failed tests: \(failures.count)\n\n"
             
             for item in failures.enumerated() {
-                print += "\nSTWTest ID: \(item.element.testID == "0" ? "nil" : item.element.testID), \nItem ID: \(item.element.navigationID == 0 ? "nil" : "\(item.element.navigationID)"),\nFailure Message: \(item.element.errorMessage).\n\n"
+                print += "\nTest ID: \(item.element.testID == "0" ? "nil" : item.element.testID), \nItem ID: \(item.element.navigationID == 0 ? "nil" : "\(item.element.navigationID)"),\nFailure Message: \(item.element.errorMessage).\n\n"
             }
             return print
         }

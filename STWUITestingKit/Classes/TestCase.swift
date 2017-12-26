@@ -24,28 +24,29 @@
     }
  }
  
- public struct STWSchema {
+ public struct TestCase {
+    
     public let title:String?
     public let description:String?
     public let id:String?
     
     public var STWNavigationItems:[STWNavigationItem] = []
     
-    let STWSchema:[AnyHashable:Any]
+    let testCase: [AnyHashable:Any]
     
-    public init(_ STWSchema:[AnyHashable:Any]) throws {
+    public init(testCase: [AnyHashable:Any]) throws {
         
-        id = STWSchema["id"] as? String
-        title = STWSchema["title"] as? String
-        description = STWSchema["description"] as? String
+        id = testCase["id"] as? String
+        title = testCase["title"] as? String
+        description = testCase["description"] as? String
         
         guard let _ = id, let _ = title, let _ = description else {
             throw SchemaError.error("Incorrect Schema Foramt - Please check id, title, and description\n ID: \(id ?? "nil"), Title: \(title ?? "nil"), Description: \(description ?? "nil")")
         }
         
-        self.STWSchema = STWSchema
+        self.testCase = testCase
         
-        if let navigationArray = STWSchema["navigation"] as? [Any] {
+        if let navigationArray = testCase["navigation"] as? [Any] {
             for (index, item) in navigationArray.enumerated() {
                 guard var itemFormat = item as? String else { continue }
                 itemFormat = re(format: itemFormat, with: index)

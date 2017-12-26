@@ -20,7 +20,7 @@ class TabViewController: UIViewController {
         super.viewDidLoad()
         
         
-        UserAuthorization.requestContactsAccess()
+        //UserAuthorization.requestContactsAccess()
         
         // Asking the user for a location request
         //UserAuthorization.requestionLocation(manager: manager)

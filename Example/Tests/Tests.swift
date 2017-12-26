@@ -22,13 +22,13 @@ class Tests: XCTestCase {
     func testCorrectSchemaFormat() {
         
         guard let schemaJSON = test(schemaFor: "test_schema") else { XCTFail("Failed to load schema ffom file"); return }
-        var testCases:[STWSchema] = []
+        var testCases:[TestCase] = []
             
             if let schemas = schemaJSON["test_cases"] as? NSArray {
                 for schema in schemas {
                     guard let schemaDictionary = schema as? JSONDictionary else { continue }
                     do {
-                        let testCase = try STWSchema(schemaDictionary)
+                        let testCase = try TestCase(testCase: schemaDictionary)
                         testCases.append(testCase)
                     } catch SchemaError.error( let m ) {
                         XCTFail(m)
@@ -45,13 +45,13 @@ class Tests: XCTestCase {
     
     func testSchemaHasTestCase(){
         guard let schemaJSON = test(schemaFor: "test_schema_empty") else { XCTFail("Failed to load schema from file"); return }
-        var testCases:[STWSchema] = []
+        var testCases:[TestCase] = []
         
         if let schemas = schemaJSON["test_cases"] as? NSArray {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let testCase = try STWSchema(schemaDictionary)
+                    let testCase = try TestCase(testCase: schemaDictionary)
                     testCases.append(testCase)
                 } catch SchemaError.error( let m ) {
                     XCTFail(m)
@@ -76,7 +76,7 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try TestCase(testCase: schemaDictionary)
                     XCTFail("Failed to initate Schema with no items")
                 } catch SchemaError.error( let m ) {
                     print("Test passed: \(m)")
@@ -97,7 +97,7 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
                 } catch SchemaError.error( let m ) {
                     print("Test passed: \(m)")
@@ -118,7 +118,7 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
                 } catch SchemaError.error( let m ) {
                     print("Test passed: \(m)")
@@ -139,7 +139,7 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
                 } catch SchemaError.error( let m ) {
                     print("Test passed: \(m)")
@@ -160,7 +160,7 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
                 } catch SchemaError.error( let m ) {
                     print("Test passed: \(m)")
@@ -181,7 +181,7 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
                 } catch SchemaError.error( let m ) {
                     print("Test passed: \(m)")

@@ -18,6 +18,12 @@ extension String {
         
         /// Checcking STWSchema for action
         guard split.contains(STWSchemaKey.action) else { throw SchemaError.error("STWSchema navigation does not contain an action") }
+        
+        /// Checking for a valid action
+        if let index = split.index(of: STWSchemaKey.action), split.count >= (index + 1) {
+            let key = split[index + 1]
+            guard let _ = STWNavigationAction(rawValue: key) else { throw SchemaError.error("STWSchema navigation does not contain a valid action: \(key)") }
+        }
     }
     
     func toInt() -> Int? {
@@ -38,18 +44,18 @@ struct STWSchemaKey {
 /*
  NavigationIten represents a navigation junction within a stack
  */
-public class STWNavigationItem {
+open class STWNavigationItem {
     
     struct Constants {
         static let monitorIndex = 3
     }
     
-    public var type:STWNavigationType!
-    public var index:Int?
-    public var key:String!
-    public var successor:STWNavigationItem?
-    public var action:STWNavigationAction?
-    public var sequence:Int!
+    public var type: STWNavigationType!
+    public var index: Int?
+    public var key: String!
+    public var successor: STWNavigationItem?
+    public var action: STWNavigationAction?
+    public var sequence: Int!
     public var shouldMonitor: Bool = false
     
     public init(format: String) throws {

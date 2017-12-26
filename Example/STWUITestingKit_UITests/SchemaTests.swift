@@ -12,10 +12,6 @@ import STWUITestingKit
 class STWSchemaTests: XCTestCase {
     
     let app = XCUIApplication()
-    
-    /// Based on JSONSTWSchema draft4 tempalte
-    let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
-    
     var currentToken: NSObjectProtocol?
     var testingManager: UITestingManager!
     
@@ -24,10 +20,12 @@ class STWSchemaTests: XCTestCase {
         
         continueAfterFailure = false
         
-        guard let url = URL(string: url) else { return }
+        let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
+        let version: String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)?.replacingOccurrences(of: ".", with: "-") ?? "-"
+        guard let url = URL(string: "ios/com-uitesting-example/\(version).json", relativeTo: URL(string: baseURLString)) else { return }
         let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
         
-        let slack = Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx")
+        let slack = Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
         let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
         testingManager = UITestingManager(tool: tool)

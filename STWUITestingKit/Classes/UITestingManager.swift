@@ -26,7 +26,7 @@ open class UITestingManager {
      */
     fileprivate var shouldExecutreTest:Bool = true
     
-    fileprivate var testCases: [STWSchema] = []
+    fileprivate var testCases: [TestCase] = []
     fileprivate var configurations: STWTestConfigurations
     private var report: STWReport
     private let navigator: STWNavigator
@@ -103,15 +103,22 @@ open class UITestingManager {
             XCTHelper.navigateToDefault(app: configurations.app)
         }
         
-        /// Checking if tests passed
-        print(report.print)
+        shouldExecutreTest = false
         
-        if !report.didPass {
-            /// Posting report
-            configurations.slack?.post(report: report)
+        /// Posting report
+        configurations.slack?.post(report: report) { [unowned self] in
             
-            /// Failing the test
-            XCTFail(report.print)
+            /// Checking if tests passed
+            if !self.report.didPass {
+                /// Failing the test
+                XCTFail(self.report.print)
+            }
+            
+            self.shouldExecutreTest = true
+        }
+        
+        while !shouldExecutreTest {
+            sleep(1)
         }
     }
     
