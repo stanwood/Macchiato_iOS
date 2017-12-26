@@ -21,37 +21,31 @@ public enum ToolError: Error {
 
 open class UITestingManager {
     
-    open static var shared: UITestingManager = UITestingManager()
-    
     /*
      :executeTests: Bool // Default value is true
      */
     fileprivate var shouldExecutreTest:Bool = true
     
-    fileprivate var testCases:[STWSchema] = []
-    fileprivate var tool:STWTestConfigurations?
+    fileprivate var testCases: [STWSchema] = []
+    fileprivate var configurations: STWTestConfigurations
+    private var report: STWReport
+    private let navigator: STWNavigator
     
-    private init(){
-    }
-    
-    open func setup(tool: STWTestConfigurations) {
-        self.tool = tool
-        self.tool?.app.setupAndLaunch()
+    public init(tool: STWTestConfigurations) {
+        self.configurations = tool
+        self.configurations.app.setupAndLaunch()
+        
+        self.report = STWReport()
+        self.navigator = STWNavigator(report: report)
     }
     
     open func launch() {
-        guard let tool = tool else {
-            
-            // Throwing config error
-            STWReport.shared.test(failed: STWFailure(message: "Did not setup a testing tool item: Check - ToolItem"))
-            return
-        }
-        
+
         /// MARK: - Fetching test cases
         
         shouldExecutreTest = false
         
-        XCTHelper.fetchSTWSchema(withUrl: tool.url, complition: {
+        XCTHelper.fetchSTWSchema(withUrl: configurations.url, report: report, complition: {
             [weak self] testCases in
             guard let `self` = self else { return }
             
@@ -60,18 +54,18 @@ open class UITestingManager {
             self.testCases.append(contentsOf: testCases)
             
             if self.testCases.count == 0 {
-                STWReport.shared.test(failed: STWFailure(message: "No test cases"))
+                self.report.test(failed: STWFailure(message: "No test cases"))
             }
             
-            DispatchQueue.main.async(execute: {
-                self.dismissinLaunch(with: tool.launchHandlers)
+            DispatchQueue.main.async(execute: { [unowned self] in
+                self.dismissinLaunch(with: self.configurations.launchHandlers)
                 self.shouldExecutreTest = true
             })
         })
         
         // Setting device local
-        setLanguage(tool.app)
-        setLocale(tool.app)
+        setLanguage(configurations.app)
+        setLocale(configurations.app)
         
         while !shouldExecutreTest {
             RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
@@ -79,12 +73,6 @@ open class UITestingManager {
     }
     
     open func runTests(monitor: MonitorBlock) {
-        guard let tool = tool else {
-            
-            // Throwing config error
-            STWReport.shared.test(failed: STWFailure(message: "Did not setup a testing tool item: Check - ToolItem"))
-            return
-        }
         
         for STWSchema in testCases {
             
@@ -100,11 +88,11 @@ open class UITestingManager {
                 }
                 
                 /// Navigate to...
-                let test = STWNavigator.navigate(to: navigation, query: nil, element: nil, app: tool.app)
+                let test = navigator.navigate(to: navigation, query: nil, element: nil, app: configurations.app)
                 
                 /// Cechk if test passed
                 if !test.pass {
-                    STWReport.shared.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
+                    report.test(failed: STWFailure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
                 }
                 
                 sleep(2)
@@ -112,13 +100,18 @@ open class UITestingManager {
             
             
             /// Setting default view
-            XCTHelper.navigateToDefault(app: tool.app)
+            XCTHelper.navigateToDefault(app: configurations.app)
         }
         
         /// Checking if tests passed
-        if let STWReport = STWReport.shared.print {
-            print(STWReport)
-            XCTFail(STWReport)
+        print(report.print)
+        
+        if !report.didPass {
+            /// Posting report
+            configurations.slack?.post(report: report)
+            
+            /// Failing the test
+            XCTFail(report.print)
         }
     }
     
@@ -126,26 +119,19 @@ open class UITestingManager {
     
     fileprivate func dismissinLaunch(with handlers: [LaunchHandlers]) {
         
-        guard let tool = tool else {
-            
-            // Throwing config error
-            STWReport.shared.test(failed: STWFailure(message: "Did not setup a testing tool item: Check - ToolItem"))
-            return
-        }
-        
-        for handler in tool.launchHandlers {
+        for handler in configurations.launchHandlers {
             switch handler {
             case .notification:
                 // Setting up nitifications
-                XCTHelper.allowNotifications(withApp: tool.app)
+                XCTHelper.allowNotifications(withApp: configurations.app)
                 continue
             case .review:
                 // Dismissing pop up alerts
-                XCTHelper.dismissReviewAlert(withApp: tool.app)
+                XCTHelper.dismissReviewAlert(withApp: configurations.app)
                 continue
             case .default:
                 // Cloasing any open pop ups
-                XCTHelper.close(withApp: tool.app)
+                XCTHelper.close(withApp: configurations.app)
                 continue
             }
         }

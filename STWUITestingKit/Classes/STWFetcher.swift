@@ -17,71 +17,60 @@ public enum HTTPMethods:String {
     case DELETE
 }
 
-public struct Header {
+struct Header {
     let value:String
     let forHTTPHeaderField:String
 }
 
-open class STWFetcher {
+class STWFetcher {
     
+    private init () {}
     /**
      onComplition DictionaryRESTResponse = (dataDictionary: [String:AnyObject]?, response: NSHTTPURLResponse?, error: NSError?) -> Void
      */
-    open static func getRequest(URL:URL, URLParams: [String:String]?, HTTPMethod method: HTTPMethods, headers: [Header]?, onComplition: @escaping DataRESTResponse) {
-        
-        /* Configure session, choose between:
-         * defaultSessionConfiguration
-         * ephemeralSessionConfiguration
-         * backgroundSessionConfigurationWithIdentifier:
-         And set session-wide properties, such as: HTTPAdditionalHeaders,
-         HTTPCookieAcceptPolicy, requestCachePolicy or timeoutIntervalForRequest.
-         */
+    static func sendRequest(with url: URL, URLParams: [String:String]?, HTTPMethod method: HTTPMethods, headers: [Header]?, body: Data?, onComplition: DataRESTResponse?) {
+
         let sessionConfig = URLSessionConfiguration.default
-        
-        /* Create session, and optionally set a NSURLSessionDelegate. */
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
         
-        //"http://content.7nxt-api.com/v1/entries/de/mdkx/program/product_section"
-        
         //MARK: - Setting URL
-        var URL = URL
-        
-        var request = URLRequest(url: URL)
-        request.httpMethod = method.rawValue
-        
+        var URL = url
         if let params = URLParams {
             //MARK: - Paramaters
             
             URL = URL.URLByAppendingQueryParameters(params)
         }
         
+        var request = URLRequest(url: URL)
+        request.httpMethod = method.rawValue
+       
+        
         if let headers = headers {
-            //MARK: - Headers
-            
-            for header in headers {
-                request.addValue(header.value, forHTTPHeaderField: header.forHTTPHeaderField)
-            }
+            headers.forEach({ request.addValue($0.value, forHTTPHeaderField: $0.forHTTPHeaderField) })
         }
+        
+        /// Body
+        request.httpBody = body
         
         /* Start a new Task */
         let task = session.dataTask(with: request, completionHandler: {
             data, response, error in
-            session.invalidateAndCancel()
             if error == nil {
                 let statusResponse = response as! HTTPURLResponse
                 do {
                     let dataDictionary = try JSONSerialization.jsonObject(with: data!, options: []) as? [AnyHashable:Any]
-                    try! onComplition(dataDictionary, statusResponse, nil)
+                    try? onComplition?(dataDictionary, statusResponse, nil)
                 } catch let error as NSError {
-                    try! onComplition(nil, statusResponse, error)
+                    try? onComplition?(nil, statusResponse, error)
                 }
                 
             } else {
                 // Failure
-                try! onComplition(nil, nil, error)
+                try? onComplition?(nil, nil, error)
             }
         })
         task.resume()
+        session.finishTasksAndInvalidate()
     }
 }
 

@@ -17,9 +17,9 @@
     
     // MARK: Fetcher - Networking
     
-    class open func fetchSTWSchema(withUrl url:URL, complition:@escaping Complition) {
+    class open func fetchSTWSchema(withUrl url:URL, report: STWReport, complition: @escaping Complition) {
         
-        STWFetcher.getRequest(URL: url, URLParams: nil, HTTPMethod: .GET, headers: nil, onComplition: {
+        STWFetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onComplition: {
             dictionary, repsosne, error in
             
             var testCases:[STWSchema] = []
@@ -32,12 +32,12 @@
                         
                         testCases.append(testCase)
                     } catch SchemaError.error(let m) {
-                        STWReport.shared.test(failed: STWFailure(message: m))
+                        report.test(failed: STWFailure(message: m))
                     }
                 }
                 complition(testCases)
             } else {
-                STWReport.shared.test(failed: STWFailure(message: "Failed to download JSONSTWSchema from: \(url)"))
+                report.test(failed: STWFailure(message: "Failed to download JSONSTWSchema from: \(url)"))
             }
         })
     }

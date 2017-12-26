@@ -17,6 +17,7 @@ class STWSchemaTests: XCTestCase {
     let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
     
     var currentToken: NSObjectProtocol?
+    var testingManager: UITestingManager!
     
     override func setUp() {
         super.setUp()
@@ -26,11 +27,11 @@ class STWSchemaTests: XCTestCase {
         guard let url = URL(string: url) else { return }
         let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
         
-        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
+        let slack = Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx")
+        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
-        UITestingManager.shared.setup(tool: tool)
-        
-        UITestingManager.shared.launch()
+        testingManager = UITestingManager(tool: tool)
+        testingManager.launch()
         
         monitor()
     }
@@ -41,7 +42,7 @@ class STWSchemaTests: XCTestCase {
     }
     
     func testSTWSchema(){
-        UITestingManager.shared.runTests { [unowned self] in
+        testingManager.runTests { [unowned self] in
             if let token = self.currentToken {
                 self.removeUIInterruptionMonitor(token)
             }
