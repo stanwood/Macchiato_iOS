@@ -28,14 +28,18 @@ extension UITesting {
         /*
          :executeTests: Bool // Default value is true
          */
-        fileprivate var shouldExecuteTest:Bool = true
+        private var shouldExecuteTest:Bool = true
+        private var testCases: [TestCase] = []
+        private var currentToken: NSObjectProtocol?
         
-        fileprivate var testCases: [TestCase] = []
-        fileprivate var configurations: Configurations
-        private var report: Report
+        private weak var target: XCTestCase?
+        
+        private let configurations: Configurations
+        private let report: Report
         private let navigator: Navigator
         
-        public init(tool: Configurations) {
+        public init(tool: Configurations, target: XCTestCase) {
+            self.target = target
             self.configurations = tool
             self.configurations.app.setupAndLaunch()
             
@@ -43,8 +47,11 @@ extension UITesting {
             self.navigator = Navigator(report: report)
         }
         
+        ///
+        /// Launch testing tool and fetch test cases
+        ///
         open func launch() {
-            
+    
             /// MARK: - Fetching test cases
             
             shouldExecuteTest = false
@@ -71,12 +78,18 @@ extension UITesting {
             setLanguage(configurations.app)
             setLocale(configurations.app)
             
+            // Monitor system alerts on launch
+            monitor()
+            
             while !shouldExecuteTest {
                 RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
             }
         }
         
-        open func runTests(target: XCTestCase) {
+        ///
+        /// Run tests
+        ///
+        open func runTests() {
             
             for STWSchema in testCases {
                 
@@ -87,6 +100,9 @@ extension UITesting {
                     if navigation.shouldMonitor {
                         
                         /// Monitoring for system alerts
+                        if let token = self.currentToken {
+                            target?.removeUIInterruptionMonitor(token)
+                        }
                         
                         monitor()
                     }
@@ -111,6 +127,25 @@ extension UITesting {
             finalise()
         }
         
+        /// In RnD: WIP.....
+        /// Not in the scope of current release
+        private func monitor() {
+            // Monitoring for system alerts
+            self.currentToken = target?.addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+                
+                if $0.buttons["Allow"].exists {
+                    $0.buttons["Allow"].tap()
+                }
+                
+                if $0.buttons["OK"].exists {
+                    $0.buttons["OK"].tap()
+                }
+                
+                return true
+            }
+        }
+        
+        /// Finalise tests
         fileprivate func finalise() {
             
             shouldExecuteTest = false
@@ -134,7 +169,7 @@ extension UITesting {
         
         // MARK: - Dismiss system alerts
         
-        fileprivate func dismissinLaunch(with handlers: [LaunchHandlers]) {
+        private func dismissinLaunch(with handlers: [LaunchHandlers]) {
             
             for handler in configurations.launchHandlers {
                 switch handler {

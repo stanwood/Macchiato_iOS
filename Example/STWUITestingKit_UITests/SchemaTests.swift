@@ -12,7 +12,6 @@ import STWUITestingKit
 class STWSchemaTests: XCTestCase {
     
     let app = XCUIApplication()
-    var currentToken: NSObjectProtocol?
     var testingManager: UITesting.Manager!
     
     override func setUp() {
@@ -28,40 +27,12 @@ class STWSchemaTests: XCTestCase {
         let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
         let tool = UITesting.Configurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
-        testingManager = UITesting.Manager(tool: tool)
+        testingManager = UITesting.Manager(tool: tool, target: self)
         testingManager.launch()
         
-        monitor()
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testSTWSchema(){
-        testingManager.runTests { [unowned self] in
-            if let token = self.currentToken {
-                self.removeUIInterruptionMonitor(token)
-            }
-            
-            self.monitor()
-        }
-    }
-    
-    // Monitoring for system alerts
-    func monitor(){
-        self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
-            
-            if $0.buttons["Allow"].exists {
-                $0.buttons["Allow"].tap()
-            }
-            
-            if $0.buttons["OK"].exists {
-                $0.buttons["OK"].tap()
-            }
-            
-            return true
-        }
+        testingManager.runTests(from: self)
     }
 }
