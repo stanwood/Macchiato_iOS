@@ -164,7 +164,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 	- And the images view is accessed by tapping a button in the tab's `rootView` with an identifier of `pierIdentifier`
 	- The fifth image can be access with `cells` at index 4
 	
-		```json
+		```javascript
 		{
 			"test_cases": [
 				"id" : "1",
