@@ -22,8 +22,9 @@ class STWSchemaTests: XCTestCase {
         let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
         let version: String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)?.replacingOccurrences(of: ".", with: "-") ?? "-"
         guard let url = URL(string: "ios/com-uitesting-example/\(version).json", relativeTo: URL(string: baseURLString)) else { return }
-        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
         
+        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
+    
         let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
         let tool = UITesting.Configurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
@@ -33,6 +34,6 @@ class STWSchemaTests: XCTestCase {
     }
     
     func testSTWSchema(){
-        testingManager.runTests(from: self)
+        testingManager.runTests()
     }
 }
