@@ -64,26 +64,26 @@ end
         
         	continueAfterFailure = false
         
-       	 	let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
-       		let version: String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)?.replacingOccurrences(of: ".", with: "-") ?? "-"
-        	guard let url = URL(string: "ios/com-uitesting-example/\(version).json", relativeTo: URL(string: baseURLString)) else { return }
+        let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
+        let version: String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)?.replacingOccurrences(of: ".", with: "-") ?? "-"
+        guard let url = URL(string: "ios/com-uitesting-example/\(version).json", relativeTo: URL(string: baseURLString)) else { return }
         
-        	let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
+        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
     
-        	let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
-        	let tool = UITesting.Configurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
+        let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
+        let tool = UITesting.Configurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
-        	testingManager = UITesting.Manager(tool: tool, target: self)
-        	testingManager.launch()
+        testingManager = UITesting.Manager(tool: tool, target: self)
+        testingManager.launch()
    	 }
 	```
 
 3. Now we are ready to set up the test case
 
 	```swift
-	func testStanwood(){
+     func testStanwood(){
 	   testingManager.runTests()
-        }
+     }
 	```
 	
 	`testingManager.runTests()` will run the tests and report if there are any failures.
