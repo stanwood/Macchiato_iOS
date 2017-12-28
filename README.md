@@ -116,7 +116,7 @@ You are starting to feel this may take too long! Say no more... This is handled 
 		b) Set `.localisedText` instead of `.text`.
 		Note> It is required that you do not localise the key, rather then pass in the key. This will get handled by StanwoodCore
 
->Note: Ful StanwoodCore documentations to follow.
+>Note: Full StanwoodCore documentations to follow.
 
 ### PM Usage
 
