@@ -9,29 +9,31 @@
 /* Begin PBXBuildFile section */
 		12BE36A8A06041136DE2D76330B18D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
 		2B85B6CD09CCC6B749C7FEC510BDF9B9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBDD60AB5EC0183A198A13D9A5D7BCE /* XCTest.framework */; };
-		323F350E9158E63DABE311C7109E31E4 /* STWFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DDCB0B83AC58CCF160A7D4E5C5BF02 /* STWFailure.swift */; };
-		474EB875CC89A7B9A1E763B0A198FBF4 /* STWNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43432FADCEE3A7F07E30642DFFC1BB1A /* STWNavigationItem.swift */; };
-		5253446EFF30CF319243020316030419 /* STWFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AED5F79DB4153879A656C950811FD /* STWFetcher.swift */; };
+		323F350E9158E63DABE311C7109E31E4 /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DDCB0B83AC58CCF160A7D4E5C5BF02 /* Failure.swift */; };
+		474EB875CC89A7B9A1E763B0A198FBF4 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43432FADCEE3A7F07E30642DFFC1BB1A /* NavigationItem.swift */; };
+		5253446EFF30CF319243020316030419 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AED5F79DB4153879A656C950811FD /* Fetcher.swift */; };
 		61640BBA75787765013F2F6756377CEF /* STWUITestingKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 868B30436356D4DB5CEEC8B8E113475C /* STWUITestingKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6232A5D5C97CCF26D6F3CD21A2411633 /* STWNavigationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2A07D48100E4E6028A61819170806 /* STWNavigationType.swift */; };
-		7AF5B55B0DC60D0B051C5C62C92AB0D2 /* XCUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778A1F56F28835BFD4800B93C38A764D /* XCUIApplication.swift */; };
+		6232A5D5C97CCF26D6F3CD21A2411633 /* NavigationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2A07D48100E4E6028A61819170806 /* NavigationType.swift */; };
+		6C1123921FF5207500618A2C /* Slack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1123911FF5207500618A2C /* Slack.swift */; };
+		6C1123941FF5212D00618A2C /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1123931FF5212D00618A2C /* TestError.swift */; };
+		7AF5B55B0DC60D0B051C5C62C92AB0D2 /* XCUIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778A1F56F28835BFD4800B93C38A764D /* XCUIApplication+Extension.swift */; };
 		82B0988DB5B5BB5CC0602E4F87A549CC /* Pods-STWUITestingKit_UITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5384B3928C5400CEE044948F8E86B4A /* Pods-STWUITestingKit_UITests-dummy.m */; };
 		8C7D3082399264EED5E5B260C3F615DD /* STWUITestingKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE0F2B944AE56356D2AF8164E3E07 /* STWUITestingKit-dummy.m */; };
-		8EA97EEFF8D519C5F70901B8ACC1D22D /* XCTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121D077D32929FA045D8FD2A04D97E3 /* XCTHelper.swift */; };
+		8EA97EEFF8D519C5F70901B8ACC1D22D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121D077D32929FA045D8FD2A04D97E3 /* Helper.swift */; };
 		9D06210F8BA21FD0CDD50342239C81FB /* Pods-STWUITestingKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6619ED542576504F5AD06BF8D6717F /* Pods-STWUITestingKit_Tests-dummy.m */; };
 		A5E6A5E058BCE690B1DC519B133722C7 /* Pods-STWUITestingKit_UITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CB895D3C0435471CA29A314ED136DAF2 /* Pods-STWUITestingKit_UITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1A5EF5C9D06606C14B5AFF11387F675 /* Pods-STWUITestingKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AB6F5B18FBDDCAE2143C6A8E8641F1 /* Pods-STWUITestingKit_Example-dummy.m */; };
 		C0E3BACFED7A496357FA14EB9624ECD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
-		CE10A7A229C2B10EA7D14A9656B8CF5F /* STWReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D48EDC19494F8D1D74A3E8B01D5BD9 /* STWReport.swift */; };
-		D0D207A03CD0FBFB4995FC5C8FC13412 /* STWNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE02C6A8BC946340C387CC566B2F6A4B /* STWNavigationAction.swift */; };
-		D9FFAF5EB0FED1C99B348199DD22CBF7 /* STWNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC640946FB43996D10F652AD9A2E2DB /* STWNavigator.swift */; };
+		CE10A7A229C2B10EA7D14A9656B8CF5F /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D48EDC19494F8D1D74A3E8B01D5BD9 /* Report.swift */; };
+		D0D207A03CD0FBFB4995FC5C8FC13412 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE02C6A8BC946340C387CC566B2F6A4B /* Action.swift */; };
+		D9FFAF5EB0FED1C99B348199DD22CBF7 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC640946FB43996D10F652AD9A2E2DB /* Navigator.swift */; };
 		DD9895B8A044F5337560E948F0EF0632 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
 		E0391E40A5596A044A6C7B89734D7E5C /* Pods-STWUITestingKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 047F698E3814DCAD5C8CDFB971BC9162 /* Pods-STWUITestingKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E212586581FCE97F0F87EF5B795B07FA /* Pods-STWUITestingKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E960123A47DEF9F8C85B74F04B6B6087 /* Pods-STWUITestingKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAB2747A5CAC4D92BE0BDD6B37BFD4FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */; };
-		F2C8CDC209F00ADCAEAE6542962041C7 /* UITestingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E3F3FBD46961FD2C8DD22186D59CC /* UITestingManager.swift */; };
+		F2C8CDC209F00ADCAEAE6542962041C7 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E3F3FBD46961FD2C8DD22186D59CC /* Manager.swift */; };
 		F58A23903853291E9C22DD8FF9BB8A62 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6179F5D4BEB8A250F3161D368E5C0E5E /* TestCase.swift */; };
-		F9AA62CC563A185033EDD8433CA46737 /* STWTestConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA228407BAF1364D7E6709DD9EA98AD /* STWTestConfigurations.swift */; };
+		F9AA62CC563A185033EDD8433CA46737 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA228407BAF1364D7E6709DD9EA98AD /* Configurations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,47 +58,49 @@
 		047F698E3814DCAD5C8CDFB971BC9162 /* Pods-STWUITestingKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		06DB28CF169B88788CC3CDDB5E526FF8 /* Pods-STWUITestingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		07FDC57CEF925FDEF958966E9C462731 /* STWUITestingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STWUITestingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1121D077D32929FA045D8FD2A04D97E3 /* XCTHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XCTHelper.swift; path = STWUITestingKit/Classes/XCTHelper.swift; sourceTree = "<group>"; };
+		1121D077D32929FA045D8FD2A04D97E3 /* Helper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = STWUITestingKit/Classes/Helper.swift; sourceTree = "<group>"; };
 		12DFEEB3509D877B6CE65BCE2EEB0562 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "Reveal-Framework-iOS-1.6.2/Reveal.framework"; sourceTree = "<group>"; };
 		12F7977843CC0A46BDAC427C4F42A954 /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2292E4FBEEF4CE2183060FF9E3EBFE9A /* STWUITestingKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-prefix.pch"; sourceTree = "<group>"; };
 		24DD3CFFE630E129E9721D8547E78B4B /* Pods-STWUITestingKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		2B9EA0B48682166BA40F78E3CB40F165 /* Pods-STWUITestingKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Tests-resources.sh"; sourceTree = "<group>"; };
-		2BA228407BAF1364D7E6709DD9EA98AD /* STWTestConfigurations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWTestConfigurations.swift; path = STWUITestingKit/Classes/STWTestConfigurations.swift; sourceTree = "<group>"; };
+		2BA228407BAF1364D7E6709DD9EA98AD /* Configurations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configurations.swift; path = STWUITestingKit/Classes/Configurations.swift; sourceTree = "<group>"; };
 		2E7362AC6A2BA51673E3FC2308927BB5 /* Pods-STWUITestingKit_UITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_UITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3861A1C1300847E557E867286F1E12FD /* Pods-STWUITestingKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		3BAD7A69A5C3FFE6984066F9C04D8165 /* Pods-STWUITestingKit_UITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_UITests.modulemap"; sourceTree = "<group>"; };
-		3DC640946FB43996D10F652AD9A2E2DB /* STWNavigator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWNavigator.swift; path = STWUITestingKit/Classes/STWNavigator.swift; sourceTree = "<group>"; };
+		3DC640946FB43996D10F652AD9A2E2DB /* Navigator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Navigator.swift; path = STWUITestingKit/Classes/Navigator.swift; sourceTree = "<group>"; };
 		3FBDD60AB5EC0183A198A13D9A5D7BCE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4071A6197941AA6BFEA7A12EEA865282 /* Pods-STWUITestingKit_UITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_UITests-resources.sh"; sourceTree = "<group>"; };
 		4269A666BDE1AE99B3E65A3F0FB0AA87 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43432FADCEE3A7F07E30642DFFC1BB1A /* STWNavigationItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWNavigationItem.swift; path = STWUITestingKit/Classes/STWNavigationItem.swift; sourceTree = "<group>"; };
+		43432FADCEE3A7F07E30642DFFC1BB1A /* NavigationItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationItem.swift; path = STWUITestingKit/Classes/NavigationItem.swift; sourceTree = "<group>"; };
 		43EDB7A7DC450C5D7C9A2427B6D9A605 /* Pods-STWUITestingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4785BCB5D414E00FD7A2838CF9EE8743 /* Pods-STWUITestingKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_Example.modulemap"; sourceTree = "<group>"; };
 		540B3CB1F1DE345F9FF1076938EA3405 /* Pods_STWUITestingKit_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54ECF9130C88A1B02B2D042FD0049B9B /* Pods-STWUITestingKit_UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6179F5D4BEB8A250F3161D368E5C0E5E /* TestCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestCase.swift; path = STWUITestingKit/Classes/TestCase.swift; sourceTree = "<group>"; };
 		6816824AA1DAF936D520A6EA5C6EA609 /* Pods-STWUITestingKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		682AED5F79DB4153879A656C950811FD /* STWFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWFetcher.swift; path = STWUITestingKit/Classes/STWFetcher.swift; sourceTree = "<group>"; };
+		682AED5F79DB4153879A656C950811FD /* Fetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fetcher.swift; path = STWUITestingKit/Classes/Fetcher.swift; sourceTree = "<group>"; };
 		692D9D0C1E33DA072FEC5FB10BAD5792 /* Pods-STWUITestingKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-STWUITestingKit_Tests.modulemap"; sourceTree = "<group>"; };
+		6C1123911FF5207500618A2C /* Slack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Slack.swift; path = STWUITestingKit/Classes/Slack.swift; sourceTree = "<group>"; };
+		6C1123931FF5212D00618A2C /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestError.swift; path = STWUITestingKit/Classes/TestError.swift; sourceTree = "<group>"; };
 		6D6619ED542576504F5AD06BF8D6717F /* Pods-STWUITestingKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		72555E52AB4FC0CCEFF6AD413658AF5A /* Pods-STWUITestingKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		766C11679A695DE47A70A54A1F0F9FD6 /* Pods-STWUITestingKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-STWUITestingKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		778A1F56F28835BFD4800B93C38A764D /* XCUIApplication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XCUIApplication.swift; path = STWUITestingKit/Classes/XCUIApplication.swift; sourceTree = "<group>"; };
-		79DDCB0B83AC58CCF160A7D4E5C5BF02 /* STWFailure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWFailure.swift; path = STWUITestingKit/Classes/STWFailure.swift; sourceTree = "<group>"; };
+		778A1F56F28835BFD4800B93C38A764D /* XCUIApplication+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "XCUIApplication+Extension.swift"; path = "STWUITestingKit/Classes/XCUIApplication+Extension.swift"; sourceTree = "<group>"; };
+		79DDCB0B83AC58CCF160A7D4E5C5BF02 /* Failure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Failure.swift; path = STWUITestingKit/Classes/Failure.swift; sourceTree = "<group>"; };
 		84F5D2214CF2FE34C7734458F64919C1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868B30436356D4DB5CEEC8B8E113475C /* STWUITestingKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STWUITestingKit-umbrella.h"; sourceTree = "<group>"; };
 		8D6C5A0627094FC2D3E7F9FD355E805D /* STWUITestingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STWUITestingKit.modulemap; sourceTree = "<group>"; };
 		8E533553A96620F6DC41CEF02B9055EC /* STWUITestingKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STWUITestingKit.xcconfig; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		993E3F3FBD46961FD2C8DD22186D59CC /* UITestingManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITestingManager.swift; path = STWUITestingKit/Classes/UITestingManager.swift; sourceTree = "<group>"; };
+		993E3F3FBD46961FD2C8DD22186D59CC /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = STWUITestingKit/Classes/Manager.swift; sourceTree = "<group>"; };
 		A1B1E2FEB9196DA7D17D5DBF582391E7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A97710383C11065B7F8F64AF9BD5296F /* Pods-STWUITestingKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B57FE0F2B944AE56356D2AF8164E3E07 /* STWUITestingKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STWUITestingKit-dummy.m"; sourceTree = "<group>"; };
 		C018038360190FD652068C4E455072E8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C15EECF7A5A39CF13609EF352BACE844 /* Pods-STWUITestingKit_UITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_UITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		C2CAFAB96E5416FDEBB4C2667F245158 /* Pods-STWUITestingKit_UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-STWUITestingKit_UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		C5C2A07D48100E4E6028A61819170806 /* STWNavigationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWNavigationType.swift; path = STWUITestingKit/Classes/STWNavigationType.swift; sourceTree = "<group>"; };
+		C5C2A07D48100E4E6028A61819170806 /* NavigationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationType.swift; path = STWUITestingKit/Classes/NavigationType.swift; sourceTree = "<group>"; };
 		CB895D3C0435471CA29A314ED136DAF2 /* Pods-STWUITestingKit_UITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_UITests-umbrella.h"; sourceTree = "<group>"; };
 		CCFA1F8EF0B34A4413C7B86A16689765 /* Pods_STWUITestingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8D06105FEF2B3618A9770D6440B8F6 /* Pods-STWUITestingKit_UITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-STWUITestingKit_UITests-frameworks.sh"; sourceTree = "<group>"; };
@@ -104,9 +108,9 @@
 		E5384B3928C5400CEE044948F8E86B4A /* Pods-STWUITestingKit_UITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_UITests-dummy.m"; sourceTree = "<group>"; };
 		E5D8173434FE00016739EAFDEFEA9313 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E7AB6F5B18FBDDCAE2143C6A8E8641F1 /* Pods-STWUITestingKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-STWUITestingKit_Example-dummy.m"; sourceTree = "<group>"; };
-		E8D48EDC19494F8D1D74A3E8B01D5BD9 /* STWReport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWReport.swift; path = STWUITestingKit/Classes/STWReport.swift; sourceTree = "<group>"; };
+		E8D48EDC19494F8D1D74A3E8B01D5BD9 /* Report.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Report.swift; path = STWUITestingKit/Classes/Report.swift; sourceTree = "<group>"; };
 		E960123A47DEF9F8C85B74F04B6B6087 /* Pods-STWUITestingKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-STWUITestingKit_Example-umbrella.h"; sourceTree = "<group>"; };
-		FE02C6A8BC946340C387CC566B2F6A4B /* STWNavigationAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STWNavigationAction.swift; path = STWUITestingKit/Classes/STWNavigationAction.swift; sourceTree = "<group>"; };
+		FE02C6A8BC946340C387CC566B2F6A4B /* Action.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Action.swift; path = STWUITestingKit/Classes/Action.swift; sourceTree = "<group>"; };
 		FFC5EABB6AE980A3E48A23D78DA84749 /* Pods-STWUITestingKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-STWUITestingKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,18 +154,20 @@
 		134201A482743FA0586F0F0FBB23297B /* STWUITestingKit */ = {
 			isa = PBXGroup;
 			children = (
-				79DDCB0B83AC58CCF160A7D4E5C5BF02 /* STWFailure.swift */,
-				682AED5F79DB4153879A656C950811FD /* STWFetcher.swift */,
-				FE02C6A8BC946340C387CC566B2F6A4B /* STWNavigationAction.swift */,
-				43432FADCEE3A7F07E30642DFFC1BB1A /* STWNavigationItem.swift */,
-				C5C2A07D48100E4E6028A61819170806 /* STWNavigationType.swift */,
-				3DC640946FB43996D10F652AD9A2E2DB /* STWNavigator.swift */,
-				E8D48EDC19494F8D1D74A3E8B01D5BD9 /* STWReport.swift */,
+				79DDCB0B83AC58CCF160A7D4E5C5BF02 /* Failure.swift */,
+				682AED5F79DB4153879A656C950811FD /* Fetcher.swift */,
+				FE02C6A8BC946340C387CC566B2F6A4B /* Action.swift */,
+				43432FADCEE3A7F07E30642DFFC1BB1A /* NavigationItem.swift */,
+				C5C2A07D48100E4E6028A61819170806 /* NavigationType.swift */,
+				3DC640946FB43996D10F652AD9A2E2DB /* Navigator.swift */,
+				E8D48EDC19494F8D1D74A3E8B01D5BD9 /* Report.swift */,
 				6179F5D4BEB8A250F3161D368E5C0E5E /* TestCase.swift */,
-				2BA228407BAF1364D7E6709DD9EA98AD /* STWTestConfigurations.swift */,
-				993E3F3FBD46961FD2C8DD22186D59CC /* UITestingManager.swift */,
-				1121D077D32929FA045D8FD2A04D97E3 /* XCTHelper.swift */,
-				778A1F56F28835BFD4800B93C38A764D /* XCUIApplication.swift */,
+				2BA228407BAF1364D7E6709DD9EA98AD /* Configurations.swift */,
+				6C1123911FF5207500618A2C /* Slack.swift */,
+				993E3F3FBD46961FD2C8DD22186D59CC /* Manager.swift */,
+				1121D077D32929FA045D8FD2A04D97E3 /* Helper.swift */,
+				778A1F56F28835BFD4800B93C38A764D /* XCUIApplication+Extension.swift */,
+				6C1123931FF5212D00618A2C /* TestError.swift */,
 				2A40BAE5D6B185F70764674C042DD429 /* Support Files */,
 			);
 			name = STWUITestingKit;
@@ -476,19 +482,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				323F350E9158E63DABE311C7109E31E4 /* STWFailure.swift in Sources */,
-				5253446EFF30CF319243020316030419 /* STWFetcher.swift in Sources */,
-				D0D207A03CD0FBFB4995FC5C8FC13412 /* STWNavigationAction.swift in Sources */,
-				474EB875CC89A7B9A1E763B0A198FBF4 /* STWNavigationItem.swift in Sources */,
-				6232A5D5C97CCF26D6F3CD21A2411633 /* STWNavigationType.swift in Sources */,
-				D9FFAF5EB0FED1C99B348199DD22CBF7 /* STWNavigator.swift in Sources */,
-				CE10A7A229C2B10EA7D14A9656B8CF5F /* STWReport.swift in Sources */,
+				323F350E9158E63DABE311C7109E31E4 /* Failure.swift in Sources */,
+				5253446EFF30CF319243020316030419 /* Fetcher.swift in Sources */,
+				D0D207A03CD0FBFB4995FC5C8FC13412 /* Action.swift in Sources */,
+				474EB875CC89A7B9A1E763B0A198FBF4 /* NavigationItem.swift in Sources */,
+				6232A5D5C97CCF26D6F3CD21A2411633 /* NavigationType.swift in Sources */,
+				D9FFAF5EB0FED1C99B348199DD22CBF7 /* Navigator.swift in Sources */,
+				6C1123941FF5212D00618A2C /* TestError.swift in Sources */,
+				CE10A7A229C2B10EA7D14A9656B8CF5F /* Report.swift in Sources */,
 				F58A23903853291E9C22DD8FF9BB8A62 /* TestCase.swift in Sources */,
-				F9AA62CC563A185033EDD8433CA46737 /* STWTestConfigurations.swift in Sources */,
+				6C1123921FF5207500618A2C /* Slack.swift in Sources */,
+				F9AA62CC563A185033EDD8433CA46737 /* Configurations.swift in Sources */,
 				8C7D3082399264EED5E5B260C3F615DD /* STWUITestingKit-dummy.m in Sources */,
-				F2C8CDC209F00ADCAEAE6542962041C7 /* UITestingManager.swift in Sources */,
-				8EA97EEFF8D519C5F70901B8ACC1D22D /* XCTHelper.swift in Sources */,
-				7AF5B55B0DC60D0B051C5C62C92AB0D2 /* XCUIApplication.swift in Sources */,
+				F2C8CDC209F00ADCAEAE6542962041C7 /* Manager.swift in Sources */,
+				8EA97EEFF8D519C5F70901B8ACC1D22D /* Helper.swift in Sources */,
+				7AF5B55B0DC60D0B051C5C62C92AB0D2 /* XCUIApplication+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

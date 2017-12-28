@@ -13,7 +13,7 @@ class STWSchemaTests: XCTestCase {
     
     let app = XCUIApplication()
     var currentToken: NSObjectProtocol?
-    var testingManager: UITestingManager!
+    var testingManager: UITesting.Manager!
     
     override func setUp() {
         super.setUp()
@@ -25,10 +25,10 @@ class STWSchemaTests: XCTestCase {
         guard let url = URL(string: "ios/com-uitesting-example/\(version).json", relativeTo: URL(string: baseURLString)) else { return }
         let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
         
-        let slack = Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
-        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
+        let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
+        let tool = UITesting.Configurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
-        testingManager = UITestingManager(tool: tool)
+        testingManager = UITesting.Manager(tool: tool)
         testingManager.launch()
         
         monitor()
