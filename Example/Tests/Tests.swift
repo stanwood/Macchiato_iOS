@@ -22,15 +22,15 @@ class Tests: XCTestCase {
     func testCorrectSchemaFormat() {
         
         guard let schemaJSON = test(schemaFor: "test_schema") else { XCTFail("Failed to load schema ffom file"); return }
-        var testCases:[STWSchema] = []
+        var testCases:[UITesting.TestCase] = []
             
             if let schemas = schemaJSON["test_cases"] as? NSArray {
                 for schema in schemas {
                     guard let schemaDictionary = schema as? JSONDictionary else { continue }
                     do {
-                        let testCase = try STWSchema(schemaDictionary)
+                        let testCase = try UITesting.TestCase(testCase: schemaDictionary)
                         testCases.append(testCase)
-                    } catch SchemaError.error( let m ) {
+                    } catch UITesting.TestError.error( let m ) {
                         XCTFail(m)
                     } catch {
                         XCTFail(error.localizedDescription)
@@ -43,17 +43,17 @@ class Tests: XCTestCase {
     /// Testing schema has as least one test case
     ///     - file: test_schema_empty.json
     
-    func testSchemaHasTestCase(){
+    func testSchemaHasUITests(){
         guard let schemaJSON = test(schemaFor: "test_schema_empty") else { XCTFail("Failed to load schema from file"); return }
-        var testCases:[STWSchema] = []
+        var testCases:[UITesting.TestCase] = []
         
         if let schemas = schemaJSON["test_cases"] as? NSArray {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let testCase = try STWSchema(schemaDictionary)
+                    let testCase = try UITesting.TestCase(testCase: schemaDictionary)
                     testCases.append(testCase)
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     XCTFail(m)
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -76,9 +76,9 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Failed to initate Schema with no items")
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     print("Test passed: \(m)")
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -97,9 +97,9 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     print("Test passed: \(m)")
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -118,9 +118,9 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     print("Test passed: \(m)")
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -139,9 +139,9 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     print("Test passed: \(m)")
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -160,9 +160,9 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     print("Test passed: \(m)")
                 } catch {
                     XCTFail(error.localizedDescription)
@@ -181,9 +181,9 @@ class Tests: XCTestCase {
             for schema in schemas {
                 guard let schemaDictionary = schema as? JSONDictionary else { continue }
                 do {
-                    let _ = try STWSchema(schemaDictionary)
+                    let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
-                } catch SchemaError.error( let m ) {
+                } catch UITesting.TestError.error( let m ) {
                     print("Test passed: \(m)")
                 } catch {
                     XCTFail(error.localizedDescription)
