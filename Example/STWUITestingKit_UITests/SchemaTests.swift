@@ -9,7 +9,7 @@
 import XCTest
 import STWUITestingKit
 
-class STWSchemaTests: XCTestCase {
+class StanwoodTests: XCTestCase {
     
     let app = XCUIApplication()
     var testingManager: UITesting.Manager!
@@ -30,10 +30,9 @@ class STWSchemaTests: XCTestCase {
         
         testingManager = UITesting.Manager(tool: tool, target: self)
         testingManager.launch()
-        
     }
     
-    func testSTWSchema(){
+    func testStanwood(){
         testingManager.runTests()
     }
 }
