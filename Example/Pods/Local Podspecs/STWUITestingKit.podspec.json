@@ -1,6 +1,6 @@
 {
   "name": "STWUITestingKit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "summary": "Stanwood iOS UITesting Tool",
   "description": "Stanwood iOS UITesting tool",
   "homepage": "https://github.com/stanwood/STWUITestingKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/stanwood/STWUITestingKit.git",
-    "tag": "0.0.2"
+    "tag": "0.0.3"
   },
   "platforms": {
     "ios": "9.0"

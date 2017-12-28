@@ -1,6 +1,6 @@
 //
 //  XCUIApplication.swift
-//  Glamour
+//  UITesting
 //
 //  Created by Tal Zion on 21/03/2017.
 //  Copyright © 2017 Stanwood GmbH. All rights reserved.
