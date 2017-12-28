@@ -56,7 +56,7 @@ extension UITesting {
             
             shouldExecuteTest = false
             
-            Helper.fetchSTWSchema(withUrl: configurations.url, report: report, complition: {
+            Helper.fetchTestCases(withUrl: configurations.url, report: report, complition: {
                 [weak self] testCases in
                 guard let `self` = self else { return }
                 
@@ -91,10 +91,10 @@ extension UITesting {
         ///
         open func runTests() {
             
-            for STWSchema in testCases {
+            for testCase in testCases {
                 
                 /// Navigation Items
-                for navigation in STWSchema.navigationItems {
+                for navigation in testCase.navigationItems {
                     
                     /// Adding navigation monitor
                     if navigation.shouldMonitor {
@@ -112,7 +112,7 @@ extension UITesting {
                     
                     /// Cechk if test passed
                     if !test.pass {
-                        report.test(failed: Failure(testID: STWSchema.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
+                        report.test(failed: Failure(testID: testCase.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
                     }
                     
                     sleep(2)

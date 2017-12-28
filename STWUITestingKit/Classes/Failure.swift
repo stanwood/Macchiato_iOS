@@ -1,5 +1,5 @@
 //
-//  STWFailure.swift
+//  Failure.swift
 //  UITesting
 //
 //  Created by Tal Zion on 01/05/2017.

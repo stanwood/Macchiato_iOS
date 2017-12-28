@@ -11,7 +11,8 @@
  let Passed = (true, "")
  var Failed = (false, "")
  
- typealias Complition = (_ STWSchemaCases:[UITesting.TestCase]) -> Void
+ typealias TestsCompletion = (_ testCases: [UITesting.TestCase]) -> Void
+ typealias Completion = () -> Void
  
  extension UITesting {
     
@@ -19,9 +20,9 @@
         
         // MARK: Fetcher - Networking
         
-        class open func fetchSTWSchema(withUrl url:URL, report: Report, complition: @escaping Complition) {
+        class open func fetchTestCases(withUrl url:URL, report: Report, complition: @escaping TestsCompletion) {
             
-            Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onComplition: {
+            Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onCompletion: {
                 dictionary, repsosne, error in
                 
                 var tests:[TestCase] = []

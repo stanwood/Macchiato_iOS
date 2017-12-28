@@ -9,8 +9,6 @@
 import Foundation
 import XCTest
 
-typealias Completion = () -> Void
-
 public enum LaunchHandlers {
     case `default`
     case notification, review
@@ -20,7 +18,7 @@ extension UITesting {
     
     public struct Configurations {
         
-        /// JSON STWSchema URL
+        /// JSON URL
         let url:URL
         
         /// Launch handling dismiss default pop ups when launching the app

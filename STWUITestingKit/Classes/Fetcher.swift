@@ -30,7 +30,7 @@ extension UITesting {
         /**
          onComplition DictionaryRESTResponse = (dataDictionary: [String:AnyObject]?, response: NSHTTPURLResponse?, error: NSError?) -> Void
          */
-        static func sendRequest(with url: URL, URLParams: [String:String]?, HTTPMethod method: HTTPMethods, headers: [Header]?, body: Data?, onComplition: DataRESTResponse?) {
+        static func sendRequest(with url: URL, URLParams: [String:String]?, HTTPMethod method: HTTPMethods, headers: [Header]?, body: Data?, onCompletion: DataRESTResponse?) {
             
             let sessionConfig = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
@@ -61,14 +61,14 @@ extension UITesting {
                     let statusResponse = response as! HTTPURLResponse
                     do {
                         let dataDictionary = try JSONSerialization.jsonObject(with: data!, options: []) as? [AnyHashable:Any]
-                        try? onComplition?(dataDictionary, statusResponse, nil)
+                        try? onCompletion?(dataDictionary, statusResponse, nil)
                     } catch let error as NSError {
-                        try? onComplition?(nil, statusResponse, error)
+                        try? onCompletion?(nil, statusResponse, error)
                     }
                     
                 } else {
                     // Failure
-                    try? onComplition?(nil, nil, error)
+                    try? onCompletion?(nil, nil, error)
                 }
             })
             task.resume()

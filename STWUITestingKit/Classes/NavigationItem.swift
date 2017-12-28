@@ -16,12 +16,12 @@ extension String {
         let split = self.components(separatedBy: ".")
         
         /// Checcking STWSchema for action
-        guard split.contains(UITesting.Key.action) else { throw UITesting.TestError.error("STWSchema navigation does not contain an action") }
+        guard split.contains(UITesting.Key.action) else { throw UITesting.TestError.error("Test Case navigation does not contain an action") }
         
         /// Checking for a valid action
         if let index = split.index(of: UITesting.Key.action), split.count >= (index + 1) {
             let key = split[index + 1]
-            guard let _ = UITesting.Action(rawValue: key) else { throw UITesting.TestError.error("STWSchema navigation does not contain a valid action: \(key)") }
+            guard let _ = UITesting.Action(rawValue: key) else { throw UITesting.TestError.error("Test Case navigation does not contain a valid action: \(key)") }
         }
     }
     
@@ -148,7 +148,7 @@ extension UITesting {
             var format = format
             
             /// Assigning index
-            guard let sequence = format.first?.toInt() else { throw TestError.error("STWSchema does not include a sequence index") }
+            guard let sequence = format.first?.toInt() else { throw TestError.error("Test Case does not include a sequence index") }
             self.sequence = sequence
             
             /// Removing index
