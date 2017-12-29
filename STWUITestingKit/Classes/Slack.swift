@@ -60,8 +60,8 @@ extension UITesting {
                                 "short": true
                             ],
                             [
-                                "title": "Bundle",
-                                "value": "com.lenny",
+                                "title": "App Name",
+                                "value": Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "",
                                 "short": true
                             ]
                         ],
