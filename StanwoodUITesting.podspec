@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'StanwoodUITesting'
-  s.version          = '0.0.4'
+  s.version          = '0.0.41'
   s.summary          = 'Stanwood iOS UITesting Tool'
   s.description      = <<-DESC
 Stanwood iOS UITesting tool

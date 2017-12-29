@@ -20,7 +20,7 @@
         
         // MARK: Fetcher - Networking
         
-        class open func fetchTestCases(withUrl url:URL, report: Report, complition: @escaping TestsCompletion) {
+        class open func fetchTestCases(withUrl url:URL, report: Report, completion: @escaping TestsCompletion) {
             
             Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onCompletion: {
                 dictionary, repsosne, error in
@@ -38,9 +38,10 @@
                             report.test(failed: Failure(message: m))
                         }
                     }
-                    complition(tests)
+                    completion(tests)
                 } else {
-                    report.test(failed: Failure(message: "Failed to download JSONSTWSchema from: \(url)"))
+                    report.test(failed: Failure(message: "Failed to download test cases from: \(url). \nPlease check your bundle and version and make sure test cases were added."))
+                    completion([])
                 }
             })
         }

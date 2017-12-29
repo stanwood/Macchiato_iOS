@@ -56,7 +56,7 @@ extension UITesting {
             
             shouldExecuteTest = false
             
-            Helper.fetchTestCases(withUrl: configurations.url, report: report, complition: {
+            Helper.fetchTestCases(withUrl: configurations.url, report: report, completion: {
                 [weak self] testCases in
                 guard let `self` = self else { return }
                 
