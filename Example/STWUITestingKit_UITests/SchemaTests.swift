@@ -9,60 +9,30 @@
 import XCTest
 import STWUITestingKit
 
-class STWSchemaTests: XCTestCase {
+class StanwoodTests: XCTestCase {
     
     let app = XCUIApplication()
-    
-    /// Based on JSONSTWSchema draft4 tempalte
-    let url = "https://dl.dropboxusercontent.com/s/qbfgngc7bzuq3s5/test_chema.json"
-    
-    var currentToken: NSObjectProtocol?
+    var testingManager: UITesting.Manager!
     
     override func setUp() {
         super.setUp()
         
         continueAfterFailure = false
         
-        guard let url = URL(string: url) else { return }
+        let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
+        let version: String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)?.replacingOccurrences(of: ".", with: "-") ?? "-"
+        guard let url = URL(string: "ios/com-uitesting-example/\(version).json", relativeTo: URL(string: baseURLString)) else { return }
+        
         let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
+    
+        let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
+        let tool = UITesting.Configurations(url: url, launchHandlers: launchHandlers, app: app, slack: slack)
         
-        let tool = STWTestConfigurations(url: url, launchHandlers: launchHandlers, app: app)
-        
-        UITestingManager.shared.setup(tool: tool)
-        
-        UITestingManager.shared.launch()
-        
-        monitor()
+        testingManager = UITesting.Manager(tool: tool, target: self)
+        testingManager.launch()
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testSTWSchema(){
-        UITestingManager.shared.runTests { [unowned self] in
-            if let token = self.currentToken {
-                self.removeUIInterruptionMonitor(token)
-            }
-            
-            self.monitor()
-        }
-    }
-    
-    // Monitoring for system alerts
-    func monitor(){
-        self.currentToken = addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
-            
-            if $0.buttons["Allow"].exists {
-                $0.buttons["Allow"].tap()
-            }
-            
-            if $0.buttons["OK"].exists {
-                $0.buttons["OK"].tap()
-            }
-            
-            return true
-        }
+    func testStanwood(){
+        testingManager.runTests()
     }
 }
