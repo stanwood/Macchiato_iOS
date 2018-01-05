@@ -37,14 +37,16 @@ extension UITesting {
         private let configurations: Configurations
         private let report: Report
         private let navigator: Navigator
+        private let screenshots: Screenshots
         
-        public init(tool: Configurations, target: XCTestCase) {
+        public init(configurations: Configurations, target: XCTestCase) {
             self.target = target
-            self.configurations = tool
+            self.configurations = configurations
             self.configurations.app.setupAndLaunch()
             
-            self.report = Report()
-            self.navigator = Navigator(report: report)
+            self.report = Report(bundleId: configurations.bundleIdentifier)
+            self.screenshots = Screenshots(app: configurations.app)
+            self.navigator = Navigator(report: report, screenshots: screenshots)
         }
         
         ///
@@ -149,6 +151,9 @@ extension UITesting {
         fileprivate func finalise() {
             
             shouldExecuteTest = false
+            
+            /// Saving screenshots to file
+            screenshots.save()
             
             /// Posting report
             configurations.slack?.post(report: report) { [unowned self] in

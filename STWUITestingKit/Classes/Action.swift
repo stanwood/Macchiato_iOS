@@ -17,5 +17,6 @@ extension UITesting {
         case swipeDown
         case swipeLeft
         case swipeRight
+        case screenshot
     }
 }

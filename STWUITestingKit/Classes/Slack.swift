@@ -60,8 +60,8 @@ extension UITesting {
                                 "short": true
                             ],
                             [
-                                "title": "App Name",
-                                "value": Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "",
+                                "title": "Bundle ID",
+                                "value": report.bundleIdentifier,
                                 "short": true
                             ]
                         ],
@@ -78,7 +78,7 @@ extension UITesting {
             
             guard let httpBody =  try? JSONSerialization.data(withJSONObject: payload, options: .prettyPrinted) else { report.test(failed: Failure(message: "Slack json serialisation error")); return }
             
-            Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .POST, headers: [header], body: httpBody, onCompletion: { _, _, _ in completion()})
+//            Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .POST, headers: [header], body: httpBody, onCompletion: { _, _, _ in completion()})
         }
     }
 }

@@ -14,6 +14,12 @@ extension UITesting {
         
         fileprivate var failures:[Failure] = []
         
+        let bundleIdentifier: String
+        
+        init(bundleId: String) {
+            bundleIdentifier = bundleId
+        }
+        
         /// Checking if tests did pass
         var didPass: Bool {
             return failures.count == 0

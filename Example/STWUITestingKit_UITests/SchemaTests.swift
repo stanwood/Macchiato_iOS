@@ -21,9 +21,9 @@ class StanwoodTests: XCTestCase {
         
         let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
         let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
-        guard let tool = UITesting.Configurations(bundleId: "com-uitesting-example", version: "1.0", launchHandlers: launchHandlers, app: app, slack: slack) else { return }
+        guard let configurations = UITesting.Configurations(bundleId: "com-uitesting-example", version: "1.0", launchHandlers: launchHandlers, app: app, slack: slack) else { return }
         
-        testingManager = UITesting.Manager(tool: tool, target: self)
+        testingManager = UITesting.Manager(configurations: configurations, target: self)
         testingManager.launch()
     }
     
