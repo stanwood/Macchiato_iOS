@@ -54,27 +54,7 @@
                 iconCloseButton.tap()
             }
         }
-        
-        class open func allowNotifications(withApp app: XCUIApplication){
-            
-            let allowButton = app.alerts.element(boundBy: 0).buttons.element(boundBy: 0)
-            if allowButton.exists, allowButton.isHittable {
-                allowButton.tap()
-            }
-        }
-        
-        class open func dismissReviewAlert(withApp app: XCUIApplication){
-            var button:XCUIElement = app.buttons["Nein, danke"]
-            if button.exists, button.isHittable {
-                button.tap()
-            } else {
-                button = app.buttons["No"]
-                if button.exists, button.isHittable {
-                    button.tap()
-                }
-            }
-        }
-        
+
         class open func navigateToDefault(app:XCUIApplication){
             sleep(3)
             app.terminate()

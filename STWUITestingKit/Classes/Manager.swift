@@ -98,19 +98,13 @@ extension UITesting {
                 /// Navigation Items
                 for navigation in testCase.navigationItems {
                     
-                    /// Adding navigation monitor
-                    if navigation.shouldMonitor {
-                        
-                        /// Monitoring for system alerts
-                        if let token = self.currentToken {
-                            target?.removeUIInterruptionMonitor(token)
-                        }
-                        
-                        monitor()
-                    }
-                    
                     /// Navigate to...
                     let test = navigator.navigate(to: navigation, query: nil, element: nil, app: configurations.app)
+                    
+                    /// Required for triggering alerts monitoring.
+                    if navigation.shouldMonitor {
+                        configurations.app.tap()
+                    }
                     
                     /// Cechk if test passed
                     if !test.pass {
@@ -120,7 +114,7 @@ extension UITesting {
                     sleep(2)
                 }
                 
-                
+            
                 /// Setting default view
                 Helper.navigateToDefault(app: configurations.app)
             }
@@ -129,31 +123,34 @@ extension UITesting {
             finalise()
         }
         
-        /// In RnD: WIP.....
-        /// Not in the scope of current release
+        /// Monitoring system alerts
         private func monitor() {
             // Monitoring for system alerts
-            self.currentToken = target?.addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
+            
+            sleep(1)
+            
+            self.currentToken = target?.addUIInterruptionMonitor(withDescription: "permission") {
                 
-                if $0.buttons["Allow"].exists {
-                    $0.buttons["Allow"].tap()
+                if $0.alerts.buttons.element(boundBy: 1).exists {
+                   $0.alerts.buttons.element(boundBy: 1).tap()
+                    
+                    return true
                 }
-                
-                if $0.buttons["OK"].exists {
-                    $0.buttons["OK"].tap()
-                }
-                
-                return true
+                return false
             }
         }
         
         /// Finalise tests
-        fileprivate func finalise() {
+        private func finalise() {
             
             shouldExecuteTest = false
             
             /// Saving screenshots to file
-            screenshots.save()
+            do {
+                try screenshots.save()
+            } catch {
+                report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error)"))
+            }
             
             /// Posting report
             configurations.slack?.post(report: report) { [unowned self] in
@@ -175,23 +172,8 @@ extension UITesting {
         // MARK: - Dismiss system alerts
         
         private func dismissinLaunch(with handlers: [LaunchHandlers]) {
-            
-            for handler in configurations.launchHandlers {
-                switch handler {
-                case .notification:
-                    // Setting up nitifications
-                    Helper.allowNotifications(withApp: configurations.app)
-                    continue
-                case .review:
-                    // Dismissing pop up alerts
-                    Helper.dismissReviewAlert(withApp: configurations.app)
-                    continue
-                case .default:
-                    // Cloasing any open pop ups
-                    Helper.close(withApp: configurations.app)
-                    continue
-                }
-            }
+            // Cloasing any open pop ups
+            Helper.close(withApp: configurations.app)
         }
         
         // MARK: - Setting device local and language

@@ -11,7 +11,6 @@ import XCTest
 
 public enum LaunchHandlers {
     case `default`
-    case notification, review
 }
 
 extension UITesting {
