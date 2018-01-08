@@ -8,6 +8,18 @@
 import Foundation
 import XCTest
 
+enum UITestingError: Error, CustomDebugStringConvertible {
+
+    case cannotFindHomeDirectory
+    
+    var debugDescription: String {
+        switch self {
+        case .cannotFindHomeDirectory:
+            return "Couldn't find project source location. Please check SRCROOT env variable or follow the docs for more information."
+        }
+    }
+}
+
 private struct Screenshot {
     let data: Data
     let name: String
@@ -15,16 +27,9 @@ private struct Screenshot {
 
 class Screenshots  {
     
-    private let dir: String = "uitesting_screenshots"
+    private let folder: String = "uitesting_screenshots"
     private var screenshots: [Screenshot] = []
     private var app: XCUIApplication
-    private var cacheDirectory: URL! {
-        return try! pathPrefix()
-    }
-    
-    private var screenshotsDirectory: URL? {
-        return cacheDirectory?.appendingPathComponent(dir, isDirectory: true)
-    }
     
     init(app: XCUIApplication) {
         self.app = app
@@ -32,18 +37,27 @@ class Screenshots  {
     
     func save() throws {
         
-        guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
-        try? FileManager.default.createDirectory(at: screenshotsDir, withIntermediateDirectories: true, attributes: nil)
+        /// Checking if there are any screenshots to save
+        guard screenshots.count > 0 else { return }
         
-        screenshots.forEach({ (screenshot) in
+        do {
             
-            do {
-                let path = screenshotsDir.appendingPathComponent("\(simulator.replacingOccurrences(of: " ", with: "_"))-\(screenshot.name).png")
-                try screenshot.data.write(to: path)
-            } catch let error {
-                print("Problem writing screenshot\n\(error)")
-            }
-        })
+            let screenshotsDirectory = try homeDirectory()?.appendingPathComponent(folder, isDirectory: true)
+            guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
+            try? FileManager.default.createDirectory(at: screenshotsDir, withIntermediateDirectories: true, attributes: nil)
+            
+            try screenshots.forEach({ (screenshot) in
+                
+                do {
+                    let path = screenshotsDir.appendingPathComponent("\(simulator.replacingOccurrences(of: " ", with: "_"))-\(screenshot.name).png")
+                    try screenshot.data.write(to: path)
+                } catch let error {
+                    throw error
+                }
+            })
+        } catch {
+            throw error
+        }
     }
     
     func takeSnapshot(_ name: String = UUID().uuidString, timeWaitingForIdle timeout: TimeInterval = 20) {
@@ -51,7 +65,7 @@ class Screenshots  {
             waitForLoadingIndicatorToDisappear(within: timeout)
         }
         
-        sleep(1) // Waiting for the animation to be finished (kind of)
+        sleep(1) // Waiting for the animation to be finished
         
         // Taking screenshot
         let screenshotElement = app.windows.firstMatch.screenshot()
@@ -67,13 +81,13 @@ class Screenshots  {
         _ = XCTWaiter.wait(for: [networkLoadingIndicatorDisappeared], timeout: timeout)
     }
     
-    private func pathPrefix() throws -> URL? {
+    private func homeDirectory() throws -> URL? {
         let homeDir: URL
         guard let simulatorHostHome = ProcessInfo.processInfo.environment["SRCROOT"] else {
-            return nil //throw SnapshotError.cannotFindSimulatorHomeDirectory
+            throw UITestingError.cannotFindHomeDirectory
         }
         guard let homeDirUrl = URL(string: simulatorHostHome) else {
-            return nil //throw SnapshotError.cannotAccessSimulatorHomeDirectory(simulatorHostHome)
+            return nil
         }
         homeDir = URL(fileURLWithPath: homeDirUrl.path)
         return homeDir
