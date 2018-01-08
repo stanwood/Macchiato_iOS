@@ -10,7 +10,7 @@ import Foundation
 
 extension UITesting {
     
-    public enum NavigationType:String {
+    public enum NavigationType: String {
         case action
         
         case any

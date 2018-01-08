@@ -9,19 +9,22 @@
 import Foundation
 
 extension UITesting {
+    
     struct Failure {
-        let testID: String
-        let navigationID:Int
+        let testID: String?
+        let navigationID:Int?
         let errorMessage:String
         
-        init(testID: String, navigationID: Int, message: String) {
+        init(testID: String?, navigationID: Int?, message: String) {
             self.testID = testID
             self.navigationID = navigationID
             self.errorMessage = message
         }
         
         init(message: String) {
-            self.init(testID: "0", navigationID: 0, message: message)
+            errorMessage = message
+            testID = nil
+            navigationID = nil
         }
     }
 }

@@ -20,7 +20,7 @@
         
         // MARK: Fetcher - Networking
         
-        class open func fetchTestCases(withUrl url:URL, report: Report, complition: @escaping TestsCompletion) {
+        class open func fetchTestCases(withUrl url:URL, report: Report, completion: @escaping TestsCompletion) {
             
             Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onCompletion: {
                 dictionary, repsosne, error in
@@ -34,13 +34,14 @@
                             let test = try TestCase(testCase: testCaseDictionary)
                             
                             tests.append(test)
-                        } catch UITesting.TestError.error(let m) {
-                            report.test(failed: Failure(message: m))
+                        } catch UITesting.TestError.error(let error) {
+                            report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
                         }
                     }
-                    complition(tests)
+                    completion(tests)
                 } else {
-                    report.test(failed: Failure(message: "Failed to download JSONSTWSchema from: \(url)"))
+                    report.test(failed: Failure(message: "Failed to download test cases from: \(url). \nPlease check your bundle and version and make sure test cases were added."))
+                    completion([])
                 }
             })
         }
@@ -53,27 +54,7 @@
                 iconCloseButton.tap()
             }
         }
-        
-        class open func allowNotifications(withApp app: XCUIApplication){
-            
-            let allowButton = app.alerts.element(boundBy: 0).buttons.element(boundBy: 0)
-            if allowButton.exists, allowButton.isHittable {
-                allowButton.tap()
-            }
-        }
-        
-        class open func dismissReviewAlert(withApp app: XCUIApplication){
-            var button:XCUIElement = app.buttons["Nein, danke"]
-            if button.exists, button.isHittable {
-                button.tap()
-            } else {
-                button = app.buttons["No"]
-                if button.exists, button.isHittable {
-                    button.tap()
-                }
-            }
-        }
-        
+
         class open func navigateToDefault(app:XCUIApplication){
             sleep(3)
             app.terminate()

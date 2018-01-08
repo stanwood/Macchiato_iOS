@@ -31,7 +31,7 @@ class Tests: XCTestCase {
                         let testCase = try UITesting.TestCase(testCase: schemaDictionary)
                         testCases.append(testCase)
                     } catch UITesting.TestError.error( let m ) {
-                        XCTFail(m)
+                        XCTFail(m.message)
                     } catch {
                         XCTFail(error.localizedDescription)
                     }
@@ -54,7 +54,7 @@ class Tests: XCTestCase {
                     let testCase = try UITesting.TestCase(testCase: schemaDictionary)
                     testCases.append(testCase)
                 } catch UITesting.TestError.error( let m ) {
-                    XCTFail(m)
+                    XCTFail(m.message)
                 } catch {
                     XCTFail(error.localizedDescription)
                 }
@@ -79,7 +79,7 @@ class Tests: XCTestCase {
                     let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Failed to initate Schema with no items")
                 } catch UITesting.TestError.error( let m ) {
-                    print("Test passed: \(m)")
+                    print("Test passed: \(m.message)")
                 } catch {
                     XCTFail(error.localizedDescription)
                 }
@@ -100,7 +100,7 @@ class Tests: XCTestCase {
                     let _ = try UITesting.TestCase(testCase: schemaDictionary)
                     XCTFail("Did not fail when navigation foramt is missing a type")
                 } catch UITesting.TestError.error( let m ) {
-                    print("Test passed: \(m)")
+                    print("Test passed: \(m.message)")
                 } catch {
                     XCTFail(error.localizedDescription)
                 }

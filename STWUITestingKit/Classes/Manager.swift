@@ -37,14 +37,16 @@ extension UITesting {
         private let configurations: Configurations
         private let report: Report
         private let navigator: Navigator
+        private let screenshots: Screenshots
         
-        public init(tool: Configurations, target: XCTestCase) {
+        public init(configurations: Configurations, target: XCTestCase) {
             self.target = target
-            self.configurations = tool
+            self.configurations = configurations
             self.configurations.app.setupAndLaunch()
             
-            self.report = Report()
-            self.navigator = Navigator(report: report)
+            self.report = Report(bundleId: configurations.bundleIdentifier)
+            self.screenshots = Screenshots(app: configurations.app)
+            self.navigator = Navigator(report: report, screenshots: screenshots)
         }
         
         ///
@@ -56,7 +58,7 @@ extension UITesting {
             
             shouldExecuteTest = false
             
-            Helper.fetchTestCases(withUrl: configurations.url, report: report, complition: {
+            Helper.fetchTestCases(withUrl: configurations.url, report: report, completion: {
                 [weak self] testCases in
                 guard let `self` = self else { return }
                 
@@ -96,21 +98,15 @@ extension UITesting {
                 /// Navigation Items
                 for navigation in testCase.navigationItems {
                     
-                    /// Adding navigation monitor
-                    if navigation.shouldMonitor {
-                        
-                        /// Monitoring for system alerts
-                        if let token = self.currentToken {
-                            target?.removeUIInterruptionMonitor(token)
-                        }
-                        
-                        monitor()
-                    }
-                    
                     /// Navigate to...
                     let test = navigator.navigate(to: navigation, query: nil, element: nil, app: configurations.app)
                     
-                    /// Cechk if test passed
+                    /// Required for triggering alerts monitoring.
+                    if navigation.shouldMonitor {
+                        configurations.app.tap()
+                    }
+                    
+                    /// Check if test passed
                     if !test.pass {
                         report.test(failed: Failure(testID: testCase.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
                     }
@@ -118,7 +114,7 @@ extension UITesting {
                     sleep(2)
                 }
                 
-                
+            
                 /// Setting default view
                 Helper.navigateToDefault(app: configurations.app)
             }
@@ -127,28 +123,34 @@ extension UITesting {
             finalise()
         }
         
-        /// In RnD: WIP.....
-        /// Not in the scope of current release
+        /// Monitoring system alerts
         private func monitor() {
             // Monitoring for system alerts
-            self.currentToken = target?.addUIInterruptionMonitor(withDescription: "Authorization Prompt") {
-                
-                if $0.buttons["Allow"].exists {
-                    $0.buttons["Allow"].tap()
+            
+            sleep(1)
+            
+            self.currentToken = target?.addUIInterruptionMonitor(withDescription: "permission") {
+
+                if $0.buttons.element(boundBy: 1).exists {
+                   $0.buttons.element(boundBy: 1).tap()
                 }
-                
-                if $0.buttons["OK"].exists {
-                    $0.buttons["OK"].tap()
-                }
-                
                 return true
             }
         }
         
         /// Finalise tests
-        fileprivate func finalise() {
+        private func finalise() {
             
             shouldExecuteTest = false
+            
+            /// Saving screenshots to file
+            do {
+                try screenshots.save()
+            } catch UITesting.TestError.error(let error) {
+                report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error.message)"))
+            } catch {
+                print(error)
+            }
             
             /// Posting report
             configurations.slack?.post(report: report) { [unowned self] in
@@ -156,7 +158,7 @@ extension UITesting {
                 /// Checking if tests passed
                 if !self.report.didPass {
                     /// Failing the test
-                    XCTFail(self.report.print)
+                    XCTFail(self.report.review)
                 }
                 
                 self.shouldExecuteTest = true
@@ -170,23 +172,8 @@ extension UITesting {
         // MARK: - Dismiss system alerts
         
         private func dismissinLaunch(with handlers: [LaunchHandlers]) {
-            
-            for handler in configurations.launchHandlers {
-                switch handler {
-                case .notification:
-                    // Setting up nitifications
-                    Helper.allowNotifications(withApp: configurations.app)
-                    continue
-                case .review:
-                    // Dismissing pop up alerts
-                    Helper.dismissReviewAlert(withApp: configurations.app)
-                    continue
-                case .default:
-                    // Cloasing any open pop ups
-                    Helper.close(withApp: configurations.app)
-                    continue
-                }
-            }
+            // Cloasing any open pop ups
+            Helper.close(withApp: configurations.app)
         }
         
         // MARK: - Setting device local and language

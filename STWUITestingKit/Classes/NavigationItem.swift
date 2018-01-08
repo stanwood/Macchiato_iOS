@@ -16,12 +16,12 @@ extension String {
         let split = self.components(separatedBy: ".")
         
         /// Checcking STWSchema for action
-        guard split.contains(UITesting.Key.action) else { throw UITesting.TestError.error("Test Case navigation does not contain an action") }
+        guard split.contains(UITesting.Key.action) else { throw UITesting.TestError.error(message: "Test Case navigation does not contain an action", id: nil, navigationIndex: nil) }
         
         /// Checking for a valid action
         if let index = split.index(of: UITesting.Key.action), split.count >= (index + 1) {
             let key = split[index + 1]
-            guard let _ = UITesting.Action(rawValue: key) else { throw UITesting.TestError.error("Test Case navigation does not contain a valid action: \(key)") }
+            guard let _ = UITesting.Action(rawValue: key) else { throw UITesting.TestError.error(message: "Test Case navigation does not contain a valid action: *\(key)*", id: nil, navigationIndex: nil) }
         }
     }
     
@@ -112,7 +112,7 @@ extension UITesting {
                 shouldMonitor = true
                 components.removeLast()
             } else {
-                throw TestError.error("Incorrect type: \(last)")
+                throw TestError.error(message: "Incorrect type: \(last)", id: nil, navigationIndex: nil)
             }
         }
         
@@ -126,7 +126,7 @@ extension UITesting {
                 let type = NavigationType(rawValue: stringType) {
                 self.type = type
             } else {
-                throw TestError.error("Navigation Type does not exists")
+                throw TestError.error(message: "Navigation Type does not exists", id: nil, navigationIndex: nil)
             }
             
             self.index = test[Key.index] as? Int
@@ -136,8 +136,8 @@ extension UITesting {
             if let successorDictionary = test[Key.successor] as? [AnyHashable:Any] {
                 do {
                     self.successor = try NavigationItem(dictionary: successorDictionary)
-                } catch UITesting.TestError.error(let m) {
-                    throw TestError.error(m)
+                } catch UITesting.TestError.error(let error) {
+                    throw TestError.error(message: error.message, id: error.id, navigationIndex: error.navigationIndex)
                 }
             }
         }
@@ -148,7 +148,7 @@ extension UITesting {
             var format = format
             
             /// Assigning index
-            guard let sequence = format.first?.toInt() else { throw TestError.error("Test Case does not include a sequence index") }
+            guard let sequence = format.first?.toInt() else { throw TestError.error(message: "Test Case does not include a sequence index", id: nil, navigationIndex: nil) }
             self.sequence = sequence
             
             /// Removing index
@@ -205,7 +205,7 @@ extension UITesting {
             set(type: elementType, index: elementIndex, key: elementKey)
             
             if self.type == nil {
-                throw TestError.error("Incorrect type: \(elementKey ?? "")")
+                throw TestError.error(message: "Incorrect type: \(elementKey ?? "")", id: nil, navigationIndex: nil)
             }
             
             /// Removing added successors
