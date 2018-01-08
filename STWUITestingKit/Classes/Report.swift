@@ -30,7 +30,7 @@ extension UITesting {
             
             get {
                 guard !didPass else { return "Test passed!" }
-                var print = "\nFailed Test Cases report\n\nNumber of failed tests: \(failures.count)\n\n"
+                var print = "\n*Test Report*\n\nNumber of failed tests: \(failures.count)\n\n"
                 
                 failures.forEach({
                     

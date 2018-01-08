@@ -82,15 +82,14 @@ class Screenshots  {
     }
     
     private func homeDirectory() throws -> URL? {
-        let homeDir: URL
         guard let simulatorHostHome = ProcessInfo.processInfo.environment["SRCROOT"] else {
             throw UITestingError.cannotFindHomeDirectory
         }
         guard let homeDirUrl = URL(string: simulatorHostHome) else {
             return nil
         }
-        homeDir = URL(fileURLWithPath: homeDirUrl.path)
-        return homeDir
+        
+        return URL(fileURLWithPath: homeDirUrl.path)
     }
 }
 
