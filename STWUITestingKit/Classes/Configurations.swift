@@ -11,7 +11,6 @@ import XCTest
 
 public enum LaunchHandlers {
     case `default`
-    case notification, review
 }
 
 extension UITesting {
@@ -27,10 +26,15 @@ extension UITesting {
         /// Current running XCApplication
         let app: XCUIApplication
         
+        /// bundle identifier
+        let bundleIdentifier: String
+        
         /// Slack Channel ID
         public let slack: Slack?
         
         public init?(bundleId: String, version: String, launchHandlers: [LaunchHandlers], app: XCUIApplication, slack: Slack? = nil) {
+            
+            self.bundleIdentifier = bundleId
             
             let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
             let version: String = version.replacingOccurrences(of: ".", with: "-")

@@ -14,20 +14,39 @@ extension UITesting {
         
         fileprivate var failures:[Failure] = []
         
+        let bundleIdentifier: String
+        
+        init(bundleId: String) {
+            bundleIdentifier = bundleId
+        }
+        
         /// Checking if tests did pass
         var didPass: Bool {
             return failures.count == 0
         }
         
         // MARK: - Printing the STWReport
-        var print: String {
+        var review: String {
+            
             get {
                 guard !didPass else { return "Test passed!" }
-                var print = "\nFailed Test Cases report\n\nNumber of failed tests: \(failures.count)\n\n"
+                var print = "\n*Test Report*\n\nNumber of failed tests: \(failures.count)\n\n"
                 
-                for item in failures.enumerated() {
-                    print += "\nTest ID: \(item.element.testID == "0" ? "nil" : item.element.testID), \nItem ID: \(item.element.navigationID == 0 ? "nil" : "\(item.element.navigationID)"),\nFailure Message: \(item.element.errorMessage).\n\n"
-                }
+                failures.forEach({
+                    
+                    if let id = $0.testID {
+                        print += "\n*Test ID:* \(id)"
+                    }
+                    
+                    if let navigationId = $0.navigationID {
+                        print += "\n*Item ID:* \(navigationId),"
+                    }
+                    
+                    let title = $0.navigationID == nil && $0.testID == nil ? "\n*System Error*" : ""
+                    print += "\(title)\n*Error Message:* \($0.errorMessage).\n\n"
+                })
+                
+                print += "\n \n "
                 return print
             }
         }

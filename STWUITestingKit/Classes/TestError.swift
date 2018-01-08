@@ -9,7 +9,7 @@ import Foundation
 
 extension UITesting {
     public enum TestError: Error {
-        case error(String)
+        case error(message: String, id: String?, navigationIndex: Int?)
     }
 }
 

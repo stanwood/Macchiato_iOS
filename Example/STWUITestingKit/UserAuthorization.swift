@@ -11,6 +11,8 @@ import Foundation
 import CoreLocation
 import UserNotifications
 import Contacts
+import Photos
+import AVFoundation
 
 class UserAuthorization {
     
@@ -31,5 +33,13 @@ class UserAuthorization {
         addressBook.requestAccess(for: .contacts) { (granted, error) in
             
         }
+    }
+    
+    static func requestLibraryPermission() {
+        PHPhotoLibrary.requestAuthorization { _ in }
+    }
+    
+    static func requestCameraPermission() {
+        AVCaptureDevice.requestAccess(forMediaType: "video") { _ in }
     }
 }

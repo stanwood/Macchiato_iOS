@@ -41,6 +41,7 @@ extension UITesting {
             
             // Headers
             let header = Header(value: "application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"]
             
             // Form URL-Encoded Body
             var payload: [String: Any] = [
@@ -52,7 +53,7 @@ extension UITesting {
                         "color": report.didPass ? "good" : "danger",
                         "pretext": report.didPass ? SlackConstants.successMessage : SlackConstants.failureMessage,
                         "title": "Report",
-                        "text": report.print,
+                        "text": report.review,
                         "fields": [
                             [
                                 "title": "Priority",
@@ -60,8 +61,18 @@ extension UITesting {
                                 "short": true
                             ],
                             [
-                                "title": "App Name",
-                                "value": Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "",
+                                "title": "Bundle ID",
+                                "value": report.bundleIdentifier,
+                                "short": true
+                            ],
+                            [
+                                "title": "Device",
+                                "value": simulator ?? "unknown",
+                                "short": true
+                            ],
+                            [
+                                "title": "OS",
+                                "value": UIDevice.current.systemVersion,
                                 "short": true
                             ]
                         ],
