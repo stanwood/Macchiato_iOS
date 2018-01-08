@@ -130,13 +130,11 @@ extension UITesting {
             sleep(1)
             
             self.currentToken = target?.addUIInterruptionMonitor(withDescription: "permission") {
-                
-                if $0.alerts.buttons.element(boundBy: 0).exists {
-                   $0.alerts.buttons.element(boundBy: 0).tap()
-                    
-                    return true
+
+                if $0.buttons.element(boundBy: 1).exists {
+                   $0.buttons.element(boundBy: 1).tap()
                 }
-                return false
+                return true
             }
         }
         
