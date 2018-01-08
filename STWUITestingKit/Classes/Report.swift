@@ -35,15 +35,18 @@ extension UITesting {
                 failures.forEach({
                     
                     if let id = $0.testID {
-                        print += "\nTest ID: \(id)"
+                        print += "\n*Test ID:* \(id)"
                     }
                     
                     if let navigationId = $0.navigationID {
-                        print += "\nItem ID: \(navigationId),"
+                        print += "\n*Item ID:* \(navigationId),"
                     }
                     
-                    print += "\nError Message: \($0.errorMessage).\n\n"
+                    let title = $0.navigationID == nil && $0.testID == nil ? "\n*System Error*" : ""
+                    print += "\(title)\n*Error Message:* \($0.errorMessage).\n\n"
                 })
+                
+                print += "\n \n "
                 return print
             }
         }

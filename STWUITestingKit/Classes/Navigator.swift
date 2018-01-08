@@ -45,7 +45,7 @@ extension UITesting {
                     }
                 } else {
                     var test = Failed
-                    test.1 = "Element does not exists"
+                    test.1 = "Element *\(element.description)* does not exists"
                     return test
                 }
             case .exists:
@@ -62,7 +62,7 @@ extension UITesting {
                     return Passed
                 } else {
                     var test = Failed
-                    test.1 = "Element does not exists"
+                    test.1 = "Element *\(element.description)* does not exists"
                     return test
                 }
             case .isHittable:
@@ -78,7 +78,7 @@ extension UITesting {
                     return Passed
                 } else {
                     var test = Failed
-                    test.1 = "Element is not hittable"
+                    test.1 = "Element *\(element.description)* is not hittable"
                     return test
                 }
                 

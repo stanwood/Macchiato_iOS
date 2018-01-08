@@ -131,8 +131,8 @@ extension UITesting {
             
             self.currentToken = target?.addUIInterruptionMonitor(withDescription: "permission") {
                 
-                if $0.alerts.buttons.element(boundBy: 1).exists {
-                   $0.alerts.buttons.element(boundBy: 1).tap()
+                if $0.alerts.buttons.element(boundBy: 0).exists {
+                   $0.alerts.buttons.element(boundBy: 0).tap()
                     
                     return true
                 }
@@ -148,8 +148,10 @@ extension UITesting {
             /// Saving screenshots to file
             do {
                 try screenshots.save()
+            } catch UITesting.TestError.error(let error) {
+                report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error.message)"))
             } catch {
-                report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error)"))
+                print(error)
             }
             
             /// Posting report

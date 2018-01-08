@@ -8,18 +8,6 @@
 import Foundation
 import XCTest
 
-enum UITestingError: Error, CustomDebugStringConvertible {
-
-    case cannotFindHomeDirectory
-    
-    var debugDescription: String {
-        switch self {
-        case .cannotFindHomeDirectory:
-            return "Couldn't find project source location. Please check SRCROOT env variable or follow the docs for more information."
-        }
-    }
-}
-
 private struct Screenshot {
     let data: Data
     let name: String
@@ -69,8 +57,8 @@ class Screenshots  {
         
         // Taking screenshot
         let screenshotElement = app.windows.firstMatch.screenshot()
-        
         let screenshot = Screenshot(data: screenshotElement.pngRepresentation, name: name)
+        
         screenshots.append(screenshot)
     }
     
@@ -83,7 +71,7 @@ class Screenshots  {
     
     private func homeDirectory() throws -> URL? {
         guard let simulatorHostHome = ProcessInfo.processInfo.environment["SRCROOT"] else {
-            throw UITestingError.cannotFindHomeDirectory
+            throw UITesting.TestError.error(message: "Couldn't find project source location. Please check *SRCROOT* env variable or follow the docs for more information", id: nil, navigationIndex: nil)
         }
         guard let homeDirUrl = URL(string: simulatorHostHome) else {
             return nil

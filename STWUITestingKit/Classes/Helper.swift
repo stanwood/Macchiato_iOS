@@ -34,8 +34,8 @@
                             let test = try TestCase(testCase: testCaseDictionary)
                             
                             tests.append(test)
-                        } catch UITesting.TestError.error(let m) {
-                            report.test(failed: Failure(message: m))
+                        } catch UITesting.TestError.error(let error) {
+                            report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
                         }
                     }
                     completion(tests)
