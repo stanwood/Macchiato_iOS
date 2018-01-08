@@ -106,7 +106,7 @@ extension UITesting {
                         configurations.app.tap()
                     }
                     
-                    /// Cechk if test passed
+                    /// Check if test passed
                     if !test.pass {
                         report.test(failed: Failure(testID: testCase.id ?? "", navigationID: navigation.sequence, message: test.failiurMessage))
                     }
@@ -158,7 +158,7 @@ extension UITesting {
                 /// Checking if tests passed
                 if !self.report.didPass {
                     /// Failing the test
-                    XCTFail(self.report.print)
+                    XCTFail(self.report.review)
                 }
                 
                 self.shouldExecuteTest = true

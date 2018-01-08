@@ -26,14 +26,24 @@ extension UITesting {
         }
         
         // MARK: - Printing the STWReport
-        var print: String {
+        var review: String {
+            
             get {
                 guard !didPass else { return "Test passed!" }
                 var print = "\nFailed Test Cases report\n\nNumber of failed tests: \(failures.count)\n\n"
                 
-                for item in failures.enumerated() {
-                    print += "\nTest ID: \(item.element.testID == "0" ? "nil" : item.element.testID), \nItem ID: \(item.element.navigationID == 0 ? "nil" : "\(item.element.navigationID)"),\nFailure Message: \(item.element.errorMessage).\n\n"
-                }
+                failures.forEach({
+                    
+                    if let id = $0.testID {
+                        print += "\nTest ID: \(id)"
+                    }
+                    
+                    if let navigationId = $0.navigationID {
+                        print += "\nItem ID: \(navigationId),"
+                    }
+                    
+                    print += "\nError Message: \($0.errorMessage).\n\n"
+                })
                 return print
             }
         }

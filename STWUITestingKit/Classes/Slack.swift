@@ -52,7 +52,7 @@ extension UITesting {
                         "color": report.didPass ? "good" : "danger",
                         "pretext": report.didPass ? SlackConstants.successMessage : SlackConstants.failureMessage,
                         "title": "Report",
-                        "text": report.print,
+                        "text": report.review,
                         "fields": [
                             [
                                 "title": "Priority",
