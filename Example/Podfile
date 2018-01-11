@@ -6,11 +6,11 @@ target 'STWUITestingKit_Example' do
   
   target 'STWUITestingKit_Tests' do
       inherit! :search_paths
-      pod 'STWUITestingKit', :path => '../'
+      pod 'StanwoodUITesting', :path => '../'
   end
   
   target 'STWUITestingKit_UITests' do
     inherit! :search_paths
-    pod 'STWUITestingKit', :path => '../'
+    pod 'StanwoodUITesting', :path => '../'
   end
 end

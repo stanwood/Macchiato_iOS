@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-import STWUITestingKit
+import StanwoodUITesting
 
 public typealias JSONDictionary = [AnyHashable:Any]
 

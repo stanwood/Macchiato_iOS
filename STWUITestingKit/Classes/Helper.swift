@@ -20,7 +20,7 @@
         
         // MARK: Fetcher - Networking
         
-        class open func fetchTestCases(withUrl url:URL, report: Report, completion: @escaping TestsCompletion) {
+        class open func fetchTestCases(withUrl url: URL, report: Report, completion: @escaping TestsCompletion) {
             
             Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onCompletion: {
                 dictionary, repsosne, error in
@@ -40,7 +40,7 @@
                     }
                     completion(tests)
                 } else {
-                    report.test(failed: Failure(message: "Failed to download test cases from: \(url). \nPlease check your bundle and version and make sure test cases were added."))
+                    report.test(failed: Failure(message: "Failed to download test cases from: \(url.absoluteString). \nPlease check your bundle and version and make sure test cases were added."))
                     completion([])
                 }
             })
