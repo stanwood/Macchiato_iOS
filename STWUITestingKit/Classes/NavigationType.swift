@@ -39,8 +39,6 @@ extension UITesting {
         
         case dialogs
         
-        case button
-        
         case buttons
         
         case radioButtons

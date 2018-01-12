@@ -149,40 +149,35 @@ extension UITesting {
                 if item.action != nil {
                     return action(withItem: item, element: element)
                 }
-            case .button:
+            case .buttons:
                 switch (app, query, element) {
-                case (.none, .some, .none):
-                    if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.element(boundBy: UInt(index)))
-                    } else {
-                        return navigate(to: item.successor!, query: nil, element: query![item.key])
-                    }
                 case (.some, .none, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: app!.buttons.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.buttons[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons[item.key])
+                        return navigate(to: item.successor!, query: app!.buttons, element: nil)
                     }
-                default:
-                    report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element"))
-                    break
-                }
-            case .buttons:
-                switch (app, query, element) {
                 case (.none, .some, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: query!.buttons.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.buttons[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: query!.buttons[item.key])
+                        return navigate(to: item.successor!, query: query!.buttons, element: nil)
                     }
-                case (.some, .none, .none):
+                case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.buttons.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.buttons[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons[item.key])
+                        return navigate(to: item.successor!, query: element!.buttons, element: nil)
                     }
                 default:
-                    report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element"))
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
                 }
                 
             case .radioButtons:
@@ -202,7 +197,7 @@ extension UITesting {
                 default:
                     report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element: *radioButtons*"))
                 }
-            
+                
             case .tabBars:
                 
                 // MARK: - tabBars
@@ -217,18 +212,26 @@ extension UITesting {
                         return navigate(to: item.successor!, query: app!.tabBars, element: nil)
                     }
                 case (.none, .some, .none):
-                    // TODO:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.tabBars.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.tabBars[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.tabBars, element: nil)
+                    }
                 case (.none, .none, .some):
-                    // TODO:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabBars.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabBars[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tabBars, element: nil)
+                    }
                 default:
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
-            
+                
             case .tables:
                 switch (app, query, element) {
                 case (.some, .none, .none):
@@ -246,6 +249,14 @@ extension UITesting {
                         return navigate(to: item.successor!, query: nil, element: query!.tables[key])
                     } else {
                         return navigate(to: item.successor!, query: query!.tables, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tables.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tables[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tables, element: nil)
                     }
                 default:
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
@@ -270,11 +281,19 @@ extension UITesting {
                     } else {
                         return navigate(to: item.successor!, query: query!.tableRows, element: nil)
                     }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tableRows.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tableRows[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tableRows, element: nil)
+                    }
                 default:
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
-
+                
             case .collectionViews:
                 switch (app, query, element) {
                 case (.some, .none, .none):
@@ -293,6 +312,14 @@ extension UITesting {
                     } else {
                         return navigate(to: item.successor!, query: query!.collectionViews, element: nil)
                     }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.collectionViews.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.collectionViews[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.collectionViews, element: nil)
+                    }
                 default:
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
@@ -300,40 +327,62 @@ extension UITesting {
                 
             case .images:
                 switch (app, query, element) {
-                case (.none, .some, .none):
-                    if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.images.element(boundBy: UInt(index)))
-                    } else {
-                        return navigate(to: item.successor!, query: nil, element: query!.images[item.key])
-                    }
                 case (.some, .none, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: app!.images.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.images[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: app!.images[item.key])
+                        return navigate(to: item.successor!, query: app!.images, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.images.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.images[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.images, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.images.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.images[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.images, element: nil)
                     }
                 default:
-                    report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element"))
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
                 }
-                break
             case .cells:
                 
                 // MARK: - cells
                 switch (app, query, element) {
                 case (.some, .none, .none):
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.cells.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.cells[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.tabs, element: nil)
+                    }
                 case (.none, .some, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: query!.cells.element(boundBy: UInt(index)))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.cells[key])
                     } else {
-                        report.test(failed: Failure(message: "*.cells* have no key or an index"))
+                        return navigate(to: item.successor!, query: query!.cells, element: nil)
                     }
                 case (.none, .none, .some):
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.cells.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.cells[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.cells, element: nil)
+                    }
                 default:
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
@@ -355,6 +404,14 @@ extension UITesting {
                         return navigate(to: item.successor!, query: nil, element: query!.tabs[key])
                     } else {
                         return navigate(to: item.successor!, query: query!.tabs, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabs.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabs[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tabs, element: nil)
                     }
                 default:
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
@@ -715,8 +772,27 @@ extension UITesting {
                 break
                 
             case .alerts:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.alerts.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.alerts[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.alerts, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.alerts.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.alerts[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.alerts, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
                 
             case .dialog:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
