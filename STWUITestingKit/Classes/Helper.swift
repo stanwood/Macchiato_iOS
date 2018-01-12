@@ -22,6 +22,8 @@
         
         class open func fetchTestCases(withUrl url: URL, report: Report, completion: @escaping TestsCompletion) {
             
+            URLCache.shared.removeAllCachedResponses()
+            
             Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onCompletion: {
                 dictionary, repsosne, error in
                 
