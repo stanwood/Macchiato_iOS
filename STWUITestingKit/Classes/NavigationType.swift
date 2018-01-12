@@ -43,8 +43,6 @@ extension UITesting {
         
         case buttons
         
-        case radioButton
-        
         case radioButtons
         
         case radioGroup
@@ -75,8 +73,6 @@ extension UITesting {
         
         case navigationBar
         
-        case tabBar
-        
         case tabBars
         
         case tabGroup
@@ -93,8 +89,6 @@ extension UITesting {
         
         case tables
         
-        case tableRow
-        
         case tableRows
         
         case tableColumn
@@ -107,11 +101,7 @@ extension UITesting {
         
         case browser
         
-        case collectionView
-        
         case collectionViews
-        
-        case slider
         
         case pageIndicator
         
@@ -130,9 +120,7 @@ extension UITesting {
         case toggle
         
         case link
-        
-        case image
-        
+    
         case images
         
         case icon
@@ -226,8 +214,6 @@ extension UITesting {
         case handle
         
         case stepper
-        
-        case tab
         
         case tabs
         
