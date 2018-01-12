@@ -34,6 +34,7 @@ class Screenshots  {
             guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
             try? FileManager.default.createDirectory(at: screenshotsDir, withIntermediateDirectories: true, attributes: nil)
             
+            
             try screenshots.forEach({ (screenshot) in
                 
                 do {
