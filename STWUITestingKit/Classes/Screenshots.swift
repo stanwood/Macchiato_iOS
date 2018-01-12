@@ -49,7 +49,7 @@ class Screenshots  {
         }
     }
     
-    func takeSnapshot(_ name: String = UUID().uuidString, timeWaitingForIdle timeout: TimeInterval = 20) {
+    func takeSnapshot(_ name: String = UUID().uuidString, timeWaitingForIdle timeout: TimeInterval = 10) {
         if timeout > 0 {
             waitForLoadingIndicatorToDisappear(within: timeout)
         }
