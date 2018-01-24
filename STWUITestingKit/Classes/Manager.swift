@@ -71,7 +71,7 @@ extension UITesting {
                 }
                 
                 DispatchQueue.main.async(execute: { [unowned self] in
-                    self.dismissinLaunch(with: self.configurations.launchHandlers)
+                    self.dismiss()
                     self.shouldExecuteTest = true
                 })
             })
@@ -171,7 +171,7 @@ extension UITesting {
         
         // MARK: - Dismiss system alerts
         
-        private func dismissinLaunch(with handlers: [LaunchHandlers]) {
+        private func dismiss() {
             // Cloasing any open pop ups
             Helper.close(withApp: configurations.app)
         }

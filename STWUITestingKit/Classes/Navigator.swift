@@ -130,6 +130,10 @@ extension UITesting {
             case .screenshot:
                 screenshots.takeSnapshot()
                 return Passed
+                
+            case .type(let text):
+                
+                return Passed
             }
         }
         
