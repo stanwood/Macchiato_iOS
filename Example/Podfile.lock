@@ -1,19 +1,19 @@
 PODS:
   - Reveal-iOS-SDK (1.6.2)
-  - STWUITestingKit (0.0.3)
+  - StanwoodUITesting (0.1.3)
 
 DEPENDENCIES:
   - Reveal-iOS-SDK (~> 1.6)
-  - STWUITestingKit (from `../`)
+  - StanwoodUITesting (from `../`)
 
 EXTERNAL SOURCES:
-  STWUITestingKit:
+  StanwoodUITesting:
     :path: ../
 
 SPEC CHECKSUMS:
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
-  STWUITestingKit: 3395e9b5fffa96e817932be89b79cd52d48dfe4d
+  StanwoodUITesting: 9a1b92b977a81034034f5386e40d162cee02a766
 
-PODFILE CHECKSUM: 8f3af98356614b6d4262031bf5ea1fe7aca27dbd
+PODFILE CHECKSUM: ba5982d4a2a631129582c43cd85fc5d689f0c2c4
 
 COCOAPODS: 1.3.1

@@ -9,12 +9,24 @@
 import UIKit
 import CoreLocation
 
+extension UITextField {
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if let placeholder = placeholder {
+            accessibilityIdentifier = placeholder
+        }
+    }
+}
+
 typealias JSONDictionary = [AnyHashable:Any]
 
 
 class TabViewController: UIViewController {
     
     lazy var manager: CLLocationManager = CLLocationManager()
+    @IBOutlet weak var tapMeImage: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,5 +38,23 @@ class TabViewController: UIViewController {
         
         // Asking the user for a location request
 //        UserAuthorization.requestionLocation(manager: manager)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tap(_:)))
+        tap.numberOfTapsRequired = 1
+        tapMeImage?.isUserInteractionEnabled = true
+        tapMeImage?.addGestureRecognizer(tap)
     }
+    
+    @objc func tap(_ tap: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: "Testing images", message: "Looks like tap gesture works!", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        let cancel = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
 }

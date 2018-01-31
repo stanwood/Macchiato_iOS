@@ -6,7 +6,7 @@
 //  Copyright © 2017 Stanwood GmbH. All rights reserved.
 //
 
-typealias DataRESTResponse = (_ dataDictionary: Optional<[AnyHashable:Any]>, _ response: Optional<HTTPURLResponse>, _ error: Optional<Error>) throws -> Void
+typealias DataResponse = (_ data: Data?, _ response: HTTPURLResponse?, _ error: Error?) -> Void
 
 import Foundation
 
@@ -30,7 +30,7 @@ extension UITesting {
         /**
          onComplition DictionaryRESTResponse = (dataDictionary: [String:AnyObject]?, response: NSHTTPURLResponse?, error: NSError?) -> Void
          */
-        static func sendRequest(with url: URL, URLParams: [String:String]?, HTTPMethod method: HTTPMethods, headers: [Header]?, body: Data?, onCompletion: DataRESTResponse?) {
+        static func sendRequest(with url: URL, URLParams: [String:String]?, HTTPMethod method: HTTPMethods, headers: [Header]?, body: Data?, onCompletion: @escaping DataResponse) {
             
             let sessionConfig = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
@@ -57,19 +57,7 @@ extension UITesting {
             /* Start a new Task */
             let task = session.dataTask(with: request, completionHandler: {
                 data, response, error in
-                if error == nil {
-                    let statusResponse = response as! HTTPURLResponse
-                    do {
-                        let dataDictionary = try JSONSerialization.jsonObject(with: data!, options: []) as? [AnyHashable:Any]
-                        try? onCompletion?(dataDictionary, statusResponse, nil)
-                    } catch let error as NSError {
-                        try? onCompletion?(nil, statusResponse, error)
-                    }
-                    
-                } else {
-                    // Failure
-                    try? onCompletion?(nil, nil, error)
-                }
+                onCompletion(data, response as? HTTPURLResponse, error)
             })
             task.resume()
             session.finishTasksAndInvalidate()

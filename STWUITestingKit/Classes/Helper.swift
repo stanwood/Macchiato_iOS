@@ -11,7 +11,6 @@
  let Passed = (true, "")
  var Failed = (false, "")
  
- typealias TestsCompletion = (_ testCases: [UITesting.TestCase]) -> Void
  typealias Completion = () -> Void
  
  extension UITesting {
@@ -20,30 +19,29 @@
         
         // MARK: Fetcher - Networking
         
-        class open func fetchTestCases(withUrl url:URL, report: Report, completion: @escaping TestsCompletion) {
+        class open func fetchElement<Element: Decodable>(withUrl url: URL, report: Report, completion: @escaping (_ element: Element?) -> Void) {
             
-            Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil, onCompletion: {
-                dictionary, repsosne, error in
+            URLCache.shared.removeAllCachedResponses()
+            
+            Fetcher.sendRequest(with: url, URLParams: nil, HTTPMethod: .GET, headers: nil, body: nil) { (data, response, error) in
                 
-                var tests:[TestCase] = []
-                
-                if var dic = dictionary as? [String : Any], let testCases = dic["test_cases"] as? NSArray {
-                    for testCase in testCases {
-                        guard let testCaseDictionary = testCase as? [String:Any] else { continue }
-                        do {
-                            let test = try TestCase(testCase: testCaseDictionary)
-                            
-                            tests.append(test)
-                        } catch UITesting.TestError.error(let error) {
-                            report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
-                        }
+                if let data = data {
+                    do {
+                        let tests = try JSONDecoder().decode(Element.self, from: data)
+                        completion(tests)
+                    } catch UITesting.TestError.error(let error) {
+                        report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
+                        completion(nil)
+                    } catch let error {
+                        report.test(failed: Failure(testID: nil, navigationID: nil, message: error.localizedDescription))
+                        completion(nil)
                     }
-                    completion(tests)
                 } else {
-                    report.test(failed: Failure(message: "Failed to download test cases from: \(url). \nPlease check your bundle and version and make sure test cases were added."))
-                    completion([])
+                    report.test(failed: Failure(message: "Failed to download test cases from: \(url.absoluteString). \nPlease check your bundle and version and make sure test cases were added."))
+                    completion(nil)
                 }
-            })
+            }
+            
         }
         
         // MARK: Dismissing Pop Ups

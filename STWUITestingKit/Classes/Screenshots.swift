@@ -23,7 +23,7 @@ class Screenshots  {
         self.app = app
     }
     
-    func save() throws {
+    func save(shouldClearPreviousScreenshots: Bool = false) throws {
         
         /// Checking if there are any screenshots to save
         guard screenshots.count > 0 else { return }
@@ -32,7 +32,17 @@ class Screenshots  {
             
             let screenshotsDirectory = try homeDirectory()?.appendingPathComponent(folder, isDirectory: true)
             guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
+            
+            if shouldClearPreviousScreenshots {
+                if let contents = try? FileManager.default.contentsOfDirectory(at: screenshotsDir, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
+                    contents.forEach({ url in
+                        try? FileManager.default.removeItem(at: url)
+                    })
+                }
+            }
+            
             try? FileManager.default.createDirectory(at: screenshotsDir, withIntermediateDirectories: true, attributes: nil)
+            
             
             try screenshots.forEach({ (screenshot) in
                 
@@ -48,7 +58,7 @@ class Screenshots  {
         }
     }
     
-    func takeSnapshot(_ name: String = UUID().uuidString, timeWaitingForIdle timeout: TimeInterval = 20) {
+    func takeSnapshot(_ name: String = UUID().uuidString, timeWaitingForIdle timeout: TimeInterval = 10) {
         if timeout > 0 {
             waitForLoadingIndicatorToDisappear(within: timeout)
         }

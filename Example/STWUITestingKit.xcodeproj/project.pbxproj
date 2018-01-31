@@ -45,6 +45,7 @@
 		6C7B264F1EBF353D00067E1C /* navigation_format_no_actions_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B26461EBF34B100067E1C /* navigation_format_no_actions_error.json */; };
 		6C7B26501EBF353D00067E1C /* navigation_format_missing_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B26481EBF34F400067E1C /* navigation_format_missing_key.json */; };
 		6C7B26511EBF353D00067E1C /* navigation_format_incorrect_format.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B264A1EBF352800067E1C /* navigation_format_incorrect_format.json */; };
+		6CB66A3D201F66E600C56C90 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB66A3C201F66E600C56C90 /* TextViewController.swift */; };
 		B2F4A33D5CA14E1C4EF5A5E9 /* Pods_STWUITestingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537A1FCD181C90A3C417109C /* Pods_STWUITestingKit_Tests.framework */; };
 		C17738D92E6C88C19C5A176E /* Pods_STWUITestingKit_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34905986E0EB8DCE76D2644 /* Pods_STWUITestingKit_UITests.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		6C7B26461EBF34B100067E1C /* navigation_format_no_actions_error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = navigation_format_no_actions_error.json; sourceTree = "<group>"; };
 		6C7B26481EBF34F400067E1C /* navigation_format_missing_key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = navigation_format_missing_key.json; sourceTree = "<group>"; };
 		6C7B264A1EBF352800067E1C /* navigation_format_incorrect_format.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = navigation_format_incorrect_format.json; sourceTree = "<group>"; };
+		6CB66A3C201F66E600C56C90 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		A1872C4105A1BF71ABD31D68 /* Pods-STWUITestingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STWUITestingKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-STWUITestingKit_Tests/Pods-STWUITestingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A34905986E0EB8DCE76D2644 /* Pods_STWUITestingKit_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D7FE4A77FA8172DF7A0822 /* Pods_STWUITestingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STWUITestingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +180,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				6C41F73B1EBB20DC00790A6C /* CollectionViewController.swift */,
+				6CB66A3C201F66E600C56C90 /* TextViewController.swift */,
 				6C1C95DC1EDC0D0500F50BED /* BackgroundCelll.swift */,
 				6C1C95DD1EDC0D0500F50BED /* BackgroundCelll.xib */,
 				6C41F73C1EBB20DC00790A6C /* TableViewController.swift */,
@@ -534,11 +537,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-STWUITestingKit_UITests/Pods-STWUITestingKit_UITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/STWUITestingKit/STWUITestingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StanwoodUITesting/StanwoodUITesting.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/STWUITestingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodUITesting.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -552,11 +555,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-STWUITestingKit_Tests/Pods-STWUITestingKit_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/STWUITestingKit/STWUITestingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StanwoodUITesting/StanwoodUITesting.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/STWUITestingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodUITesting.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -593,6 +596,7 @@
 				6C1C95DE1EDC0D0500F50BED /* BackgroundCelll.swift in Sources */,
 				6C41F73F1EBB20DC00790A6C /* TableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				6CB66A3D201F66E600C56C90 /* TextViewController.swift in Sources */,
 				6C7AF27D1EDAB3150079EFA4 /* UserAuthorization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

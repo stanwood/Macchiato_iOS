@@ -13,32 +13,20 @@ extension UITesting {
         /// Constants
         private struct SlackConstants {
             private init() {}
-            static let baseURL: String = "https://hooks.slack.com/services/%@/%@"
             static let failureMessage: String = "Your tests have *failed!*"
             static let successMessage: String = "Your tests have *passed*, well done!"
         }
         
-        private var url: URL? {
-            return URL(string: String(format: SlackConstants.baseURL, teamID, channelToken))
-        }
-        
-        /// Your Slack team ID, Example: T034UPBQE
-        public let teamID: String
-        
-        /// Your channel service token, Example: B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx
-        public let channelToken: String
-        
+        private let url: URL
         public let channelName: String?
         
-        public init(teamID: String, channelToken: String, channelName: String?) {
-            self.teamID = teamID
-            self.channelToken = channelToken
+        public init(webhookURL url: URL, channelName: String? = nil) {
+            self.url = url
             self.channelName = channelName
         }
         
         func post(report: Report, completion: @escaping Completion) {
-            guard let url = url else { return }
-            
+    
             // Headers
             let header = Header(value: "application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"]

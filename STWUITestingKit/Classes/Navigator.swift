@@ -130,6 +130,38 @@ extension UITesting {
             case .screenshot:
                 screenshots.takeSnapshot()
                 return Passed
+                
+            case .type(let text):
+                
+                guard let element = element else {
+                    var test = Failed
+                    test.1 = "No element found"
+                    return test
+                }
+                
+                if element.exists {
+                    if element.isHittable {
+                        element.tap()
+                        
+                        sleep(1)
+                        
+                        element.typeText(text)
+                        
+                        sleep(1)
+                        
+                        // Resiging 
+                        element.typeText("\n")
+                        return Passed
+                    } else {
+                        var test = Failed
+                        test.1 = "Element is not hittable"
+                        return test
+                    }
+                } else {
+                    var test = Failed
+                    test.1 = "Element dowes not exists"
+                    return test
+                }
             }
         }
         
@@ -149,163 +181,54 @@ extension UITesting {
                 if item.action != nil {
                     return action(withItem: item, element: element)
                 }
-            case .any:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .other:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .application:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .group:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .window:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .windows:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .sheet:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .sheets:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .drawer:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .alert:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .alerts:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .dialog:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .dialogs:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .button:
+            case .buttons:
                 switch (app, query, element) {
-                case (.none, .some, .none):
-                    if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.element(boundBy: UInt(index)))
-                    } else {
-                        return navigate(to: item.successor!, query: nil, element: query![item.key])
-                    }
                 case (.some, .none, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: app!.buttons.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.buttons[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons[item.key])
+                        return navigate(to: item.successor!, query: app!.buttons, element: nil)
                     }
-                default:
-                    report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element"))
-                    break
-                }
-            case .buttons:
-                switch (app, query, element) {
                 case (.none, .some, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: query!.buttons.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.buttons[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: query!.buttons[item.key])
+                        return navigate(to: item.successor!, query: query!.buttons, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.buttons.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.buttons[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.buttons, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
+                
+            case .radioButtons:
+                switch (app, query, element) {
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.radioButtons.element(boundBy: UInt(index)))
+                    } else {
+                        return navigate(to: item.successor!, query: nil, element: query!.radioButtons[item.key])
                     }
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.radioButtons.element(boundBy: UInt(index)))
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons[item.key])
+                        return navigate(to: item.successor!, query: nil, element: app!.radioButtons[item.key])
                     }
                 default:
-                    report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element"))
+                    report.test(failed: Failure(message: "XCTest Navigation failiur: Failed to fetach query or element: *radioButtons*"))
                 }
-                
-            case .radioButton:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .radioButtons:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .radioGroup:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .checkBox:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .disclosureTriangle:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .popUpButton:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .popUpButtons:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .comboBox:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menuButton:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menuButtons:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .toolbarButton:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .toolbarButtons:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .popover:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .keyboard:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .key:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .navigationBar:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tabBar:
-                
-                // MARK: - tabBar
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
                 
             case .tabBars:
                 
@@ -313,357 +236,646 @@ extension UITesting {
                 
                 switch (app, query, element) {
                 case (.some, .none, .none):
-                    return navigate(to: item.successor!, query: app!.tabBars, element: nil)
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.tabBars.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.tabBars[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.tabBars, element: nil)
+                    }
                 case (.none, .some, .none):
-                    // TODO:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.tabBars.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.tabBars[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.tabBars, element: nil)
+                    }
                 case (.none, .none, .some):
-                    // TODO:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabBars.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabBars[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tabBars, element: nil)
+                    }
                 default:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
-            case .tabGroup:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tabGroups:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .toolbar:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .toolBars:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .statusBar:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .table:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
                 
             case .tables:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tableRow:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tableRows:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tableColumn:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tableColumns:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .outline:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .outlineRow:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .browser:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .collectionView:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .collectionViews:
-                
-                // TODO:
                 switch (app, query, element) {
                 case (.some, .none, .none):
-                    return navigate(to: item.successor!, query: app!.collectionViews, element: nil)
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.tables.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.tables[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.tables, element: nil)
+                    }
                 case (.none, .some, .none):
-                    // TODO:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.tables.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.tables[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.tables, element: nil)
+                    }
                 case (.none, .none, .some):
-                    // TODO:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tables.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tables[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tables, element: nil)
+                    }
                 default:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
-            case .slider:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
                 
-            case .pageIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
+            case .tableRows:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.tableRows.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.tableRows[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.tableRows, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.tableRows.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.tableRows[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.tableRows, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tableRows.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tableRows[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tableRows, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
                 
-            case .progressIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .activityIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .segmentedControl:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .picker:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .pickerWheel:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-            case .`switch`:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .toggle:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .link:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .image:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
+            case .collectionViews:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.collectionViews.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.collectionViews[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.collectionViews, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.collectionViews.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.collectionViews[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.collectionViews, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.collectionViews.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.collectionViews[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.collectionViews, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
                 
             case .images:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .icon:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .icons:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .searchField:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .searchFields:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .scrollView:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .scrollViews:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .scrollBar:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .scrollBars:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .staticText:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .textField:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .textFields:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .secureTextField:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .secureTextFields:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .datePicker:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .textView:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .textViews:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menu:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menuItem:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menuItems:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menuBar:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .menuBarItem:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .map:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .webView:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .incrementArrow:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .decrementArrow:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .timeline:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .ratingIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .valueIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .splitGroup:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .splitter:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .relevanceIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .colorWell:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .helpTag:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .matte:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .dockItem:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .ruler:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .rulerMarker:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .grid:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .levelIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .cell:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.images.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.images[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.images, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.images.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.images[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.images, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.images.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.images[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.images, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
             case .cells:
                 
                 // MARK: - cells
                 switch (app, query, element) {
                 case (.some, .none, .none):
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.cells.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.cells[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.tabs, element: nil)
+                    }
                 case (.none, .some, .none):
                     if let index = item.index {
                         return navigate(to: item.successor!, query: nil, element: query!.cells.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.cells[key])
                     } else {
-                        return navigate(to: item.successor!, query: nil, element: query!.cells[item.key])
+                        return navigate(to: item.successor!, query: query!.cells, element: nil)
                     }
                 case (.none, .none, .some):
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                    break
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.cells.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.cells[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.cells, element: nil)
+                    }
                 default:
-                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
+            case .tabs:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.tabs.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.tabs[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.tabs, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.tabs.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.tabs[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.tabs, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabs.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.tabs[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.tabs, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
+            case .textFields:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.textFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.textFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.textFields, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.textFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.textFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.textFields, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.textFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.textFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.textFields, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
+            case .secureTextFields:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.secureTextFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.secureTextFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.secureTextFields, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.secureTextFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.secureTextFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.secureTextFields, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.secureTextFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.secureTextFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.secureTextFields, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
+            case .icon:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .radioGroup:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .checkBox:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .disclosureTriangle:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .popUpButton:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .popUpButtons:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .comboBox:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menuButton:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menuButtons:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .toolbarButton:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .toolbarButtons:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .popover:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .keyboard:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .key:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .navigationBar:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .pageIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .progressIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .tableColumn:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .tableColumns:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .outline:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .outlineRow:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .browser:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .activityIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .segmentedControl:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .tabGroup:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .tabGroups:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .toolbar:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .toolBars:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .statusBar:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .table:
+                report.test(failed: Failure(message: "*table* has been removed from XCTest, please use *tables*"))
+                break
+                
+            case .picker:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .pickerWheel:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .`switch`:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .toggle:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .link:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .icons:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .searchField:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .searchFields:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .scrollView:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .scrollViews:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .scrollBar:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .scrollBars:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .staticText:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .datePicker:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .textView:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .textViews:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menu:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menuItem:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menuItems:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menuBar:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .menuBarItem:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .map:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .webView:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .incrementArrow:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .decrementArrow:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .timeline:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .ratingIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .valueIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .splitGroup:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .splitter:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .relevanceIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .colorWell:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .helpTag:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .matte:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .dockItem:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .ruler:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .rulerMarker:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .grid:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .levelIndicator:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .cell:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
             case .layoutArea:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
             case .layoutItem:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
                 
             case .layoutItems:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
                 
             case .handle:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
                 
             case .stepper:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
-                
-            case .tab:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
-            case .tabs:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
-                break
-                
             case .touchBar:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
                 
             case .touchBars:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add \(type) to StanwoodUITesting"))
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+            case .any:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .other:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .application:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .group:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .window:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .windows:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .sheet:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .sheets:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .drawer:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .alert:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .alerts:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.alerts.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.alerts[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.alerts, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.alerts.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.alerts[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.alerts, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
+                
+            case .dialog:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                break
+                
+            case .dialogs:
+                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
             }
             
