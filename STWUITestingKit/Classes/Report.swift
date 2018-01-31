@@ -39,7 +39,7 @@ extension UITesting {
                     }
                     
                     if let navigationId = $0.navigationID {
-                        print += "\n*Item ID:* \(navigationId),"
+                        print += "\n*Item ID:* \(navigationId)"
                     }
                     
                     let title = $0.navigationID == nil && $0.testID == nil ? "\n*System Error*" : ""

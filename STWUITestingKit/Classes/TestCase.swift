@@ -21,7 +21,12 @@
  
  extension UITesting {
     
-    public struct TestCase {
+    public struct TestCase: Codable {
+        
+        enum CodingKeys: String, CodingKey {
+            case title, id, description
+            case navigationItems = "navigation"
+        }
         
         public let title: String?
         public let description: String?
@@ -29,25 +34,23 @@
         
         public var navigationItems: [NavigationItem] = []
         
-        let testCase: [AnyHashable:Any]
-        
-        public init(testCase: [AnyHashable:Any]) throws {
+        public init(from decoder: Decoder) throws {
             
-            id = testCase["id"] as? String
-            title = testCase["title"] as? String
-            description = testCase["description"] as? String
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            title = try container.decodeIfPresent(String.self, forKey: .title)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            id = try container.decodeIfPresent(String.self, forKey: .id)
             
             guard let _ = id, let _ = title, let _ = description else {
                 throw TestError.error(message: "Incorrect Foramt - Please check id, title, and description\n ID: \(id ?? "nil"), Title: \(title ?? "nil"), Description: \(description ?? "nil")", id: id, navigationIndex: nil)
             }
             
-            self.testCase = testCase
-            
-            if let navigationArray = testCase["navigation"] as? [Any] {
+            let items = try container.decodeIfPresent([String].self, forKey: .navigationItems)
+            if let navigationArray = items {
                 for (index, item) in navigationArray.enumerated() {
                     
-                    guard var itemFormat = item as? String else { continue }
-                    itemFormat = re(format: itemFormat, with: index)
+                    let itemFormat = re(format: item, with: index)
                     
                     /// Checking for incorrect item foramt key and index
                     if itemFormat.contains("..") {

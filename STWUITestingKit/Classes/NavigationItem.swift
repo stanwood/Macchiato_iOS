@@ -12,6 +12,14 @@ typealias JSON = [AnyHashable: Any]
 
 extension String {
     
+    func slice(from: String, to: String) -> String? {
+        return (range(of: from)?.upperBound).flatMap { substringFrom in
+            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                String(self[substringFrom..<substringTo])
+            }
+        }
+    }
+    
     func validate() throws {
         let split = self.components(separatedBy: ".")
         
@@ -45,7 +53,17 @@ extension UITesting {
     /*
      NavigationIten represents a navigation junction within a stack
      */
-    open class NavigationItem {
+    open class NavigationItem: Codable {
+        
+        enum CodingKeys: String, CodingKey {
+            case action = "action"
+            case type = "type"
+            case index = "index"
+            case key = "key"
+            case sequence = "order"
+            case successor = "successor"
+            case shouldMonitor = "monitor"
+        }
         
         struct Constants {
             static let monitorIndex = 3
@@ -65,7 +83,38 @@ extension UITesting {
                 try format.validate()
                 
                 // Getting navigation components
-                var components = format.components(separatedBy: ".")
+                var components: [String]
+                if format.contains("type") {
+                    
+                    /// Converting type texts
+                    var typeText: String
+                    var convertedFormat: String
+                    
+                    if let text = format.slice(from: "type.", to: ".monitor") {
+                        typeText = text
+                        if let range = format.range(of: typeText + ".") {
+                            convertedFormat = format.replacingCharacters(in: range, with: "")
+                        } else {
+                            throw TestError.error(message: "No range for type text", id: nil, navigationIndex: nil)
+                        }
+                    } else if let text = format.components(separatedBy: "type.").last {
+                        typeText = text
+                        if let range = format.range(of: typeText) {
+                            convertedFormat = format.replacingCharacters(in: range, with: "")
+                        } else {
+                            throw TestError.error(message: "No range for type text", id: nil, navigationIndex: nil)
+                        }
+                    } else {
+                        throw TestError.error(message: "no text to type for actions: *type*", id: nil, navigationIndex: nil)
+                    }
+                    components = convertedFormat.components(separatedBy: ".").filter({ !$0.isEmpty })
+                    
+                    if let index = components.index(of: "type") {
+                        components[index] = components[index] + "\"" + typeText + "\""
+                    }
+                } else {
+                    components = format.components(separatedBy: ".")
+                }
                 
                 // Checking if the navigation should be monitored for system alerts
                 try shouldMonitor(&components)
@@ -73,7 +122,7 @@ extension UITesting {
                 // Converting components to item format
                 try convert(format: components)
                 
-            } catch  {
+            } catch {
                 throw error
             }
         }
@@ -117,8 +166,8 @@ extension UITesting {
         }
         
         fileprivate func setup(test: JSON) throws {
-            if let stringAction = test[Key.action] as? String,
-                let action = Action(rawValue: stringAction) {
+            if let stringAction = test[Key.action] as? String {
+                let action = Action(rawValue: stringAction)!
                 self.action = action
             }
             

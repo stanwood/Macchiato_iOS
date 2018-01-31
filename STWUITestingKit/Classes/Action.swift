@@ -10,7 +10,7 @@ import Foundation
 
 extension UITesting {
     
-    public enum Action: RawRepresentable {
+    public enum Action: RawRepresentable, Codable {
         
         case tap
         case isHittable
@@ -23,6 +23,13 @@ extension UITesting {
         case type(String)
         
         public init?(rawValue: String) {
+            var rawValue = rawValue
+            var text = ""
+            if rawValue.contains("type") {
+                let componants = rawValue.components(separatedBy: "\"").filter({ !$0.isEmpty })
+                rawValue = componants.first ?? ""
+                text = componants.last ?? ""
+            }
             switch rawValue {
             case "exists":
                 self = .exists
@@ -41,7 +48,7 @@ extension UITesting {
             case "tap":
                 self = .tap
             case "type":
-                self = .tap
+                self = .type(text)
             default:
                 return nil
             }

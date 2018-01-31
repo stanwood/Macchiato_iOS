@@ -9,6 +9,17 @@
 import UIKit
 import CoreLocation
 
+extension UITextField {
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if let placeholder = placeholder {
+            accessibilityIdentifier = placeholder
+        }
+    }
+}
+
 typealias JSONDictionary = [AnyHashable:Any]
 
 

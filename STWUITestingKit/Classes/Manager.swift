@@ -23,13 +23,44 @@ public struct UITesting {}
 
 extension UITesting {
     
+    class TestCases: Codable {
+        
+        enum CodingKeys: String, CodingKey {
+            case items = "test_cases"
+            case shouldClearPreviousScreenshots = "clear_previous_screenshots"
+            case isAutoScreenshots = "auto_screenshots"
+            case initialSleepTime = "initial_sleep_time"
+        }
+
+        var items: [TestCase] = []
+        var shouldClearPreviousScreenshots: Bool = false
+        var isAutoScreenshots: Bool = false
+        var initialSleepTime: UInt32?
+        
+        var numberOfItems: Int {
+            return items.count
+        }
+        
+        subscript(index: Int) -> TestCase {
+            return items[index]
+        }
+        
+        func removeAll() {
+            items.removeAll()
+        }
+        
+        func append(_ items: [TestCase]) {
+            self.items.append(contentsOf: items)
+        }
+    }
+    
     open class Manager {
         
         /*
          :executeTests: Bool // Default value is true
          */
         private var shouldExecuteTest:Bool = true
-        private var testCases: [TestCase] = []
+        private var testCases: TestCases?
         private var currentToken: NSObjectProtocol?
         
         private weak var target: XCTestCase?
@@ -58,15 +89,14 @@ extension UITesting {
             
             shouldExecuteTest = false
             
-            Helper.fetchTestCases(withUrl: configurations.url, report: report, completion: {
-                [weak self] testCases in
+            Helper.fetchElement(withUrl: configurations.url, report: report) {
+                [weak self] (testCases: TestCases?) in
                 guard let `self` = self else { return }
                 
                 // Setting up JSON STWSchema
-                self.testCases.removeAll()
-                self.testCases.append(contentsOf: testCases)
+                self.testCases = testCases
                 
-                if self.testCases.count == 0 {
+                if self.testCases?.numberOfItems == 0 {
                     self.report.test(failed: Failure(message: "No test cases"))
                 }
                 
@@ -74,7 +104,7 @@ extension UITesting {
                     self.dismiss()
                     self.shouldExecuteTest = true
                 })
-            })
+            }
             
             // Setting device local
             setLanguage(configurations.app)
@@ -92,12 +122,17 @@ extension UITesting {
         /// Run tests
         ///
         open func runTests() {
+            guard let testCases = testCases else { XCTFail("No test cases"); return }
             
-            for testCase in testCases {
+            /// Sleep at initial start
+            if let initialSleep = testCases.initialSleepTime {
+                sleep(initialSleep)
+            }
+            
+            for testCase in testCases.items {
                 
                 /// Navigation Items
-                for navigation in testCase.navigationItems {
-                    
+                testCase.navigationItems.forEach({ (navigation) in
                     /// Navigate to...
                     let test = navigator.navigate(to: navigation, query: nil, element: nil, app: configurations.app)
                     
@@ -112,8 +147,13 @@ extension UITesting {
                     }
                     
                     sleep(2)
-                }
+                })
+              
                 
+                /// Taking screenshots is auto enabled
+                if testCases.isAutoScreenshots {
+                    screenshots.takeSnapshot()
+                }
             
                 /// Setting default view
                 Helper.navigateToDefault(app: configurations.app)
@@ -145,7 +185,7 @@ extension UITesting {
             
             /// Saving screenshots to file
             do {
-                try screenshots.save()
+                try screenshots.save(shouldClearPreviousScreenshots: testCases?.shouldClearPreviousScreenshots ?? false)
             } catch UITesting.TestError.error(let error) {
                 report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error.message)"))
             } catch {
