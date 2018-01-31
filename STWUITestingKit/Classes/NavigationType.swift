@@ -10,7 +10,7 @@ import Foundation
 
 extension UITesting {
     
-    public enum NavigationType: String {
+    public enum NavigationType: String, Codable {
         case action
         
         case any
@@ -139,11 +139,7 @@ extension UITesting {
         
         case staticText
         
-        case textField
-        
         case textFields
-        
-        case secureTextField
         
         case secureTextFields
         

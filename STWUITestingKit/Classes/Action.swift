@@ -9,7 +9,9 @@
 import Foundation
 
 extension UITesting {
-    public enum Action:String {
+    
+    public enum Action: RawRepresentable, Codable {
+        
         case tap
         case isHittable
         case exists
@@ -18,5 +20,63 @@ extension UITesting {
         case swipeLeft
         case swipeRight
         case screenshot
+        case type(String)
+        
+        public init?(rawValue: String) {
+            var rawValue = rawValue
+            var text = ""
+            if rawValue.contains("type") {
+                let componants = rawValue.components(separatedBy: "\"").filter({ !$0.isEmpty })
+                rawValue = componants.first ?? ""
+                text = componants.last ?? ""
+            }
+            switch rawValue {
+            case "exists":
+                self = .exists
+            case "isHittable":
+                self = .isHittable
+            case "screenshot":
+                self = .screenshot
+            case "swipeDown":
+                self = .swipeDown
+            case "swipeLeft":
+                self = .swipeLeft
+            case "swipeRight":
+                self = .swipeRight
+            case "swipeUp":
+                self = .swipeUp
+            case "tap":
+                self = .tap
+            case "type":
+                self = .type(text)
+            default:
+                return nil
+            }
+        }
+        
+        public var rawValue: String {
+            switch self {
+            case .exists:
+                return "exists"
+            case .isHittable:
+                return "isHittable"
+            case .screenshot:
+                return "screenshot"
+            case .swipeDown:
+                return "swipeDown"
+            case .swipeLeft:
+                return "swipeLeft"
+            case .swipeRight:
+                return "swipeRight"
+            case .swipeUp:
+                return "swipeUp"
+            case .tap:
+                return "tap"
+            case .type( let text):
+                return "type(\(text)"
+            }
+        }
+        
+        public typealias RawValue = String
     }
 }

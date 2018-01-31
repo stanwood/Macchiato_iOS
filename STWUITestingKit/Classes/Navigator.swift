@@ -130,6 +130,38 @@ extension UITesting {
             case .screenshot:
                 screenshots.takeSnapshot()
                 return Passed
+                
+            case .type(let text):
+                
+                guard let element = element else {
+                    var test = Failed
+                    test.1 = "No element found"
+                    return test
+                }
+                
+                if element.exists {
+                    if element.isHittable {
+                        element.tap()
+                        
+                        sleep(1)
+                        
+                        element.typeText(text)
+                        
+                        sleep(1)
+                        
+                        // Resiging 
+                        element.typeText("\n")
+                        return Passed
+                    } else {
+                        var test = Failed
+                        test.1 = "Element is not hittable"
+                        return test
+                    }
+                } else {
+                    var test = Failed
+                    test.1 = "Element dowes not exists"
+                    return test
+                }
             }
         }
         
@@ -417,6 +449,66 @@ extension UITesting {
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
+            case .textFields:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.textFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.textFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.textFields, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.textFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.textFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.textFields, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.textFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.textFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.textFields, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
+            case .secureTextFields:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.secureTextFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.secureTextFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.secureTextFields, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.secureTextFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.secureTextFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.secureTextFields, element: nil)
+                    }
+                case (.none, .none, .some):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: element!.secureTextFields.element(boundBy: UInt(index)))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: element!.secureTextFields[key])
+                    } else {
+                        return navigate(to: item.successor!, query: element!.secureTextFields, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
             case .icon:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
@@ -580,22 +672,6 @@ extension UITesting {
                 break
                 
             case .staticText:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
-                
-            case .textField:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
-                
-            case .textFields:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
-                
-            case .secureTextField:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
-                
-            case .secureTextFields:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
                 

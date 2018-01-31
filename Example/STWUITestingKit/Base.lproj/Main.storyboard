@@ -176,6 +176,7 @@
                     <connections>
                         <segue destination="pkD-BH-fx9" kind="relationship" relationship="viewControllers" id="da4-c9-sgc"/>
                         <segue destination="45h-VU-xyv" kind="relationship" relationship="viewControllers" id="8NQ-Nb-Tdh"/>
+                        <segue destination="4Sa-EJ-Vk7" kind="relationship" relationship="viewControllers" id="G6a-Mq-M7e"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0H-ut-PMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,12 +214,71 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="0NL-sZ-pbg"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Rr6-HP-iP4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPi-fw-LJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="844" y="600.44977511244383"/>
+        </scene>
+        <!--Tab 3-->
+        <scene sceneID="80F-Yi-xfk">
+            <objects>
+                <viewController id="4Sa-EJ-Vk7" customClass="TextViewController" customModule="STWUITestingKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bsf-U3-Lf5"/>
+                        <viewControllerLayoutGuide type="bottom" id="jF6-p4-9at"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QDO-lx-skM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vJ-PW-bgG">
+                                <rect key="frame" x="147" y="488" width="80" height="44"/>
+                                <accessibility key="accessibilityConfiguration" identifier="loginButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="0Bp-2B-cpL"/>
+                                    <constraint firstAttribute="height" constant="44" id="k7c-BY-wjO"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="login:" destination="4Sa-EJ-Vk7" eventType="touchUpInside" id="q03-CC-ZAr"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14V-Qg-JKK">
+                                <rect key="frame" x="24" y="48" width="327" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOr-Oz-kbF">
+                                <rect key="frame" x="24" y="86" width="327" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="14V-Qg-JKK" firstAttribute="top" secondItem="bsf-U3-Lf5" secondAttribute="bottom" constant="28" id="5np-lk-wDH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="14V-Qg-JKK" secondAttribute="trailing" constant="8" id="9yM-Xx-QFN"/>
+                            <constraint firstItem="mOr-Oz-kbF" firstAttribute="leading" secondItem="QDO-lx-skM" secondAttribute="leadingMargin" constant="8" id="Gup-Xf-ewH"/>
+                            <constraint firstItem="0vJ-PW-bgG" firstAttribute="centerX" secondItem="QDO-lx-skM" secondAttribute="centerX" id="X30-lo-k7C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mOr-Oz-kbF" secondAttribute="trailing" constant="8" id="iHi-vk-1Nj"/>
+                            <constraint firstItem="mOr-Oz-kbF" firstAttribute="top" secondItem="14V-Qg-JKK" secondAttribute="bottom" constant="8" id="lH8-PM-jih"/>
+                            <constraint firstItem="14V-Qg-JKK" firstAttribute="leading" secondItem="QDO-lx-skM" secondAttribute="leadingMargin" constant="8" id="oWB-LT-R5H"/>
+                            <constraint firstItem="jF6-p4-9at" firstAttribute="top" secondItem="0vJ-PW-bgG" secondAttribute="bottom" constant="86" id="tJn-gp-zJI"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Tab 3" id="twx-7I-Oug"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="14V-Qg-JKK" id="WfU-Lu-QcH"/>
+                        <outlet property="passwordTextField" destination="mOr-Oz-kbF" id="vR6-LY-vEJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qiX-sO-sBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="1361"/>
         </scene>
     </scenes>
     <resources>
