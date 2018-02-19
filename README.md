@@ -1,28 +1,30 @@
 
-<p align="center">
-    <img src="Assets/Icon.png?raw=false" alt="STWUITestingKit"/>
-</p>
-
-
-# STWUITestingKit
-
+# StanwoodUITesting framework
 
 [![Swift Version](https://img.shields.io/badge/Swift-3.2.x-orange.svg)]()
+[![iOS 8+](https://img.shields.io/badge/iOS-9+-EB7943.svg)]()
 
-## Example
+## Table of contents
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+- [Author](#author)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Licence](#licence)
 
-## Requirements
+
+## Author
+
+Tal Zion tal.zion@stanwood.io
 
 ## Installation
 
 ```ruby
-source 'https://github.com/stanwood/Cocoa_Pods_Specs.git'
+source 'git@github.com:CocoaPods/Specs.git'
+source 'git@github.com:stanwood/Cocoa_Pods_Specs.git
 
 target 'Project_Tests' do
       inherit! :search_paths
-      pod 'STWUITestingKit'
+      pod 'StanwoodUITesting'
 end
 ```
 
@@ -32,21 +34,21 @@ end
 
 #### Step One - Set up the testing tool
 
-1. Add a new `XCTestCase` to the UI Test target and import `STWUITestingKit`
+1. Add a new `XCTestCase` to the UI Test target and import `StanwoodUITesting`
 
 	```swift
 	import XCTest
-	import STWUITestingKit
-	
+	import StanwoodUITesting
+
 	class StanwoodTests: XCTestCase {
-	    
+
 	    let app = XCUIApplication()
-	    
+
 	    override func setUp() {
 	        super.setUp()
-	        
+
 	    }
-	    
+
 	    override func tearDown() {
 	        // Put teardown code here. This method is called after the invocation of each test method in the class.
 	        super.tearDown()
@@ -55,34 +57,36 @@ end
 	```
 
 2. Let's configure and launch the sdk
-	
+
 	Add this to the `setUp()` function
-	
+
 	```swift
-	 override func setUp() {
+	let app = XCUIApplication()
+	var testingManager: UITesting.Manager!
+    
+	override func setUp() {
         	super.setUp()
+
+        	continueAfterFailure = false
+
+        	let slack = UITesting.Slack(webhookURL: URL(string: "https://hooks.slack.com/services/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")!, channelName: "#testing_notifiy")
+        	guard let configurations = UITesting.Configurations(bundleId: "com.uitesting.example", version: "1.0", app: app, slack: slack) else { return }
         
-        continueAfterFailure = false
-        
-        let launchHandlers: [LaunchHandlers] = [.notification, .review, .default]
-        let slack = UITesting.Slack(teamID: "T034UPBQE", channelToken: "B8K8L6S1Y/F6SKtmB1GoAbcDaTl00fuxtx", channelName: "#_ui_testing")
-        guard let tool = UITesting.Configurations(bundleId: "com-uitesting-example", version: "1.0", launchHandlers: launchHandlers, app: app, slack: slack) else { return }
-        
-        testingManager = UITesting.Manager(tool: tool, target: self)
-        testingManager.launch()
+        	testingManager = UITesting.Manager(configurations: configurations, target: self)
+        	testingManager.launch()
    	 }
 	```
 
 3. Now we are ready to set up the test case
 
 	```swift
-     func testStanwood(){
-	   testingManager.runTests()
-     }
+	func testStanwood(){
+		testingManager.runTests()
+	}
 	```
-	
+
 	`testingManager.runTests()` will run the tests and report if there are any failures.
-	
+
 
 #### Step Two - Configure your project
 
@@ -111,28 +115,26 @@ You are starting to feel this may take too long! Say no more... This is handled 
 		b) Set `.localisedText` instead of `.text`.
 		Note> It is required that you do not localise the key, rather then pass in the key. This will get handled by StanwoodCore
 
->Note: Full StanwoodCore documentations to follow.
+[StanwoodCore Full Doc](https://stanwood.github.io/Stanwood_Core)
 
 ### PM Usage
 
-##### Overview
+#### Overview
 
-The UI Testing tool works by querying  element types from the views hierarchy and they can be accessed by calling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are laid out. 
+The UI Testing tool works by querying  element types from the views hierarchy and they can be accessed by calling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are laid out.
 
-<p align="center">
-    <img src="Assets/views hierchy.png?raw=false" alt="STWUITestingKit"/>
-</p>
+![View Hierchy](assets/views_hierchy.png)
 
-This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, which cells can be identified with an index. 
+This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, which cells can be identified with an index.
 
-##### Let's create our first test case
+#### Let's create our first test case
 
 1. First, we want to set the schema JSON format
 
 	```javascript
 	{
 		"test_cases" : [
-			
+
 		]
 	}
 	```
@@ -148,17 +150,17 @@ This is a great example where we have a top `UIView`, which can be identified wi
 		]
 	}
 	```
-	
+
 3. Setting `navigation` action to support the test case
 
-	The navigation is a collection of navigation actions. We need to set navigation items to navigation to what we want to test. For example, let's set navigation items according to the example above. 
-	
+	The navigation is a collection of navigation actions. We need to set navigation items to navigation to what we want to test. For example, let's set navigation items according to the example above.
+
 	Let's assume this view is on:
-	
+
 	- The second tab can be access with `tabs` as index 1
 	- And the images view is accessed by tapping a button in the tab's `rootView` with an identifier of `pierIdentifier`
 	- The fifth image can be access with `cells` at index 4
-	
+
 		```javascript
 		{
 			"test_cases": [
@@ -173,7 +175,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 			]
 		}
 		```
-	
+
 4. Now, let's say we want to test the image at position 11, which cannot be accessed in the view, we can set different actions, like `swipeUp, swipeDown`. For example:
 
 
@@ -199,7 +201,50 @@ For the full navigation types, please check [here](https://github.com/stanwood/S
 
 >Note: Element identifiers will be listed in each project documentation  under **UI Testing Identifiers**
 
+#### System Alerts
 
-## License
+`StanwoodUITesting` supports system alerts. To monitor system alerts, simply add `.monitor` to any navigation handle.
 
-STWUITestingKit is a private library. See the LICENSE file for more info.
+```javascript
+	{
+		"test_cases": [
+			"id": "1",
+			"title": "Images Test",
+			"description": "Testing if the fifth image is tappable",
+			"navigation": [
+				"tabs[1].action.tap",
+				"buttons['pierIdentifier'].action.tap.monitor",
+				"cells[4].action.swipeUp",
+				"cells[10].action.tap.monitor"
+			]
+		]
+	}
+```
+
+#### Screenshots
+
+Screenshots have been integrated and has been added to the action list. To take a screenshot, add `action.screenshot`.
+
+To enable screenshots, add Environment Variable into the scheme `Name: SRCROOT, Value: ${SRCROOT}`
+
+```javascript
+	{
+		"test_cases": [
+			"id": "1",
+			"title": "Images Test",
+			"description": "Testing if the fifth image is tappable",
+			"navigation": [
+				"action.screenshot",
+				"tabs[1].action.tap",
+				"buttons['pierIdentifier'].action.tap.monitor",
+				"cells[4].action.swipeUp",
+				"action.screenshot",
+				"cells[10].action.tap.monitor"
+			]
+		]
+	}
+```
+
+## Licence
+
+StanwoodUITesting is a private library. See the [LICENSE](https://github.com/stanwood/Stanwood_Dialog_iOS/blob/master/LICENSE) file for more info.
