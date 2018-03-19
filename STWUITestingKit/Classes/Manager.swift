@@ -122,7 +122,11 @@ extension UITesting {
         /// Run tests
         ///
         open func runTests() {
-            guard let testCases = testCases else { XCTFail("No test cases"); return }
+            guard let testCases = testCases else {
+                report.test(failed: UITesting.Failure(message: "No test cases. Please check you test case schema for issues!"))
+                finalise()
+                return
+            }
             
             /// Sleep at initial start
             if let initialSleep = testCases.initialSleepTime {

@@ -21,29 +21,19 @@ extension UITesting {
         
         case group
         
-        case window
-        
         case windows
-        
-        case sheet
         
         case sheets
         
         case drawer
         
-        case alert
-        
         case alerts
-        
-        case dialog
         
         case dialogs
         
         case buttons
         
         case radioButtons
-        
-        case radioGroup
         
         case checkBox
         
@@ -54,12 +44,8 @@ extension UITesting {
         case popUpButtons
         
         case comboBox
-        
-        case menuButton
-        
+
         case menuButtons
-        
-        case toolbarButton
         
         case toolbarButtons
         
@@ -69,27 +55,19 @@ extension UITesting {
         
         case key
         
-        case navigationBar
+        case navigationBars
         
         case tabBars
         
-        case tabGroup
-        
         case tabGroups
-        
-        case toolbar
         
         case toolBars
         
         case statusBar
         
-        case table
-        
         case tables
         
         case tableRows
-        
-        case tableColumn
         
         case tableColumns
         
@@ -121,19 +99,13 @@ extension UITesting {
     
         case images
         
-        case icon
-        
         case icons
         
         case searchField
         
         case searchFields
         
-        case scrollView
-        
         case scrollViews
-        
-        case scrollBar
         
         case scrollBars
         
@@ -145,13 +117,9 @@ extension UITesting {
         
         case datePicker
         
-        case textView
-        
         case textViews
         
         case menu
-        
-        case menuItem
         
         case menuItems
         
@@ -195,13 +163,9 @@ extension UITesting {
         
         case levelIndicator
         
-        case cell
-        
         case cells
         
         case layoutArea
-        
-        case layoutItem
         
         case layoutItems
         
@@ -210,8 +174,6 @@ extension UITesting {
         case stepper
         
         case tabs
-        
-        case touchBar
         
         case touchBars
     }

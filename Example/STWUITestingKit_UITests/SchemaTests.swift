@@ -29,4 +29,9 @@ class StanwoodTests: XCTestCase {
     func testStanwood(){
         testingManager.runTests()
     }
+    
+    func testG() {
+        XCUIApplication().navigationBars["STWUITestingKit_Example.TabView"].buttons["Test"].tap()
+        
+    }
 }
