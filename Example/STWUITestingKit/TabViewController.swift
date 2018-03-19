@@ -45,7 +45,15 @@ class TabViewController: UIViewController {
         tapMeImage?.addGestureRecognizer(tap)
     }
     
+    @IBAction func tapNavigationBar(_ sender: UIBarButtonItem) {
+        presentAlert()
+    }
+    
     @objc func tap(_ tap: UITapGestureRecognizer) {
+        presentAlert()
+    }
+    
+    func presentAlert() {
         let alert = UIAlertController(title: "Testing images", message: "Looks like tap gesture works!", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         

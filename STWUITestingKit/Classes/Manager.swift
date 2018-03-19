@@ -23,37 +23,6 @@ public struct UITesting {}
 
 extension UITesting {
     
-    class TestCases: Codable {
-        
-        enum CodingKeys: String, CodingKey {
-            case items = "test_cases"
-            case shouldClearPreviousScreenshots = "clear_previous_screenshots"
-            case isAutoScreenshots = "auto_screenshots"
-            case initialSleepTime = "initial_sleep_time"
-        }
-
-        var items: [TestCase] = []
-        var shouldClearPreviousScreenshots: Bool = false
-        var isAutoScreenshots: Bool = false
-        var initialSleepTime: UInt32?
-        
-        var numberOfItems: Int {
-            return items.count
-        }
-        
-        subscript(index: Int) -> TestCase {
-            return items[index]
-        }
-        
-        func removeAll() {
-            items.removeAll()
-        }
-        
-        func append(_ items: [TestCase]) {
-            self.items.append(contentsOf: items)
-        }
-    }
-    
     open class Manager {
         
         /*
@@ -122,7 +91,11 @@ extension UITesting {
         /// Run tests
         ///
         open func runTests() {
-            guard let testCases = testCases else { XCTFail("No test cases"); return }
+            guard let testCases = testCases else {
+                report.test(failed: UITesting.Failure(message: "No test cases. Please check you test case schema for issues!"))
+                finalise()
+                return
+            }
             
             /// Sleep at initial start
             if let initialSleep = testCases.initialSleepTime {
@@ -151,7 +124,7 @@ extension UITesting {
               
                 
                 /// Taking screenshots is auto enabled
-                if testCases.isAutoScreenshots {
+                if testCases.isAutoScreenshots! {
                     screenshots.takeSnapshot()
                 }
             

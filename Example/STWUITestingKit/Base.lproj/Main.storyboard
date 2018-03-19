@@ -154,7 +154,13 @@
                             <constraint firstItem="S6B-cf-eek" firstAttribute="top" secondItem="0qK-Hs-4ga" secondAttribute="bottom" id="yhv-v2-bmO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="B6n-Yi-39f"/>
+                    <navigationItem key="navigationItem" id="B6n-Yi-39f">
+                        <barButtonItem key="rightBarButtonItem" title="Test" id="6vJ-Ne-0pY">
+                            <connections>
+                                <action selector="tapNavigationBar:" destination="ajE-Ug-8Pz" id="SLq-aW-Xrc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tapMeImage" destination="S6B-cf-eek" id="b71-rF-sgT"/>
                     </connections>
