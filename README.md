@@ -245,6 +245,14 @@ To enable screenshots, add Environment Variable into the scheme `Name: SRCROOT, 
 	}
 ```
 
+## Release Notes
+
+### `0.1.5`
+
+- Adding navigationBars support
+- Improving error handling
+- Removing some unused keys
+
 ## Licence
 
 StanwoodUITesting is a private library. See the [LICENSE](https://github.com/stanwood/Stanwood_Dialog_iOS/blob/master/LICENSE) file for more info.
