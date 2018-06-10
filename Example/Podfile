@@ -1,16 +1,11 @@
 use_frameworks!
 
-target 'STWUITestingKit_Example' do
-  
-  pod 'Reveal-iOS-SDK', '~> 1.6', :configurations => ['Debug']
-  
-  target 'STWUITestingKit_Tests' do
-      inherit! :search_paths
-      pod 'StanwoodUITesting', :path => '../'
-  end
-  
-  target 'STWUITestingKit_UITests' do
+target 'StanwoodUITesting_Example' do
+  pod 'StanwoodUITesting', :path => '../'
+
+  target 'StanwoodUITesting_Tests' do
     inherit! :search_paths
-    pod 'StanwoodUITesting', :path => '../'
+
+    
   end
 end

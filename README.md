@@ -19,9 +19,6 @@ Tal Zion tal.zion@stanwood.io
 ## Installation
 
 ```ruby
-source 'git@github.com:CocoaPods/Specs.git'
-source 'git@github.com:stanwood/Cocoa_Pods_Specs.git
-
 target 'Project_Tests' do
       inherit! :search_paths
       pod 'StanwoodUITesting'
@@ -255,4 +252,4 @@ To enable screenshots, add Environment Variable into the scheme `Name: SRCROOT, 
 
 ## Licence
 
-StanwoodUITesting is a private library. See the [LICENSE](https://github.com/stanwood/Stanwood_Dialog_iOS/blob/master/LICENSE) file for more info.
+StanwoodUITesting is under MIT Licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Dialog_iOS/blob/master/LICENSE) file for more info.
