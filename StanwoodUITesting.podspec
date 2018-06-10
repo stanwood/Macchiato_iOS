@@ -12,7 +12,8 @@ Stanwood iOS UITesting tool
   s.source           = { :git => 'https://github.com/stanwood/STWUITestingKit.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
-
-  s.source_files = 'STWUITestingKit/Classes/**/*'
+  s.swift_version = '3.3'
+  
+  s.source_files = 'StanwoodUITesting/Classes/**/*'
   s.frameworks = 'XCTest'
 end

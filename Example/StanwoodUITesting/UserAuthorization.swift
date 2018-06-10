@@ -40,6 +40,6 @@ class UserAuthorization {
     }
     
     static func requestCameraPermission() {
-        AVCaptureDevice.requestAccess(forMediaType: "video") { _ in }
+        AVCaptureDevice.requestAccess(for: .video) { _ in }
     }
 }
