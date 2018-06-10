@@ -7,7 +7,7 @@ Stanwood iOS UITesting tool
                        DESC
 
   s.homepage         = 'https://github.com/stanwood/STWUITestingKit'
-  s.license          = { :type => 'Private', :file => 'LICENSE' }
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tal Zion' => 'tal.zion@stanwood.io' }
   s.source           = { :git => 'https://github.com/stanwood/STWUITestingKit.git', :tag => s.version.to_s }
 
