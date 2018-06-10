@@ -66,8 +66,8 @@ end
 
         	continueAfterFailure = false
 
-        	let slack = UITesting.Slack(webhookURL: URL(string: "https://hooks.slack.com/services/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")!, channelName: "#testing_notifiy")
-        	guard let configurations = UITesting.Configurations(bundleId: "com.uitesting.example", version: "1.0", app: app, slack: slack) else { return }
+        	let slack = UITesting.Slack(webhookURL: URL(string: "webhook")!, channelName: "#channel")
+        	guard let configurations = UITesting.Configurations(bundleId: "com.company.example", version: "1.0", app: app, slack: slack) else { return }
         
         	testingManager = UITesting.Manager(configurations: configurations, target: self)
         	testingManager.launch()
