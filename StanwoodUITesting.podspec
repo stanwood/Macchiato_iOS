@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodUITesting'
-  s.version          = '0.2.2'
+  s.version          = '0.2.1'
   s.summary          = 'Stanwood iOS UITesting Tool'
   s.description      = <<-DESC
 Stanwood iOS UITesting tool
@@ -8,7 +8,7 @@ Stanwood iOS UITesting tool
 
   s.homepage         = 'https://github.com/stanwood/StanwoodUITesting_iOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Tal Zion' => 'tal.zion@stanwood.io' }
+  s.author           = { 'stanwood' => 'ios.frameworks@stanwood.io' }
   s.source           = { :git => 'https://github.com/stanwood/StanwoodUITesting_iOS.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
