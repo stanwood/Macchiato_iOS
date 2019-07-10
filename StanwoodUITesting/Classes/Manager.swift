@@ -100,7 +100,7 @@ extension UITesting {
             monitor()
             
             while !shouldExecuteTest {
-                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+                RunLoop.current.run(mode: .default, before: .distantFuture)
             }
         }
         
