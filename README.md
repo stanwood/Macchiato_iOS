@@ -1,7 +1,7 @@
 
 # StanwoodUITesting framework
 
-[![Swift Version](https://img.shields.io/badge/Swift-3.2.x-orange.svg)]()
+[![Swift Version](https://img.shields.io/badge/Swift-5.0.x-orange.svg)]()
 [![iOS 8+](https://img.shields.io/badge/iOS-9+-EB7943.svg)]()
 
 ## Table of contents
