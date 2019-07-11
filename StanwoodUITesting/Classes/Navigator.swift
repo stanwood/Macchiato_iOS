@@ -202,7 +202,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.buttons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.buttons.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.buttons[key])
                     } else {
@@ -210,7 +210,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.buttons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.buttons.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.buttons[key])
                     } else {
@@ -218,7 +218,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.buttons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.buttons.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.buttons[key])
                     } else {
@@ -233,13 +233,13 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.radioButtons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.radioButtons.element(boundBy: index))
                     } else {
                         return navigate(to: item.successor!, query: nil, element: query!.radioButtons[item.key])
                     }
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.radioButtons.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.radioButtons.element(boundBy: index))
                     } else {
                         return navigate(to: item.successor!, query: nil, element: app!.radioButtons[item.key])
                     }
@@ -254,7 +254,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.tabBars.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.tabBars.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.tabBars[key])
                     } else {
@@ -262,7 +262,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.tabBars.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.tabBars.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.tabBars[key])
                     } else {
@@ -270,7 +270,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.tabBars.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.tabBars.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.tabBars[key])
                     } else {
@@ -285,7 +285,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.tables.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.tables.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.tables[key])
                     } else {
@@ -293,7 +293,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.tables.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.tables.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.tables[key])
                     } else {
@@ -301,7 +301,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.tables.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.tables.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.tables[key])
                     } else {
@@ -316,7 +316,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.tableRows.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.tableRows.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.tableRows[key])
                     } else {
@@ -324,7 +324,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.tableRows.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.tableRows.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.tableRows[key])
                     } else {
@@ -332,7 +332,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.tableRows.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.tableRows.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.tableRows[key])
                     } else {
@@ -347,7 +347,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.collectionViews.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.collectionViews.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.collectionViews[key])
                     } else {
@@ -355,7 +355,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.collectionViews.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.collectionViews.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.collectionViews[key])
                     } else {
@@ -363,7 +363,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.collectionViews.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.collectionViews.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.collectionViews[key])
                     } else {
@@ -377,7 +377,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.navigationBars.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.navigationBars.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.navigationBars[key])
                     } else {
@@ -385,7 +385,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.navigationBars.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.navigationBars.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.navigationBars[key])
                     } else {
@@ -393,7 +393,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.navigationBars.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.navigationBars.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.navigationBars[key])
                     } else {
@@ -407,7 +407,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.images.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.images.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.images[key])
                     } else {
@@ -415,7 +415,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.images.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.images.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.images[key])
                     } else {
@@ -423,7 +423,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.images.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.images.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.images[key])
                     } else {
@@ -439,7 +439,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.cells.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.cells.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.cells[key])
                     } else {
@@ -447,7 +447,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.cells.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.cells.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.cells[key])
                     } else {
@@ -455,7 +455,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.cells.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.cells.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.cells[key])
                     } else {
@@ -469,7 +469,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.tabs.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.tabs.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.tabs[key])
                     } else {
@@ -477,7 +477,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.tabs.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.tabs.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.tabs[key])
                     } else {
@@ -485,7 +485,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.tabs.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.tabs.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.tabs[key])
                     } else {
@@ -499,7 +499,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.textFields.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.textFields.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.textFields[key])
                     } else {
@@ -507,7 +507,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.textFields.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.textFields.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.textFields[key])
                     } else {
@@ -515,7 +515,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.textFields.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.textFields.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.textFields[key])
                     } else {
@@ -529,7 +529,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.secureTextFields.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.secureTextFields.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.secureTextFields[key])
                     } else {
@@ -537,7 +537,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.secureTextFields.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.secureTextFields.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.secureTextFields[key])
                     } else {
@@ -545,7 +545,7 @@ extension UITesting {
                     }
                 case (.none, .none, .some):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: element!.secureTextFields.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: element!.secureTextFields.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: element!.secureTextFields[key])
                     } else {
@@ -559,7 +559,7 @@ extension UITesting {
                 switch (app, query, element) {
                 case (.some, .none, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: app!.alerts.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: app!.alerts.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: app!.alerts[key])
                     } else {
@@ -567,7 +567,7 @@ extension UITesting {
                     }
                 case (.none, .some, .none):
                     if let index = item.index {
-                        return navigate(to: item.successor!, query: nil, element: query!.alerts.element(boundBy: UInt(index)))
+                        return navigate(to: item.successor!, query: nil, element: query!.alerts.element(boundBy: index))
                     } else if let key = item.key {
                         return navigate(to: item.successor!, query: nil, element: query!.alerts[key])
                     } else {
