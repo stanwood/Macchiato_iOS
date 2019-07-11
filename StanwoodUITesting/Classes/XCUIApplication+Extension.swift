@@ -37,7 +37,7 @@ extension XCUIApplication {
         var isInitialCellVisible = true
         
         for i in 0...cells.count {
-            let cell = cells.element(boundBy: UInt(i))
+            let cell = cells.element(boundBy: i)
             if cell.exists, !cell.isHittable {
                 if i == 0 || !isInitialCellVisible {
                     isInitialCellVisible = false

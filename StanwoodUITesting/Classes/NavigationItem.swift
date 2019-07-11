@@ -44,7 +44,7 @@ extension String {
         guard split.contains(UITesting.Key.action) else { throw UITesting.TestError.error(message: "Test Case navigation does not contain an action", id: nil, navigationIndex: nil) }
         
         /// Checking for a valid action
-        if let index = split.index(of: UITesting.Key.action), split.count >= (index + 1) {
+        if let index = split.firstIndex(of: UITesting.Key.action), split.count >= (index + 1) {
             let key = split[index + 1]
             guard let _ = UITesting.Action(rawValue: key) else { throw UITesting.TestError.error(message: "Test Case navigation does not contain a valid action: *\(key)*", id: nil, navigationIndex: nil) }
         }
@@ -126,7 +126,7 @@ extension UITesting {
                     }
                     components = convertedFormat.components(separatedBy: ".").filter({ !$0.isEmpty })
                     
-                    if let index = components.index(of: "type") {
+                    if let index = components.firstIndex(of: "type") {
                         components[index] = components[index] + "\"" + typeText + "\""
                     }
                 } else {
@@ -169,7 +169,7 @@ extension UITesting {
         fileprivate func shouldMonitor(_ components: inout [String]) throws {
             
             // Checking if this navigation should be monitored
-            guard let index = components.index(of: Key.action),
+            guard let index = components.firstIndex(of: Key.action),
                 (components.count - index) == Constants.monitorIndex,
                 let last = components.last else { return }
             
