@@ -254,3 +254,4 @@ To enable screenshots, add Environment Variable into the scheme `Name: SRCROOT, 
 ## Licence
 
 StanwoodUITesting is under MIT Licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Dialog_iOS/blob/master/LICENSE) file for more info.
+
