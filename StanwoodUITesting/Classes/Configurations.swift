@@ -42,17 +42,12 @@ extension UITesting {
         /// Slack Channel ID
         public let slack: Slack?
         
-        public init?(bundleId: String, version: String, app: XCUIApplication, slack: Slack? = nil) {
+        public init?(testsUrl: URL?, bundleIdentifier: String, app: XCUIApplication, slack: Slack? = nil) {
             
-            self.bundleIdentifier = bundleId
+            guard let testsUrl = testsUrl else { XCTFail("incorrect base url"); return nil }
             
-            let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
-            let version: String = version.replacingOccurrences(of: ".", with: "-")
-            let formatedBundle: String = bundleId.replacingOccurrences(of: ".", with: "-")
-            
-            guard let url = URL(string: "ios/\(formatedBundle)/\(version).json", relativeTo: URL(string: baseURLString)) else { XCTFail("incorrect base url"); return nil }
-            
-            self.url = url
+            self.bundleIdentifier = bundleIdentifier
+            self.url = testsUrl
             self.app = app
             self.slack = slack
         }

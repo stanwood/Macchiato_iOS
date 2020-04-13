@@ -20,7 +20,10 @@ class StanwoodTests: XCTestCase {
         continueAfterFailure = false
         
         let slack = UITesting.Slack(webhookURL: URL(string: "webhok")!, channelName: "channel")
-        guard let configurations = UITesting.Configurations(bundleId: "com.company.example", version: "1.0", app: app, slack: slack) else { return }
+        
+        let testsUrl: URL? = URL(string: "https://stanwood-ui-testing.firebaseio.com/com-company-example/1-0.json")
+        
+        guard let configurations = UITesting.Configurations(testsUrl: testsUrl, bundleIdentifier: "com.company.example", app: app, slack: slack) else { XCTFail(); return }
         
         testingManager = UITesting.Manager(configurations: configurations, target: self)
         testingManager.launch()
