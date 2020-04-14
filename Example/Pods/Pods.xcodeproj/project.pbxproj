@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		027D6087ABB5EAE4D81C7A1642362F5E /* TestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B6ADC650E7235756151773165555E /* TestCases.swift */; };
-		13CA36952445CD7400667AC5 /* LoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CA36942445CD7300667AC5 /* LoadingHelper.swift */; };
+		13CA36972445D44700667AC5 /* LoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CA36962445D44700667AC5 /* LoadingHelper.swift */; };
 		1AE4F1DFFE13EEB94BAF2D5650978694 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF5C32701E96674A7A13A935774633 /* TestCase.swift */; };
 		1FF94BA4C1877EBF9B435E7E2CCAB095 /* Pods-StanwoodUITesting_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3694A789DF43766A7807EDB8C077F64C /* Pods-StanwoodUITesting_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		258F01935BECD1377D04318FA1E2111E /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0858516137974DEED94A1CC9C01FFE81 /* Screenshots.swift */; };
@@ -59,7 +59,7 @@
 		0D1FEE7C5BAFA962159473CC40BB617C /* NavigationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationType.swift; path = StanwoodUITesting/Classes/NavigationType.swift; sourceTree = "<group>"; };
 		0EF06284959B3D2260BF4D09B279CA59 /* StanwoodUITesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StanwoodUITesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E5A31140C5F6120DF09F9A80BEA202 /* Pods-StanwoodUITesting_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StanwoodUITesting_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		13CA36942445CD7300667AC5 /* LoadingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingHelper.swift; sourceTree = "<group>"; };
+		13CA36962445D44700667AC5 /* LoadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingHelper.swift; path = StanwoodUITesting/Classes/LoadingHelper.swift; sourceTree = "<group>"; };
 		1FDDD039441FD66681086262907700FA /* StanwoodUITesting.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = StanwoodUITesting.modulemap; sourceTree = "<group>"; };
 		21B3E4E0656B5B1F3BD34D59F2682CD4 /* Pods-StanwoodUITesting_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-StanwoodUITesting_Tests.modulemap"; sourceTree = "<group>"; };
 		2C061463250766C9C05995AB8EE63E66 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -251,11 +251,11 @@
 		D64CC37AB7D391055C2ABC584C082ED8 /* StanwoodUITesting */ = {
 			isa = PBXGroup;
 			children = (
+				13CA36962445D44700667AC5 /* LoadingHelper.swift */,
 				AE83808C50093FD5812758C90093B3CF /* Action.swift */,
 				9BC019FB2E34F36DE177C850DC5DDAD3 /* Configurations.swift */,
 				503AAF775183387463248AE4C8900892 /* Failure.swift */,
 				FF6109DD6960386192E67612AF8C3E6C /* Fetcher.swift */,
-				13CA36942445CD7300667AC5 /* LoadingHelper.swift */,
 				6107AE6073A7526C26E8728449C76284 /* Helper.swift */,
 				3AD830F7E2B27C460E42F464115AA10C /* Manager.swift */,
 				92DFE95763E1678F88DA3F2ADEFDA00D /* NavigationItem.swift */,
@@ -419,7 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13CA36952445CD7400667AC5 /* LoadingHelper.swift in Sources */,
+				13CA36972445D44700667AC5 /* LoadingHelper.swift in Sources */,
 				32E018B224C37C63680D8D51FBF5010C /* Action.swift in Sources */,
 				F2BD0C29234119E31CFEBC333A75B202 /* Configurations.swift in Sources */,
 				A5CF5817C9A463100E9B4D10E4A5019D /* Failure.swift in Sources */,
