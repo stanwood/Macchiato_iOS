@@ -207,20 +207,27 @@ extension UITesting {
             }
             
             /// Posting report
-            configurations.slack?.post(report: report) { [unowned self] in
-                
-                /// Checking if tests passed
-                if !self.report.didPass {
-                    /// Failing the test
-                    XCTFail(self.report.review)
+            if let slack = configurations.slack {
+                slack.post(report: report) { [unowned self] in
+                    self.complete()
                 }
-                
-                self.shouldExecuteTest = true
+            } else {
+                complete()
             }
             
             while !shouldExecuteTest {
                 sleep(1)
             }
+        }
+        
+        private func complete() {
+            /// Checking if tests passed
+            if !self.report.didPass {
+                /// Failing the test
+                XCTFail(self.report.review)
+            }
+            
+            self.shouldExecuteTest = true
         }
         
         // MARK: - Dismiss system alerts
