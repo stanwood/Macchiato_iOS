@@ -99,7 +99,7 @@ extension UITesting {
                     // Setting up JSON STWSchema
                     self.testCases = testCases
                     
-                    if self.testCases?.numberOfItems == 0 {
+                    if testCases == nil || self.testCases?.numberOfItems == 0 {
                         self.report.test(failed: Failure(message: "No test cases"))
                     }
                     
@@ -116,7 +116,7 @@ extension UITesting {
                     // Setting up JSON STWSchema
                     self.testCases = testCases
                     
-                    if self.testCases?.numberOfItems == 0 {
+                    if testCases == nil || self.testCases?.numberOfItems == 0 {
                         self.report.test(failed: Failure(message: "No test cases"))
                     }
                     
