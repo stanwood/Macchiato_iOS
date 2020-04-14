@@ -36,6 +36,20 @@
         
         // MARK: Fetcher - Networking
         
+        class open func loadElement<Element: Decodable>(fromFile url: URL, report: Report, completion: @escaping (_ element: Element?) -> Void) {
+            do {
+                let data = try Data(contentsOf: url)
+                let tests = try JSONDecoder().decode(Element.self, from: data)
+                completion(tests)
+            } catch UITesting.TestError.error(let error) {
+                report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
+                completion(nil)
+            } catch let error {
+                report.test(failed: Failure(testID: nil, navigationID: nil, message: error.localizedDescription))
+                completion(nil)
+            }
+        }
+        
         class open func fetchElement<Element: Decodable>(withUrl url: URL, report: Report, completion: @escaping (_ element: Element?) -> Void) {
             
             URLCache.shared.removeAllCachedResponses()
@@ -69,7 +83,7 @@
                 iconCloseButton.tap()
             }
         }
-
+        
         class open func navigateToDefault(app:XCUIApplication){
             sleep(3)
             app.terminate()
@@ -78,3 +92,5 @@
         }
     }
  }
+ 
+ 

@@ -75,22 +75,8 @@ extension UITesting {
             
             shouldExecuteTest = false
             
-            Helper.fetchElement(withUrl: configurations.url, report: report) {
-                [weak self] (testCases: TestCases?) in
-                guard let `self` = self else { return }
-                
-                // Setting up JSON STWSchema
-                self.testCases = testCases
-                
-                if self.testCases?.numberOfItems == 0 {
-                    self.report.test(failed: Failure(message: "No test cases"))
-                }
-                
-                DispatchQueue.main.async(execute: { [unowned self] in
-                    self.dismiss()
-                    self.shouldExecuteTest = true
-                })
-            }
+            /// Load test cases
+            load()
             
             // Setting device local
             setLanguage(configurations.app)
@@ -101,6 +87,44 @@ extension UITesting {
             
             while !shouldExecuteTest {
                 RunLoop.current.run(mode: .default, before: .distantFuture)
+            }
+        }
+        
+        private func load() {
+            if let url = configurations.url {
+                Helper.fetchElement(withUrl: url, report: report) {
+                    [weak self] (testCases: TestCases?) in
+                    guard let `self` = self else { return }
+                    
+                    // Setting up JSON STWSchema
+                    self.testCases = testCases
+                    
+                    if self.testCases?.numberOfItems == 0 {
+                        self.report.test(failed: Failure(message: "No test cases"))
+                    }
+                    
+                    DispatchQueue.main.async(execute: { [unowned self] in
+                        self.dismiss()
+                        self.shouldExecuteTest = true
+                    })
+                }
+            } else if let filePath = configurations.filePath {
+                Helper.loadElement(fromFile: filePath, report: report) {
+                    [weak self] (testCases: TestCases?) in
+                    guard let `self` = self else { return }
+                    
+                    // Setting up JSON STWSchema
+                    self.testCases = testCases
+                    
+                    if self.testCases?.numberOfItems == 0 {
+                        self.report.test(failed: Failure(message: "No test cases"))
+                    }
+                    
+                    DispatchQueue.main.async(execute: { [unowned self] in
+                        self.dismiss()
+                        self.shouldExecuteTest = true
+                    })
+                }
             }
         }
         

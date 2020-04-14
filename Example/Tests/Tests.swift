@@ -21,10 +21,9 @@ class StanwoodTests: XCTestCase {
         
         let slack = UITesting.Slack(webhookURL: URL(string: "webhok")!, channelName: "channel")
         
-        let testsUrl: URL? = URL(string: "https://stanwood-ui-testing.firebaseio.com/com-company-example/1-0.json")
+        guard let path = Bundle(for: type(of: self)).url(forResource: "tests", withExtension: "json") else { XCTFail(); return }
         
-        guard let configurations = UITesting.Configurations(testsUrl: testsUrl, bundleIdentifier: "com.company.example", app: app, slack: slack) else { XCTFail(); return }
-        
+        let configurations = UITesting.Configurations(contentsOfFile: path, bundleIdentifier: "com.company.example", app: app, slack: slack)
         testingManager = UITesting.Manager(configurations: configurations, target: self)
         testingManager.launch()
     }

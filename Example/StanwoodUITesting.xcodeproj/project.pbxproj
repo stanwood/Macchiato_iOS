@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09063D52DA7E46ECAFCF75F1 /* Pods_StanwoodUITesting_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED0F8D06833C945DEC1DF07 /* Pods_StanwoodUITesting_Example.framework */; };
+		13CA369124459A1D00667AC5 /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 13CA369024459A1D00667AC5 /* tests.json */; };
 		13D24D5920CDCA6700748EC0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5120CDCA6700748EC0 /* TableViewController.swift */; };
 		13D24D5A20CDCA6700748EC0 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5220CDCA6700748EC0 /* TextViewController.swift */; };
 		13D24D5B20CDCA6700748EC0 /* BackgroundCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5320CDCA6700748EC0 /* BackgroundCelll.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		0DB65A61067209E9D1EC57C6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0E4ACBAE5E71914788668C4D /* Pods-StanwoodUITesting_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodUITesting_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodUITesting_Example/Pods-StanwoodUITesting_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		13CA369024459A1D00667AC5 /* tests.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tests.json; sourceTree = "<group>"; };
 		13D24D5120CDCA6700748EC0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		13D24D5220CDCA6700748EC0 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		13D24D5320CDCA6700748EC0 /* BackgroundCelll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundCelll.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
+				13CA369024459A1D00667AC5 /* tests.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				13D24D6020CDCA6700748EC0 /* BackgroundCelll.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				13CA369124459A1D00667AC5 /* tests.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

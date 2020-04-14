@@ -31,7 +31,8 @@ extension UITesting {
     public struct Configurations {
         
         /// JSON URL
-        let url:URL
+        let url:URL?
+        let filePath: URL?
         
         /// Current running XCApplication
         let app: XCUIApplication
@@ -42,12 +43,20 @@ extension UITesting {
         /// Slack Channel ID
         public let slack: Slack?
         
-        public init?(testsUrl: URL?, bundleIdentifier: String, app: XCUIApplication, slack: Slack? = nil) {
-            
-            guard let testsUrl = testsUrl else { XCTFail("incorrect base url"); return nil }
+        public init(contentsOfURL url: URL, bundleIdentifier: String, app: XCUIApplication, slack: Slack? = nil) {
             
             self.bundleIdentifier = bundleIdentifier
-            self.url = testsUrl
+            self.url = url
+            self.filePath = nil
+            self.app = app
+            self.slack = slack
+        }
+        
+        public init(contentsOfFile url: URL?, bundleIdentifier: String, app: XCUIApplication, slack: Slack? = nil) {
+            
+            self.bundleIdentifier = bundleIdentifier
+            self.filePath = url
+            self.url = nil
             self.app = app
             self.slack = slack
         }
