@@ -32,15 +32,19 @@ extension UITesting {
         
         private let report: Report
         private let screenshots: Screenshots
-        
-        init(report: Report, screenshots: Screenshots) {
+        private let loadingHelper: UITesting.LoadingHelper
+        init(report: Report, screenshots: Screenshots, loadingHelper: UITesting.LoadingHelper) {
             self.report = report
             self.screenshots = screenshots
+            self.loadingHelper = loadingHelper
         }
         
         // MARK: - Navigation Actions
         
         fileprivate func action(withItem item: NavigationItem, element: XCUIElement?) -> (pass: Bool, failiurMessage: String) {
+            
+            sleep(item.wait)
+            
             switch item.action! {
             case .tap:
                 /// MARK: Tap Action

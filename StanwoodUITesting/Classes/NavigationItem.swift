@@ -93,6 +93,7 @@ extension UITesting {
         public var action: Action?
         public var sequence: Int!
         public var shouldMonitor: Bool = false
+        public var wait: UInt32 = 1
         
         public init(format: String) throws {
             do {

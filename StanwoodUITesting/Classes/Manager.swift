@@ -55,15 +55,16 @@ extension UITesting {
         private let report: Report
         private let navigator: Navigator
         private let screenshots: Screenshots
+        private let loadingHelper: UITesting.LoadingHelper
         
         public init(configurations: Configurations, target: XCTestCase) {
             self.target = target
             self.configurations = configurations
             self.configurations.app.setupAndLaunch()
-            
+            self.loadingHelper = LoadingHelper(app: configurations.app)
             self.report = Report(bundleId: configurations.bundleIdentifier)
-            self.screenshots = Screenshots(app: configurations.app)
-            self.navigator = Navigator(report: report, screenshots: screenshots)
+            self.screenshots = Screenshots(app: configurations.app, loadingHelper: loadingHelper)
+            self.navigator = Navigator(report: report, screenshots: screenshots, loadingHelper: loadingHelper)
         }
         
         ///
