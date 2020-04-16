@@ -581,6 +581,11 @@ extension UITesting {
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
+            case .segmentedControl:
+            report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+            case .segmentedControls:
+            report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+            break
             case .checkBox:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
@@ -642,10 +647,6 @@ extension UITesting {
                 break
                 
             case .activityIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
-                
-            case .segmentedControl:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
             case .tabGroups:

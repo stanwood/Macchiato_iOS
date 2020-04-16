@@ -104,6 +104,8 @@ extension UITesting {
         
         case segmentedControl
         
+        case segmentedControls
+        
         case picker
         
         case pickerWheel
