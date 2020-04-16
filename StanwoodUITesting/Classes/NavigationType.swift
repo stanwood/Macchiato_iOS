@@ -102,8 +102,6 @@ extension UITesting {
         
         case activityIndicator
         
-        case segmentedControl
-        
         case segmentedControls
         
         case picker
