@@ -50,8 +50,10 @@ class Screenshots  {
         
         do {
             
-            let screenshotsDirectory = try homeDirectory()?.appendingPathComponent(folder, isDirectory: true)
-            guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
+            let directory = try homeDirectory()
+            let screenshotsDir = directory.appendingPathComponent(folder, isDirectory: true)
+            
+            guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"] else { return }
             
             if shouldClearPreviousScreenshots {
                 if let contents = try? FileManager.default.contentsOfDirectory(at: screenshotsDir, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
@@ -92,14 +94,17 @@ class Screenshots  {
         screenshots.append(screenshot)
     }
     
-    private func homeDirectory() throws -> URL? {
+    private func homeDirectory() throws -> URL {
         guard let simulatorHostHome = ProcessInfo.processInfo.environment["SRCROOT"] else {
             throw UITesting.TestError.error(message: "Couldn't find project source location. Please check *SRCROOT* env variable or follow the docs for more information", id: nil, navigationIndex: nil)
         }
-        guard let homeDirUrl = URL(string: simulatorHostHome) else {
-            return nil
-        }
         
-        return URL(fileURLWithPath: homeDirUrl.path)
+        let host = simulatorHostHome.replacingOccurrences(of: " ", with: "%20")
+        guard let homeDirUrl = URL(string: host) else {
+            throw UITesting.TestError.error(message: "Failed to create an instance of URL for path: \(simulatorHostHome)", id: nil, navigationIndex: nil)
+        }
+
+        let path = URL(fileURLWithPath: homeDirUrl.path)
+        return path
     }
 }
