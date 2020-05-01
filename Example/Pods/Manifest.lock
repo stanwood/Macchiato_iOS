@@ -1,16 +1,16 @@
 PODS:
-  - StanwoodUITesting (0.5)
+  - Macchiato (0.5)
 
 DEPENDENCIES:
-  - StanwoodUITesting (from `../`)
+  - Macchiato (from `../`)
 
 EXTERNAL SOURCES:
-  StanwoodUITesting:
+  Macchiato:
     :path: "../"
 
 SPEC CHECKSUMS:
-  StanwoodUITesting: e36f83d868ab22c1b0651ef39b363001a7a1a3be
+  Macchiato: cf746b553d061aadbce24ca6cc4295e50fae0710
 
-PODFILE CHECKSUM: f9fd06e51fe1af693e8cf6dd715aa02a0406d4e4
+PODFILE CHECKSUM: 676302a4e2d1cf9acda0135d3d651c9819420a8f
 
 COCOAPODS: 1.9.1

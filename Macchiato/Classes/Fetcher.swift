@@ -27,7 +27,7 @@ typealias DataResponse = (_ data: Data?, _ response: HTTPURLResponse?, _ error: 
 
 import Foundation
 
-extension UITesting {
+extension Macchiato {
     
     enum HTTPMethods:String {
         case GET

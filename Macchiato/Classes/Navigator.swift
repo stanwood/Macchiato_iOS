@@ -26,14 +26,14 @@
 import Foundation
 import XCTest
 
-extension UITesting {
+extension Macchiato {
     
     class Navigator {
         
         private let report: Report
         private let screenshots: Screenshots
-        private let loadingHelper: UITesting.LoadingHelper
-        init(report: Report, screenshots: Screenshots, loadingHelper: UITesting.LoadingHelper) {
+        private let loadingHelper: Macchiato.LoadingHelper
+        init(report: Report, screenshots: Screenshots, loadingHelper: Macchiato.LoadingHelper) {
             self.report = report
             self.screenshots = screenshots
             self.loadingHelper = loadingHelper

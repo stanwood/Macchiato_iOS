@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension UITesting {
+extension Macchiato {
     public struct Slack {
         
         /// Constants

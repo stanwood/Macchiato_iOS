@@ -36,9 +36,9 @@ class Screenshots  {
     private let folder: String = "uitesting_screenshots"
     private var screenshots: [Screenshot] = []
     private var app: XCUIApplication
-    private let loadingHelper: UITesting.LoadingHelper
+    private let loadingHelper: Macchiato.LoadingHelper
     
-    init(app: XCUIApplication, loadingHelper: UITesting.LoadingHelper) {
+    init(app: XCUIApplication, loadingHelper: Macchiato.LoadingHelper) {
         self.app = app
         self.loadingHelper = loadingHelper
     }
@@ -96,12 +96,12 @@ class Screenshots  {
     
     private func homeDirectory() throws -> URL {
         guard let simulatorHostHome = ProcessInfo.processInfo.environment["SRCROOT"] else {
-            throw UITesting.TestError.error(message: "Couldn't find project source location. Please check *SRCROOT* env variable or follow the docs for more information", id: nil, navigationIndex: nil)
+            throw Macchiato.TestError.error(message: "Couldn't find project source location. Please check *SRCROOT* env variable or follow the docs for more information", id: nil, navigationIndex: nil)
         }
         
         let host = simulatorHostHome.replacingOccurrences(of: " ", with: "%20")
         guard let homeDirUrl = URL(string: host) else {
-            throw UITesting.TestError.error(message: "Failed to create an instance of URL for path: \(simulatorHostHome)", id: nil, navigationIndex: nil)
+            throw Macchiato.TestError.error(message: "Failed to create an instance of URL for path: \(simulatorHostHome)", id: nil, navigationIndex: nil)
         }
 
         let path = URL(fileURLWithPath: homeDirUrl.path)

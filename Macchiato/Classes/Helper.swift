@@ -30,7 +30,7 @@
  
  typealias Completion = () -> Void
  
- extension UITesting {
+ extension Macchiato {
     
     class Helper {
         
@@ -41,7 +41,7 @@
                 let data = try Data(contentsOf: url)
                 let tests = try JSONDecoder().decode(Element.self, from: data)
                 completion(tests)
-            } catch UITesting.TestError.error(let error) {
+            } catch Macchiato.TestError.error(let error) {
                 report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
                 completion(nil)
             } catch let error {
@@ -60,7 +60,7 @@
                     do {
                         let tests = try JSONDecoder().decode(Element.self, from: data)
                         completion(tests)
-                    } catch UITesting.TestError.error(let error) {
+                    } catch Macchiato.TestError.error(let error) {
                         report.test(failed: Failure(testID: error.id, navigationID: error.navigationIndex, message: error.message))
                         completion(nil)
                     } catch let error {

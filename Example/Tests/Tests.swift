@@ -7,24 +7,24 @@
 //
 
 import XCTest
-import StanwoodUITesting
+import Macchiato
 
 class StanwoodTests: XCTestCase {
     
     let app = XCUIApplication()
-    var testingManager: UITesting.Manager!
+    var testingManager: Macchiato.Manager!
     
     override func setUp() {
         super.setUp()
         
         continueAfterFailure = false
         
-        let slack = UITesting.Slack(webhookURL: URL(string: "webhok")!, channelName: "channel")
+        let slack = Macchiato.Slack(webhookURL: URL(string: "webhok")!, channelName: "channel")
         
         guard let path = Bundle(for: type(of: self)).url(forResource: "tests", withExtension: "json") else { XCTFail(); return }
         
-        let configurations = UITesting.Configurations(contentsOfFile: path, bundleIdentifier: "com.company.example", app: app, slack: slack)
-        testingManager = UITesting.Manager(configurations: configurations, target: self)
+        let configurations = Macchiato.Configurations(contentsOfFile: path, bundleIdentifier: "com.company.example", app: app, slack: slack)
+        testingManager = Macchiato.Manager(configurations: configurations, target: self)
         testingManager.launch()
     }
     

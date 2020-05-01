@@ -26,7 +26,7 @@
 import Foundation
 import XCTest
 
-extension UITesting {
+extension Macchiato {
     
     public struct Configurations {
         

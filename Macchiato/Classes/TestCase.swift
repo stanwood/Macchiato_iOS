@@ -36,7 +36,7 @@
     }
  }
  
- extension UITesting {
+ extension Macchiato {
     
     public struct TestCase: Codable {
         
@@ -74,7 +74,7 @@
                     do {
                         let navigationItem = try NavigationItem(format: itemFormat)
                         self.navigationItems.append(navigationItem)
-                    } catch UITesting.TestError.error(let m) {
+                    } catch Macchiato.TestError.error(let m) {
                         throw TestError.error(message: m.message, id: id, navigationIndex: index)
                     }
                 }
@@ -114,7 +114,7 @@
                     do {
                         let navigationItem = try NavigationItem(format: itemFormat)
                         self.navigationItems.append(navigationItem)
-                    } catch UITesting.TestError.error(let m) {
+                    } catch Macchiato.TestError.error(let m) {
                         throw TestError.error(message: m.message, id: id, navigationIndex: index)
                     }
                 }

@@ -36,9 +36,9 @@ public enum ToolError: Error {
     case error(String)
 }
 
-public struct UITesting {}
+public struct Macchiato {}
 
-extension UITesting {
+extension Macchiato {
     
     open class Manager {
         
@@ -55,7 +55,7 @@ extension UITesting {
         private let report: Report
         private let navigator: Navigator
         private let screenshots: Screenshots
-        private let loadingHelper: UITesting.LoadingHelper
+        private let loadingHelper: Macchiato.LoadingHelper
         
         public init(configurations: Configurations, target: XCTestCase) {
             self.target = target
@@ -134,7 +134,7 @@ extension UITesting {
         ///
         open func runTests() {
             guard let testCases = testCases else {
-                report.test(failed: UITesting.Failure(message: "No test cases. Please check you test case schema for issues!"))
+                report.test(failed: Macchiato.Failure(message: "No test cases. Please check you test case schema for issues!"))
                 finalise()
                 return
             }
@@ -201,8 +201,8 @@ extension UITesting {
             /// Saving screenshots to file
             do {
                 try screenshots.save(shouldClearPreviousScreenshots: testCases?.shouldClearPreviousScreenshots ?? false)
-            } catch UITesting.TestError.error(let error) {
-                report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error.message)"))
+            } catch Macchiato.TestError.error(let error) {
+                report.test(failed: Macchiato.Failure(message: "System error saving screenshots to file: \(error.message)"))
             } catch {
                 print(error)
             }

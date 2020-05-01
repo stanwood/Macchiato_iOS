@@ -1,9 +1,9 @@
 use_frameworks!
 
-target 'StanwoodUITesting_Example' do
-  pod 'StanwoodUITesting', :path => '../'
+target 'Macchiato_Example' do
+  pod 'Macchiato', :path => '../'
 
-  target 'StanwoodUITesting_Tests' do
+  target 'Macchiato_Tests' do
     inherit! :search_paths
 
     

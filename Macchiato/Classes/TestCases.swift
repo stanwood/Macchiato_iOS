@@ -1,5 +1,5 @@
 //
-//  Failure.swift
+//  TestCases.swift
 //
 //  The MIT License (MIT)
 //
@@ -22,26 +22,38 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-
 import Foundation
 
-extension UITesting {
-    
-    struct Failure {
-        let testID: String?
-        let navigationID:Int?
-        let errorMessage:String
+extension Macchiato {
+    class TestCases: Codable {
         
-        init(testID: String?, navigationID: Int?, message: String) {
-            self.testID = testID
-            self.navigationID = navigationID
-            self.errorMessage = message
+        enum CodingKeys: String, CodingKey {
+            case items = "test_cases"
+            case shouldClearPreviousScreenshots = "clear_previous_screenshots"
+            case isAutoScreenshots = "auto_screenshots"
+            case initialSleepTime = "initial_sleep_time"
         }
         
-        init(message: String) {
-            errorMessage = message
-            testID = nil
-            navigationID = nil
+        var items: [TestCase] = []
+        var shouldClearPreviousScreenshots: Bool? = false
+        var isAutoScreenshots: Bool? = false
+        var initialSleepTime: UInt32?
+        
+        var numberOfItems: Int {
+            return items.count
+        }
+        
+        subscript(index: Int) -> TestCase {
+            return items[index]
+        }
+        
+        func removeAll() {
+            items.removeAll()
+        }
+        
+        func append(_ items: [TestCase]) {
+            self.items.append(contentsOf: items)
         }
     }
+    
 }

@@ -1,5 +1,5 @@
 //
-//  TestError.swift
+//  Failure.swift
 //
 //  The MIT License (MIT)
 //
@@ -25,9 +25,23 @@
 
 import Foundation
 
-extension UITesting {
-    public enum TestError: Error {
-        case error(message: String, id: String?, navigationIndex: Int?)
+extension Macchiato {
+    
+    struct Failure {
+        let testID: String?
+        let navigationID:Int?
+        let errorMessage:String
+        
+        init(testID: String?, navigationID: Int?, message: String) {
+            self.testID = testID
+            self.navigationID = navigationID
+            self.errorMessage = message
+        }
+        
+        init(message: String) {
+            errorMessage = message
+            testID = nil
+            navigationID = nil
+        }
     }
 }
-

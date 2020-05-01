@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-extension UITesting {
+extension Macchiato {
     class LoadingHelper {
         
         let app: XCUIApplication
