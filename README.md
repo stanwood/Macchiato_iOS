@@ -3,7 +3,7 @@
 
 [![Swift Version](https://img.shields.io/badge/Swift-5.0.x-orange.svg)]()
 [![iOS 8+](https://img.shields.io/badge/iOS-9+-EB7943.svg)]()
-[![Build Status](https://travis-ci.org/stanwood/StanwoodUITesting_iOS.svg?branch=master)](https://travis-ci.org/stanwood/StanwoodUITesting_iOS)
+[![Build Status](https://travis-ci.org/stanwood/Macchiato_iOS.svg?branch=master)](https://travis-ci.org/stanwood/Macchiato_iOS)
 
 ## Table of contents
 
