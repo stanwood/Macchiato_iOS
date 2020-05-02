@@ -29,6 +29,7 @@ extension XCUIApplication {
     
     func setupAndLaunch() {
         launchEnvironment["DISABLE_ANIMATION"] = "1"
+        launchArguments.append("-UITESTING")
         launch()
     }
     

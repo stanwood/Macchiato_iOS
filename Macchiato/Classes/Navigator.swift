@@ -26,21 +26,25 @@
 import Foundation
 import XCTest
 
-extension UITesting {
+extension Macchiato {
     
     class Navigator {
         
         private let report: Report
         private let screenshots: Screenshots
-        
-        init(report: Report, screenshots: Screenshots) {
+        private let loadingHelper: Macchiato.LoadingHelper
+        init(report: Report, screenshots: Screenshots, loadingHelper: Macchiato.LoadingHelper) {
             self.report = report
             self.screenshots = screenshots
+            self.loadingHelper = loadingHelper
         }
         
         // MARK: - Navigation Actions
         
         fileprivate func action(withItem item: NavigationItem, element: XCUIElement?) -> (pass: Bool, failiurMessage: String) {
+            
+            sleep(item.wait)
+            
             switch item.action! {
             case .tap:
                 /// MARK: Tap Action
@@ -577,6 +581,28 @@ extension UITesting {
                     report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                     break
                 }
+            case .segmentedControls:
+                switch (app, query, element) {
+                case (.some, .none, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: app!.segmentedControls.element(boundBy: index))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: app!.segmentedControls[key])
+                    } else {
+                        return navigate(to: item.successor!, query: app!.segmentedControls, element: nil)
+                    }
+                case (.none, .some, .none):
+                    if let index = item.index {
+                        return navigate(to: item.successor!, query: nil, element: query!.segmentedControls.element(boundBy: index))
+                    } else if let key = item.key {
+                        return navigate(to: item.successor!, query: nil, element: query!.segmentedControls[key])
+                    } else {
+                        return navigate(to: item.successor!, query: query!.segmentedControls, element: nil)
+                    }
+                default:
+                    report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
+                    break
+                }
             case .checkBox:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
@@ -638,10 +664,6 @@ extension UITesting {
                 break
                 
             case .activityIndicator:
-                report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
-                break
-                
-            case .segmentedControl:
                 report.test(failed: Failure(message: "Incomplete Implementation. Please file for a feature request to add *\(type)* to StanwoodUITesting"))
                 break
             case .tabGroups:

@@ -41,12 +41,12 @@ extension String {
         let split = self.components(separatedBy: ".")
         
         /// Checcking STWSchema for action
-        guard split.contains(UITesting.Key.action) else { throw UITesting.TestError.error(message: "Test Case navigation does not contain an action", id: nil, navigationIndex: nil) }
+        guard split.contains(Macchiato.Key.action) else { throw Macchiato.TestError.error(message: "Test Case navigation does not contain an action", id: nil, navigationIndex: nil) }
         
         /// Checking for a valid action
-        if let index = split.firstIndex(of: UITesting.Key.action), split.count >= (index + 1) {
+        if let index = split.firstIndex(of: Macchiato.Key.action), split.count >= (index + 1) {
             let key = split[index + 1]
-            guard let _ = UITesting.Action(rawValue: key) else { throw UITesting.TestError.error(message: "Test Case navigation does not contain a valid action: *\(key)*", id: nil, navigationIndex: nil) }
+            guard let _ = Macchiato.Action(rawValue: key) else { throw Macchiato.TestError.error(message: "Test Case navigation does not contain a valid action: *\(key)*", id: nil, navigationIndex: nil) }
         }
     }
     
@@ -55,7 +55,7 @@ extension String {
     }
 }
 
-extension UITesting {
+extension Macchiato {
     
     struct Key {
         static let action = "action"
@@ -93,6 +93,7 @@ extension UITesting {
         public var action: Action?
         public var sequence: Int!
         public var shouldMonitor: Bool = false
+        public var wait: UInt32 = 1
         
         public init(format: String) throws {
             do {
@@ -157,7 +158,7 @@ extension UITesting {
             /// Transformaing format to a STWSchema
             do {
                 try transform(components: components)
-            } catch let error as UITesting.TestError {
+            } catch let error as Macchiato.TestError {
                 throw error
             } catch {
                 throw error
@@ -202,7 +203,7 @@ extension UITesting {
             if let successorDictionary = test[Key.successor] as? [AnyHashable:Any] {
                 do {
                     self.successor = try NavigationItem(dictionary: successorDictionary)
-                } catch UITesting.TestError.error(let error) {
+                } catch Macchiato.TestError.error(let error) {
                     throw TestError.error(message: error.message, id: error.id, navigationIndex: error.navigationIndex)
                 }
             }

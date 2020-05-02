@@ -36,9 +36,9 @@ public enum ToolError: Error {
     case error(String)
 }
 
-public struct UITesting {}
+public struct Macchiato {}
 
-extension UITesting {
+extension Macchiato {
     
     open class Manager {
         
@@ -55,15 +55,16 @@ extension UITesting {
         private let report: Report
         private let navigator: Navigator
         private let screenshots: Screenshots
+        private let loadingHelper: Macchiato.LoadingHelper
         
         public init(configurations: Configurations, target: XCTestCase) {
             self.target = target
             self.configurations = configurations
             self.configurations.app.setupAndLaunch()
-            
+            self.loadingHelper = LoadingHelper(app: configurations.app)
             self.report = Report(bundleId: configurations.bundleIdentifier)
-            self.screenshots = Screenshots(app: configurations.app)
-            self.navigator = Navigator(report: report, screenshots: screenshots)
+            self.screenshots = Screenshots(app: configurations.app, loadingHelper: loadingHelper)
+            self.navigator = Navigator(report: report, screenshots: screenshots, loadingHelper: loadingHelper)
         }
         
         ///
@@ -75,22 +76,8 @@ extension UITesting {
             
             shouldExecuteTest = false
             
-            Helper.fetchElement(withUrl: configurations.url, report: report) {
-                [weak self] (testCases: TestCases?) in
-                guard let `self` = self else { return }
-                
-                // Setting up JSON STWSchema
-                self.testCases = testCases
-                
-                if self.testCases?.numberOfItems == 0 {
-                    self.report.test(failed: Failure(message: "No test cases"))
-                }
-                
-                DispatchQueue.main.async(execute: { [unowned self] in
-                    self.dismiss()
-                    self.shouldExecuteTest = true
-                })
-            }
+            /// Load test cases
+            load()
             
             // Setting device local
             setLanguage(configurations.app)
@@ -104,12 +91,50 @@ extension UITesting {
             }
         }
         
+        private func load() {
+            if let url = configurations.url {
+                Helper.fetchElement(withUrl: url, report: report) {
+                    [weak self] (testCases: TestCases?) in
+                    guard let `self` = self else { return }
+                    
+                    // Setting up JSON STWSchema
+                    self.testCases = testCases
+                    
+                    if testCases == nil || self.testCases?.numberOfItems == 0 {
+                        self.report.test(failed: Failure(message: "No test cases"))
+                    }
+                    
+                    DispatchQueue.main.async(execute: { [unowned self] in
+                        self.dismiss()
+                        self.shouldExecuteTest = true
+                    })
+                }
+            } else if let filePath = configurations.filePath {
+                Helper.loadElement(fromFile: filePath, report: report) {
+                    [weak self] (testCases: TestCases?) in
+                    guard let `self` = self else { return }
+                    
+                    // Setting up JSON STWSchema
+                    self.testCases = testCases
+                    
+                    if testCases == nil || self.testCases?.numberOfItems == 0 {
+                        self.report.test(failed: Failure(message: "No test cases"))
+                    }
+                    
+                    DispatchQueue.main.async(execute: { [unowned self] in
+                        self.dismiss()
+                        self.shouldExecuteTest = true
+                    })
+                }
+            }
+        }
+        
         ///
         /// Run tests
         ///
         open func runTests() {
             guard let testCases = testCases else {
-                report.test(failed: UITesting.Failure(message: "No test cases. Please check you test case schema for issues!"))
+                report.test(failed: Macchiato.Failure(message: "No test cases. Please check you test case schema for issues!"))
                 finalise()
                 return
             }
@@ -176,27 +201,34 @@ extension UITesting {
             /// Saving screenshots to file
             do {
                 try screenshots.save(shouldClearPreviousScreenshots: testCases?.shouldClearPreviousScreenshots ?? false)
-            } catch UITesting.TestError.error(let error) {
-                report.test(failed: UITesting.Failure(message: "System error saving screenshots to file: \(error.message)"))
+            } catch Macchiato.TestError.error(let error) {
+                report.test(failed: Macchiato.Failure(message: "System error saving screenshots to file: \(error.message)"))
             } catch {
                 print(error)
             }
             
             /// Posting report
-            configurations.slack?.post(report: report) { [unowned self] in
-                
-                /// Checking if tests passed
-                if !self.report.didPass {
-                    /// Failing the test
-                    XCTFail(self.report.review)
+            if let slack = configurations.slack {
+                slack.post(report: report) { [unowned self] in
+                    self.complete()
                 }
-                
-                self.shouldExecuteTest = true
+            } else {
+                complete()
             }
             
             while !shouldExecuteTest {
                 sleep(1)
             }
+        }
+        
+        private func complete() {
+            /// Checking if tests passed
+            if !self.report.didPass {
+                /// Failing the test
+                XCTFail(self.report.review)
+            }
+            
+            self.shouldExecuteTest = true
         }
         
         // MARK: - Dismiss system alerts

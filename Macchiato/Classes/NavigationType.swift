@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension UITesting {
+extension Macchiato {
     
     public enum NavigationType: String, Codable {
         case action
@@ -102,7 +102,7 @@ extension UITesting {
         
         case activityIndicator
         
-        case segmentedControl
+        case segmentedControls
         
         case picker
         

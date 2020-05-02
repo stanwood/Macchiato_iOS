@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09063D52DA7E46ECAFCF75F1 /* Pods_StanwoodUITesting_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED0F8D06833C945DEC1DF07 /* Pods_StanwoodUITesting_Example.framework */; };
+		13CA369124459A1D00667AC5 /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 13CA369024459A1D00667AC5 /* tests.json */; };
 		13D24D5920CDCA6700748EC0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5120CDCA6700748EC0 /* TableViewController.swift */; };
 		13D24D5A20CDCA6700748EC0 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5220CDCA6700748EC0 /* TextViewController.swift */; };
 		13D24D5B20CDCA6700748EC0 /* BackgroundCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5320CDCA6700748EC0 /* BackgroundCelll.swift */; };
@@ -17,12 +17,13 @@
 		13D24D5F20CDCA6700748EC0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13D24D5720CDCA6700748EC0 /* InfoPlist.strings */; };
 		13D24D6020CDCA6700748EC0 /* BackgroundCelll.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D24D5820CDCA6700748EC0 /* BackgroundCelll.xib */; };
 		13D24D6320CDCC7000748EC0 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D6220CDCC7000748EC0 /* Tests.swift */; };
+		3DA0CB1843436349E3CA75C4 /* Pods_Macchiato_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408D9A62E0AA65AEEF237B69 /* Pods_Macchiato_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		A0EAAC1D9B519C3AF5BB9011 /* Pods_StanwoodUITesting_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F781290CFD68C6EA8860998 /* Pods_StanwoodUITesting_Tests.framework */; };
+		D318E45B36458916F1F16BF9 /* Pods_Macchiato_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD8CF9F19541A04122CDD53 /* Pods_Macchiato_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		0DB65A61067209E9D1EC57C6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0E4ACBAE5E71914788668C4D /* Pods-StanwoodUITesting_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodUITesting_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodUITesting_Example/Pods-StanwoodUITesting_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		13CA369024459A1D00667AC5 /* tests.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tests.json; sourceTree = "<group>"; };
 		13D24D5120CDCA6700748EC0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		13D24D5220CDCA6700748EC0 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		13D24D5320CDCA6700748EC0 /* BackgroundCelll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundCelll.swift; sourceTree = "<group>"; };
@@ -48,20 +50,24 @@
 		13D24D5820CDCA6700748EC0 /* BackgroundCelll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundCelll.xib; sourceTree = "<group>"; };
 		13D24D6120CDCC7000748EC0 /* StanwoodUITesting_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StanwoodUITesting_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		13D24D6220CDCC7000748EC0 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		1F2EAD600BA2A58D2C41C09D /* Pods-Macchiato_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Macchiato_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Macchiato_Example/Pods-Macchiato_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		259D9470621176624373CF5C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		2C4377EE8ACC08567D272802 /* StanwoodUITesting.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = StanwoodUITesting.podspec; path = ../StanwoodUITesting.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2C4377EE8ACC08567D272802 /* Macchiato.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Macchiato.podspec; path = ../Macchiato.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3580725BCE72D2682F73D6A6 /* Pods-StanwoodUITesting_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodUITesting_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodUITesting_Tests/Pods-StanwoodUITesting_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		607FACD01AFB9204008FA782 /* StanwoodUITesting_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StanwoodUITesting_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		408D9A62E0AA65AEEF237B69 /* Pods_Macchiato_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Macchiato_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Macchiato_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Macchiato_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACE51AFB9204008FA782 /* StanwoodUITesting_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StanwoodUITesting_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* Macchiato_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Macchiato_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8ED0F8D06833C945DEC1DF07 /* Pods_StanwoodUITesting_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StanwoodUITesting_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F781290CFD68C6EA8860998 /* Pods_StanwoodUITesting_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StanwoodUITesting_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BD8CF9F19541A04122CDD53 /* Pods_Macchiato_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Macchiato_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		754842516735BCC392E75A0B /* Pods-Macchiato_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Macchiato_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Macchiato_Tests/Pods-Macchiato_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AE8FCEF3AB555184EFE91FE5 /* Pods-Macchiato_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Macchiato_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Macchiato_Example/Pods-Macchiato_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B0C65FC10339CD551AE2ABB1 /* Pods-Macchiato_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Macchiato_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Macchiato_Tests/Pods-Macchiato_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA432F742211950B8AAF95EB /* Pods-StanwoodUITesting_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodUITesting_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodUITesting_Example/Pods-StanwoodUITesting_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E10206D07FE0CFDAAF079D85 /* Pods-StanwoodUITesting_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodUITesting_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodUITesting_Tests/Pods-StanwoodUITesting_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09063D52DA7E46ECAFCF75F1 /* Pods_StanwoodUITesting_Example.framework in Frameworks */,
+				3DA0CB1843436349E3CA75C4 /* Pods_Macchiato_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0EAAC1D9B519C3AF5BB9011 /* Pods_StanwoodUITesting_Tests.framework in Frameworks */,
+				D318E45B36458916F1F16BF9 /* Pods_Macchiato_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +99,10 @@
 				BA432F742211950B8AAF95EB /* Pods-StanwoodUITesting_Example.release.xcconfig */,
 				3580725BCE72D2682F73D6A6 /* Pods-StanwoodUITesting_Tests.debug.xcconfig */,
 				E10206D07FE0CFDAAF079D85 /* Pods-StanwoodUITesting_Tests.release.xcconfig */,
+				1F2EAD600BA2A58D2C41C09D /* Pods-Macchiato_Example.debug.xcconfig */,
+				AE8FCEF3AB555184EFE91FE5 /* Pods-Macchiato_Example.release.xcconfig */,
+				B0C65FC10339CD551AE2ABB1 /* Pods-Macchiato_Tests.debug.xcconfig */,
+				754842516735BCC392E75A0B /* Pods-Macchiato_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -112,8 +122,8 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* StanwoodUITesting_Example.app */,
-				607FACE51AFB9204008FA782 /* StanwoodUITesting_Tests.xctest */,
+				607FACD01AFB9204008FA782 /* Macchiato_Example.app */,
+				607FACE51AFB9204008FA782 /* Macchiato_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,7 +147,7 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for StanwoodUITesting";
-			path = StanwoodUITesting;
+			path = Macchiato;
 			sourceTree = "<group>";
 		};
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
@@ -162,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
+				13CA369024459A1D00667AC5 /* tests.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -169,7 +180,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				2C4377EE8ACC08567D272802 /* StanwoodUITesting.podspec */,
+				2C4377EE8ACC08567D272802 /* Macchiato.podspec */,
 				0DB65A61067209E9D1EC57C6 /* README.md */,
 				259D9470621176624373CF5C /* LICENSE */,
 			);
@@ -179,8 +190,8 @@
 		B3A3FEA2414C9EC01FE275C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8ED0F8D06833C945DEC1DF07 /* Pods_StanwoodUITesting_Example.framework */,
-				9F781290CFD68C6EA8860998 /* Pods_StanwoodUITesting_Tests.framework */,
+				408D9A62E0AA65AEEF237B69 /* Pods_Macchiato_Example.framework */,
+				6BD8CF9F19541A04122CDD53 /* Pods_Macchiato_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* StanwoodUITesting_Example */ = {
+		607FACCF1AFB9204008FA782 /* Macchiato_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodUITesting_Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Macchiato_Example" */;
 			buildPhases = (
 				F16E343C674D8DD8D59B02D6 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
@@ -202,14 +213,14 @@
 			);
 			dependencies = (
 			);
-			name = StanwoodUITesting_Example;
+			name = Macchiato_Example;
 			productName = StanwoodUITesting;
-			productReference = 607FACD01AFB9204008FA782 /* StanwoodUITesting_Example.app */;
+			productReference = 607FACD01AFB9204008FA782 /* Macchiato_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607FACE41AFB9204008FA782 /* StanwoodUITesting_Tests */ = {
+		607FACE41AFB9204008FA782 /* Macchiato_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodUITesting_Tests" */;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Macchiato_Tests" */;
 			buildPhases = (
 				1670DD4E0686616EB580CEB3 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
@@ -221,9 +232,9 @@
 			dependencies = (
 				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
 			);
-			name = StanwoodUITesting_Tests;
+			name = Macchiato_Tests;
 			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* StanwoodUITesting_Tests.xctest */;
+			productReference = 607FACE51AFB9204008FA782 /* Macchiato_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -233,7 +244,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -247,12 +258,11 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "StanwoodUITesting" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Macchiato" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -261,8 +271,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* StanwoodUITesting_Example */,
-				607FACE41AFB9204008FA782 /* StanwoodUITesting_Tests */,
+				607FACCF1AFB9204008FA782 /* Macchiato_Example */,
+				607FACE41AFB9204008FA782 /* Macchiato_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -277,6 +287,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				13D24D6020CDCA6700748EC0 /* BackgroundCelll.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				13CA369124459A1D00667AC5 /* tests.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +312,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StanwoodUITesting_Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Macchiato_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -314,16 +325,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-StanwoodUITesting_Example/Pods-StanwoodUITesting_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/StanwoodUITesting/StanwoodUITesting.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Macchiato_Example/Pods-Macchiato_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Macchiato/Macchiato.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodUITesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Macchiato.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StanwoodUITesting_Example/Pods-StanwoodUITesting_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Macchiato_Example/Pods-Macchiato_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F16E343C674D8DD8D59B02D6 /* [CP] Check Pods Manifest.lock */ = {
@@ -337,7 +348,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StanwoodUITesting_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Macchiato_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -375,7 +386,7 @@
 /* Begin PBXTargetDependency section */
 		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* StanwoodUITesting_Example */;
+			target = 607FACCF1AFB9204008FA782 /* Macchiato_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -412,12 +423,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -465,12 +478,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -501,10 +516,10 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E4ACBAE5E71914788668C4D /* Pods-StanwoodUITesting_Example.debug.xcconfig */;
+			baseConfigurationReference = 1F2EAD600BA2A58D2C41C09D /* Pods-Macchiato_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = StanwoodUITesting/Info.plist;
+				INFOPLIST_FILE = Macchiato/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -516,10 +531,10 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA432F742211950B8AAF95EB /* Pods-StanwoodUITesting_Example.release.xcconfig */;
+			baseConfigurationReference = AE8FCEF3AB555184EFE91FE5 /* Pods-Macchiato_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = StanwoodUITesting/Info.plist;
+				INFOPLIST_FILE = Macchiato/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -531,7 +546,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3580725BCE72D2682F73D6A6 /* Pods-StanwoodUITesting_Tests.debug.xcconfig */;
+			baseConfigurationReference = B0C65FC10339CD551AE2ABB1 /* Pods-Macchiato_Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -554,7 +569,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E10206D07FE0CFDAAF079D85 /* Pods-StanwoodUITesting_Tests.release.xcconfig */;
+			baseConfigurationReference = 754842516735BCC392E75A0B /* Pods-Macchiato_Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -573,7 +588,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "StanwoodUITesting" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Macchiato" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -582,7 +597,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodUITesting_Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Macchiato_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
@@ -591,7 +606,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodUITesting_Tests" */ = {
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Macchiato_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,

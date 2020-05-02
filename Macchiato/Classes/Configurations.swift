@@ -26,12 +26,13 @@
 import Foundation
 import XCTest
 
-extension UITesting {
+extension Macchiato {
     
     public struct Configurations {
         
         /// JSON URL
-        let url:URL
+        let url:URL?
+        let filePath: URL?
         
         /// Current running XCApplication
         let app: XCUIApplication
@@ -42,17 +43,20 @@ extension UITesting {
         /// Slack Channel ID
         public let slack: Slack?
         
-        public init?(bundleId: String, version: String, app: XCUIApplication, slack: Slack? = nil) {
+        public init(contentsOfURL url: URL, bundleIdentifier: String, app: XCUIApplication, slack: Slack? = nil) {
             
-            self.bundleIdentifier = bundleId
-            
-            let baseURLString: String = "https://stanwood-ui-testing.firebaseio.com"
-            let version: String = version.replacingOccurrences(of: ".", with: "-")
-            let formatedBundle: String = bundleId.replacingOccurrences(of: ".", with: "-")
-            
-            guard let url = URL(string: "ios/\(formatedBundle)/\(version).json", relativeTo: URL(string: baseURLString)) else { XCTFail("incorrect base url"); return nil }
-            
+            self.bundleIdentifier = bundleIdentifier
             self.url = url
+            self.filePath = nil
+            self.app = app
+            self.slack = slack
+        }
+        
+        public init(contentsOfFile url: URL?, bundleIdentifier: String, app: XCUIApplication, slack: Slack? = nil) {
+            
+            self.bundleIdentifier = bundleIdentifier
+            self.filePath = url
+            self.url = nil
             self.app = app
             self.slack = slack
         }
