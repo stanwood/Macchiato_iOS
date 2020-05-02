@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13C4129B245D70C800C80DFE /* MacchiatoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C4129A245D70C800C80DFE /* MacchiatoTests.swift */; };
 		13CA369124459A1D00667AC5 /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 13CA369024459A1D00667AC5 /* tests.json */; };
 		13D24D5920CDCA6700748EC0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5120CDCA6700748EC0 /* TableViewController.swift */; };
 		13D24D5A20CDCA6700748EC0 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D24D5220CDCA6700748EC0 /* TextViewController.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		0DB65A61067209E9D1EC57C6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0E4ACBAE5E71914788668C4D /* Pods-StanwoodUITesting_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodUITesting_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodUITesting_Example/Pods-StanwoodUITesting_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		13C4129A245D70C800C80DFE /* MacchiatoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacchiatoTests.swift; sourceTree = "<group>"; };
 		13CA369024459A1D00667AC5 /* tests.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tests.json; sourceTree = "<group>"; };
 		13D24D5120CDCA6700748EC0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		13D24D5220CDCA6700748EC0 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				13D24D6220CDCC7000748EC0 /* Tests.swift */,
 				13D24D6120CDCC7000748EC0 /* StanwoodUITesting_Tests-Bridging-Header.h */,
+				13C4129A245D70C800C80DFE /* MacchiatoTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13D24D6320CDCC7000748EC0 /* Tests.swift in Sources */,
+				13C4129B245D70C800C80DFE /* MacchiatoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
