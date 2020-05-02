@@ -129,7 +129,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 
 1. First, we want to set the schema JSON format
 
-	```json
+	```javascript
 	{
 		"test_cases" : [
 
@@ -139,7 +139,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 
 2. Creating a test case
 
-	```json
+	```javascript
 	{
 		"test_cases": [
 			"id" : "1",
@@ -159,7 +159,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 	- And the images view is accessed by tapping a button in the tab's `rootView` with an identifier of `pierIdentifier`
 	- The fifth image can be access with `cells` at index 4
 
-		```json
+		```javascript
 		{
 			"test_cases": [
 				"id" : "1",
@@ -177,7 +177,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 4. Now, let's say we want to test the image at position 11, which cannot be accessed in the view, we can set different actions, like `swipeUp, swipeDown`. For example:
 
 
-	```json
+	```javascript
 	{
 		"test_cases": [
 			"id": "1",
