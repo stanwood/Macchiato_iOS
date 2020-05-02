@@ -12,7 +12,7 @@ This is a perfect solution for developers that wnat to integrate their UITesting
 ## Table of contents
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Project Setup](#project-setup)
 - [Creating Your Test Cases](#creating-your-test-cases)
 - [Handling System Alerts](#handling-system-alerts)
 - [Taking Screenshots](#screenshots)
@@ -27,7 +27,7 @@ target 'Project_Tests' do
 end
 ```
 
-## Usage
+## Project Setup
 
 ### Step One - Set up the testing tool
 
