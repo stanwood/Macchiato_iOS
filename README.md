@@ -90,7 +90,7 @@ end
 
 ##### Overview
 
-The test navigation works by querying `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index, or a key, for example:
+The test navigation works by querying `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index or a key, for example:
 
 ```swift
 // Index
