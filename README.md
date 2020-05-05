@@ -5,7 +5,7 @@
 [![iOS 8+](https://img.shields.io/badge/iOS-9+-EB7943.svg)]()
 [![Build Status](https://travis-ci.org/stanwood/Macchiato_iOS.svg?branch=master)](https://travis-ci.org/stanwood/Macchiato_iOS)
 
-Mastering UITesting takes time. While making sure to catche all edge cases, system alerts, and any uncommon UI solution developed under the hood, `Macchiato` allows you to simplify the process. Removing the burdon of covering edge cases, animations, networking, and system alerts, simply manage your test cases in a `JSON` file locally or remotly. 
+Mastering UITesting takes time. While making sure to catch all edge cases, system alerts, and any uncommon UI solution developed under the hood, `Macchiato` allows you to simplify the process. Removing the burden of covering edge cases, animations, networking, and system alerts, simply manage your test cases in a `JSON` file locally or remotely. 
 
 This is a perfect solution for developers that wnat to integrate their UITesting with their own CI solution.
 
