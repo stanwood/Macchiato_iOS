@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Macchiato'
-  s.version          = '0.5'
+  s.version          = '0.5.1'
   s.summary          = 'UITesting tool that runs your tests from a simple JSON file'
   s.description      = <<-DESC
 Stanwood iOS UITesting tool
