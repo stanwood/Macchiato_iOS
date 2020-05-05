@@ -5,80 +5,80 @@
 [![iOS 8+](https://img.shields.io/badge/iOS-9+-EB7943.svg)]()
 [![Build Status](https://travis-ci.org/stanwood/Macchiato_iOS.svg?branch=master)](https://travis-ci.org/stanwood/Macchiato_iOS)
 
+Mastering UITesting takes time. While making sure to catch all edge cases, system alerts, and any uncommon UI solution developed under the hood, `Macchiato` allows you to simplify the process. Removing the burden of covering edge cases, animations, networking, and system alerts, simply manage your test cases in a `JSON` file locally or remotely. 
+
+This is a perfect solution for developers that want to integrate their UITesting with their own CI solution.
+
 ## Table of contents
 
-- [Author](#author)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Project Setup](#project-setup)
+- [Creating Your Test Cases](#creating-your-test-cases)
+- [Handling System Alerts](#handling-system-alerts)
+- [Taking Screenshots](#screenshots)
 - [Licence](#licence)
-
-
-## Author
-
-Tal Zion tal.zion@stanwood.io
 
 ## Installation
 
 ```ruby
 target 'Project_Tests' do
       inherit! :search_paths
-      pod 'StanwoodUITesting'
+      pod 'Macchiato'
 end
 ```
 
-## Usage
+## Project Setup
 
-### iOS Develop Usage
+### Step One - Set up the testing tool
 
-#### Step One - Set up the testing tool
-
-1. Add a new `XCTestCase` to the UI Test target and import `StanwoodUITesting`
+1. Add a new `XCTestCase` to the UI Test target and import `Macchiato`
 
 	```swift
 	import XCTest
-	import StanwoodUITesting
+	import Macchiato
 
-	class StanwoodTests: XCTestCase {
+	class MacchiatoTests: XCTestCase {
 
-	    let app = XCUIApplication()
+        override func setUpWithError() throws {
+            
+        }
 
-	    override func setUp() {
-	        super.setUp()
-
-	    }
-
-	    override func tearDown() {
-	        // Put teardown code here. This method is called after the invocation of each test method in the class.
-	        super.tearDown()
-	    }
-	}
+        override func tearDownWithError() throws {
+            
+        }
+     }
 	```
 
 2. Let's configure and launch the sdk
 
-	Add this to the `setUp()` function
+	Add this to the `setUpWithError()` function
 
 	```swift
 	let app = XCUIApplication()
-	var testingManager: UITesting.Manager!
+	var testingManager: Macchiato.Manager!
     
-	override func setUp() {
-        	super.setUp()
+	override func setUpWithError() throws {
 
         	continueAfterFailure = false
 
-        	let slack = UITesting.Slack(webhookURL: URL(string: "webhook")!, channelName: "#channel")
-        	guard let configurations = UITesting.Configurations(bundleId: "com.company.example", version: "1.0", app: app, slack: slack) else { return }
-        
-        	testingManager = UITesting.Manager(configurations: configurations, target: self)
-        	testingManager.launch()
+        	guard let path = Bundle(for: type(of: self)).url(forResource: "tests", withExtension: "json") else { XCTFail("No tests file found"); return }
+            
+         let configurations = Macchiato.Configurations(contentsOfFile: path, bundleIdentifier: "com.company.ios", app: app)
+         testingManager = Macchiato.Manager(configurations: configurations, target: self)
+         testingManager.launch()
    	 }
 	```
+    
+    You can also inject `contentsOfURL`. 
+    
+```swift
+  let configurations = Macchiato.Configurations(contentsOfURL: url, bundleIdentifier: "com.company.ios", app: app)
+```
 
 3. Now we are ready to set up the test case
 
 	```swift
-	func testStanwood(){
+	func testMacchiato(){
 		testingManager.runTests()
 	}
 	```
@@ -90,7 +90,7 @@ end
 
 ##### Overview
 
-The test navigation works by querying `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index, or a key, for example:
+The test navigation works by querying `XCUIElement` & `XCUIElementQuery` types. Check out the navigation types for a full list [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index or a key, for example:
 
 ```swift
 // Index
@@ -115,15 +115,15 @@ You are starting to feel this may take too long! Say no more... This is handled 
 
 [StanwoodCore Full Doc](https://stanwood.github.io/Stanwood_Core)
 
-### PM Usage
+### Creating Your Test Cases
 
 #### Overview
 
-The UI Testing tool works by querying  element types from the views hierarchy and they can be accessed by calling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are laid out.
+Macchiato works by querying element types from the views hierarchy and they can be accessed by calling a custom key or an index. For example, if we look at the image below from develop.apple.com, we can see how the elements are laid out.
 
-![View Hierchy](assets/views_hierchy.png)
+![View Hierchy](assets/view.png)
 
-This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, which cells can be identified with an index.
+This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, whose cells can be identified with an index.
 
 #### Let's create our first test case
 
@@ -193,15 +193,15 @@ This is a great example where we have a top `UIView`, which can be identified wi
 	}
 	```
 
-For the full action list, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationAction.swift)
+For the full action list, please check [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/Action.swift)
 
-For the full navigation types, please check [here](https://github.com/stanwood/STWUITestingKit/blob/develop/STWUITestingKit/Classes/STWNavigationType.swift). The UI Testing tool identifies each element by either an index, or a key.
+For the full navigation types, please check [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index or a key.
 
 >Note: Element identifiers will be listed in each project documentation  under **UI Testing Identifiers**
 
-#### System Alerts
+#### Handling System Alerts
 
-`StanwoodUITesting` supports system alerts. To monitor system alerts, simply add `.monitor` to any navigation handle.
+`Macchiato` supports system alerts. To monitor system alerts simply add `.monitor` to any navigation handle.
 
 ```javascript
 	{
@@ -245,12 +245,21 @@ To enable screenshots, add Environment Variable into the scheme `Name: SRCROOT, 
 
 ## Release Notes
 
+### `0.5`
+
+- Renaming framework to Macchiato
+- Adding support for contents of file or url
+
 ### `0.1.5`
 
 - Adding navigationBars support
 - Improving error handling
 - Removing some unused keys
 
+## Author
+
+Tal Zion tal.zion@stanwood.io
+
 ## Licence
 
-StanwoodUITesting is under MIT Licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Dialog_iOS/blob/master/LICENSE) file for more info.
+Macchiato is under MIT Licence. See the [LICENSE](https://github.com/stanwood/Macchiato_iOS/blob/master/LICENSE) file for more info.
