@@ -195,7 +195,7 @@ This is a great example where we have a top `UIView`, which can be identified wi
 
 For the full action list, please check [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/Action.swift)
 
-For the full navigation types, please check [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index, or a key.
+For the full navigation types, please check [here](https://github.com/stanwood/Macchiato_iOS/blob/master/Macchiato/Classes/NavigationType.swift). The UI Testing tool identifies each element by either an index or a key.
 
 >Note: Element identifiers will be listed in each project documentation  under **UI Testing Identifiers**
 
