@@ -7,7 +7,7 @@
 
 Mastering UITesting takes time. While making sure to catch all edge cases, system alerts, and any uncommon UI solution developed under the hood, `Macchiato` allows you to simplify the process. Removing the burden of covering edge cases, animations, networking, and system alerts, simply manage your test cases in a `JSON` file locally or remotely. 
 
-This is a perfect solution for developers that wnat to integrate their UITesting with their own CI solution.
+This is a perfect solution for developers that want to integrate their UITesting with their own CI solution.
 
 ## Table of contents
 
