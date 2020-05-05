@@ -201,7 +201,7 @@ For the full navigation types, please check [here](https://github.com/stanwood/M
 
 #### Handling System Alerts
 
-`Macchiato` supports system alerts. To monitor system alerts, simply add `.monitor` to any navigation handle.
+`Macchiato` supports system alerts. To monitor system alerts simply add `.monitor` to any navigation handle.
 
 ```javascript
 	{
