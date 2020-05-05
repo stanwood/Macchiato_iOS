@@ -123,7 +123,7 @@ Macchiato works by querying element types from the views hierarchy and they can 
 
 ![View Hierchy](assets/view.png)
 
-This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, which cells can be identified with an index.
+This is a great example where we have a top `UIView`, which can be identified with a key, and a `UICellectionView`, whose cells can be identified with an index.
 
 #### Let's create our first test case
 
